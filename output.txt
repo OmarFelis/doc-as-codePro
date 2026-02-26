@@ -1,0 +1,408 @@
+============================================================
+  Pipeline: mvpRBAMOTORBACK  (C:\mvpRBAMOTORBACK)
+============================================================
+2026-02-26 11:19:26 [info     ] starting_project_analysis      project_path=C:\mvpRBAMOTORBACK repository_name=mvpRBAMOTORBACK
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\.env.example
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\app\config\clients\pe_banco_x.yaml
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\check_system.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\COMANDOS.md
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\AREQ.json
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Autorizacion.json
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\data\generate_synthetic.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Pasarela.json
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\synthetic_transactions.csv
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\debug_server.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\FASE1-COMPLETA.md
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\init_db.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\INSTALACION.md
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.bat
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.sh
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\001_add_clients_table.sql
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\002_add_users_table.sql
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\003_update_rules_table.sql
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\004_add_audit_log_table.sql
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\feature_engineer.pkl
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\xgboost_fraud_v1.pkl
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvpRBAMOTORBACK.iml
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvp_fraud.db
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\QUICKSTART.md
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\README.md
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements-phase1.txt
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements.txt
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\RESUMEN-IMPLEMENTACION.md
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\run_migrations.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\create_test_user.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\initial_data.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\seed_data.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\setup_phase1.py
+2026-02-26 11:19:26 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\start_server.bat
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_auth.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_crud.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_multi_tenant.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_pagination.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_autenticacion.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_fase3.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_hybrid_system.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_persistence.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_phase1.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\verify_fase1.py
+2026-02-26 11:19:26 [info     ] files_collected                count=72
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-02-26 11:19:26 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-02-26 11:19:26 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\check_system.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\check_system.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\data\generate_synthetic.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\debug_server.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\data\generate_synthetic.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\init_db.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\init_db.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\run_migrations.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\debug_server.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\create_test_user.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\run_migrations.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\seeds\create_test_user.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\initial_data.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\seeds\seed_data.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\setup_phase1.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\seeds\initial_data.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\seeds\seed_data.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_auth.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\setup_phase1.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\tests\test_auth.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_crud.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_multi_tenant.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\tests\test_multi_tenant.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\test_pagination.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\tests\__init__.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\tests\test_crud.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\tests\test_pagination.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_autenticacion.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\tests\__init__.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_fase3.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\test_autenticacion.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_hybrid_system.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\test_fase3.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\test_hybrid_system.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_persistence.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\test_persistence.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\test_phase1.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\test_phase1.py
+2026-02-26 11:19:27 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\verify_fase1.py
+2026-02-26 11:19:27 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\verify_fase1.py
+2026-02-26 11:19:27 [info     ] project_analysis_completed     languages=['python'] total_files=72 total_lines=5751
+
+QUALITY SUMMARY
+  Microservicio ID : 113e0e8b-3945-4bf3-8af9-65a0bb12f578
+  Overall Score    : 66.4
+  Risk Level       : HIGH
+  Unidades logicas : 144
+  Unidades HIGH    : 34
+  Reglas negocio   : 0 (requiere LLM)
+
+UNIDADES LOGICAS DETECTADAS
+  [MED] [DOM]  AREQAdapter.adapt                   score=69.7   risk=MEDIUM
+  [MED] [DOM]  AREQAdapter._map_currency           score=69.7   risk=MEDIUM
+  [MED] [DOM]  AREQAdapter._map_country_code       score=69.7   risk=MEDIUM
+  [MED] [DOM]  AREQAdapter._parse_timestamp        score=69.7   risk=MEDIUM
+  [MED] [DOM]  AREQAdapter._safe_int               score=69.7   risk=MEDIUM
+  [MED] [DOM]  PasarelaAdapter.adapt               score=82.0   risk=MEDIUM
+  [MED] [DOM]  PasarelaAdapter._map_currency       score=82.0   risk=MEDIUM
+  [MED] [DOM]  PasarelaAdapter._parse_timestamp    score=82.0   risk=MEDIUM
+  [MED] [DOM]  PasarelaAdapter._infer_merchant_country score=82.0   risk=MEDIUM
+  [MED] [DOM]  AutorizacionAdapter.adapt           score=69.8   risk=MEDIUM
+  [MED] [DOM]  AutorizacionAdapter._map_currency   score=69.8   risk=MEDIUM
+  [MED] [DOM]  AutorizacionAdapter._parse_entry_mode score=69.8   risk=MEDIUM
+  [MED] [DOM]  AutorizacionAdapter._parse_iso_timestamp score=69.8   risk=MEDIUM
+  [LOW] [DOM]  TransactionRequest.validate_amount  score=78.0   risk=LOW
+  [MED] [ADP]  get_current_user                    score=82.0   risk=MEDIUM
+  [MED] [ADP]  require_role                        score=82.0   risk=MEDIUM
+  [MED] [ADP]  role_checker                        score=82.0   risk=MEDIUM
+  [MED] [ADP]  require_admin                       score=82.0   risk=MEDIUM
+  [LOW] [DOM]  verify_password                     score=68.0   risk=LOW
+  [LOW] [DOM]  get_password_hash                   score=68.0   risk=LOW
+  [LOW] [DOM]  create_access_token                 score=68.0   risk=LOW
+  [LOW] [DOM]  decode_token                        score=68.0   risk=LOW
+  [LOW] [DOM]  ClientConfig.__init__               score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig._load_config           score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig._default_config        score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig.is_stage_enabled       score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig.get_thresholds         score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig.get_required_fields    score=82.2   risk=LOW
+  [LOW] [DOM]  ClientConfig.get_timeout            score=82.2   risk=LOW
+  [LOW] [DOM]  get_client_config                   score=82.2   risk=LOW
+  [LOW] [DOM]  get_settings                        score=100.0  risk=LOW
+  [LOW] [DOM]  DecisionOrchestrator.__init__       score=83.3   risk=LOW
+  [LOW] [DOM]  DecisionOrchestrator.evaluate_transaction score=83.3   risk=LOW
+  [LOW] [DOM]  DecisionOrchestrator._determine_decision score=83.3   risk=LOW
+  [LOW] [DOM]  DecisionOrchestrator.clear_history  score=83.3   risk=LOW
+  [LOW] [INF]  log_rule_change                     score=76.0   risk=LOW
+  [MED] [INF]  StageContextManager.__init__        score=41.7   risk=MEDIUM
+  [MED] [INF]  StageContextManager.save_context    score=41.7   risk=MEDIUM
+  [MED] [INF]  StageContextManager.get_context     score=41.7   risk=MEDIUM
+  [MED] [INF]  StageContextManager.get_stage_context score=41.7   risk=MEDIUM
+  [MED] [INF]  StageContextManager.save_final_evaluation score=41.7   risk=MEDIUM
+  [MED] [INF]  StageContextManager.get_transaction_journey score=41.7   risk=MEDIUM
+  [LOW] [INF]  get_user_by_email                   score=58.7   risk=LOW
+  [LOW] [INF]  get_user_by_username                score=58.7   risk=LOW
+  [LOW] [INF]  create_user                         score=58.7   risk=LOW
+  [LOW] [INF]  get_db                              score=78.0   risk=LOW
+  [LOW] [INF]  init_db                             score=78.0   risk=LOW
+  [LOW] [INF]  AdvancedFeatureEngineer.extract_features score=76.0   risk=LOW ** MULTICAPA **
+  [LOW] [INF]  DeviceTracker.generate_fingerprint  score=54.2   risk=LOW
+  [LOW] [INF]  DeviceTracker.is_device_known       score=54.2   risk=LOW
+  [LOW] [INF]  DeviceTracker.get_user_device_count score=54.2   risk=LOW
+  [LOW] [INF]  DeviceTracker.detect_device_anomaly score=54.2   risk=LOW
+  [HIGH] [INF]  TransactionEnricher.enrich          score=29.2   risk=HIGH ** MULTICAPA **
+  [HIGH] [INF]  TransactionEnricher._calculate_velocity score=29.2   risk=HIGH ** MULTICAPA **
+  [HIGH] [INF]  TransactionEnricher._enrich_device  score=29.2   risk=HIGH ** MULTICAPA **
+  [HIGH] [INF]  TransactionEnricher._enrich_ip      score=29.2   risk=HIGH ** MULTICAPA **
+  [HIGH] [INF]  TransactionEnricher._calculate_user_baseline score=29.2   risk=HIGH ** MULTICAPA **
+  [LOW] [DOM]  IPEnricher.get_ip_info              score=82.9   risk=LOW
+  [LOW] [DOM]  IPEnricher.is_ip_suspicious         score=82.9   risk=LOW
+  [LOW] [DOM]  IPEnricher.calculate_distance       score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.__init__            score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.fit                 score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.transform           score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.fit_transform       score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.save                score=82.9   risk=LOW
+  [LOW] [DOM]  FeatureEngineer.load                score=82.9   risk=LOW
+  [LOW] [DOM]  FraudPredictor.__init__             score=84.0   risk=LOW
+  [LOW] [DOM]  FraudPredictor.predict              score=84.0   risk=LOW
+  [LOW] [DOM]  FraudPredictor.predict_batch        score=84.0   risk=LOW
+  [LOW] [DOM]  get_predictor                       score=84.0   risk=LOW
+  [LOW] [DOM]  train_model                         score=62.0   risk=LOW
+  [LOW] [INF]  VelocityCalculator.get_transaction_velocity score=58.7   risk=LOW
+  [LOW] [INF]  VelocityCalculator.get_velocity_by_ip score=58.7   risk=LOW
+  [LOW] [INF]  VelocityCalculator.get_velocity_by_card score=58.7   risk=LOW
+  [HIGH] [DOM]  AutorizacionStageEvaluator.__init__ score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutorizacionStageEvaluator.evaluate score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutorizacionStageEvaluator._evaluate_autorizacion_rules score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutorizacionStageEvaluator._determine_decision score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutorizacionStageEvaluator._generate_final_recommendations score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator.evaluate score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator._evaluate_autenticacion_rules score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator._is_high_risk_combination score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator._language_matches_country score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator._determine_3ds_decision score=56.6   risk=HIGH
+  [HIGH] [DOM]  AutenticacionStageEvaluator._generate_3ds_recommendations score=56.6   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator.__init__     score=68.9   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator.evaluate     score=68.9   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator._evaluate_pasarela_rules score=68.9   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator._evaluate_pasarela_specific_rules score=68.9   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator._determine_decision score=68.9   risk=HIGH
+  [HIGH] [DOM]  PasarelaStageEvaluator._generate_recommendations score=68.9   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator.__init__         score=68.5   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator.combine_scores   score=68.5   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator._weighted_combination score=68.5   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator.get_decision     score=68.5   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator.should_use_ml    score=68.5   risk=HIGH
+  [HIGH] [DOM]  HybridOrchestrator.explain_decision score=68.5   risk=HIGH
+  [MED] [DOM]  RulesEngine.__init__                score=69.3   risk=MEDIUM
+  [MED] [DOM]  RulesEngine.evaluate                score=69.3   risk=MEDIUM
+  [MED] [DOM]  RulesEngine._check_transaction_velocity score=69.3   risk=MEDIUM
+  [MED] [DOM]  RulesEngine.clear_history           score=69.3   risk=MEDIUM
+  [LOW] [DOM]  generate_synthetic_data             score=74.7   risk=LOW
+  [LOW] [DOM]  create_sample_rules                 score=57.0   risk=LOW
+  [LOW] [DOM]  create_test_user                    score=62.0   risk=LOW
+  [LOW] [DOM]  run_migrations                      score=74.7   risk=LOW
+  [LOW] [DOM]  create_initial_data                 score=55.3   risk=LOW
+  [LOW] [ADP]  setup_test_data                     score=68.0   risk=LOW
+  [LOW] [ADP]  test_login_success                  score=68.0   risk=LOW
+  [LOW] [ADP]  test_login_wrong_password           score=68.0   risk=LOW
+  [LOW] [ADP]  test_login_user_not_found           score=68.0   risk=LOW
+  [LOW] [ADP]  test_protected_endpoint_without_token score=68.0   risk=LOW
+  [MED] [DOM]  main                                score=41.7   risk=MEDIUM
+  [LOW] [ADP]  setup_multi_tenant                  score=68.0   risk=LOW
+  [LOW] [ADP]  test_user_only_sees_own_rules       score=68.0   risk=LOW
+  [LOW] [ADP]  test_user_cannot_access_other_client_rule score=68.0   risk=LOW
+  [LOW] [ADP]  test_user_cannot_update_other_client_rule score=68.0   risk=LOW
+  [LOW] [ADP]  setup_crud                          score=66.9   risk=LOW
+  [LOW] [ADP]  get_token                           score=66.9   risk=LOW
+  [LOW] [ADP]  test_create_rule                    score=66.9   risk=LOW
+  [LOW] [ADP]  test_update_rule                    score=66.9   risk=LOW
+  [LOW] [ADP]  test_delete_rule                    score=66.9   risk=LOW
+  [LOW] [ADP]  test_toggle_rule                    score=66.9   risk=LOW
+  [LOW] [ADP]  test_audit_log_on_create            score=66.9   risk=LOW
+  [LOW] [ADP]  setup_pagination                    score=67.3   risk=LOW
+  [LOW] [ADP]  test_pagination_first_page          score=67.3   risk=LOW
+  [LOW] [ADP]  test_pagination_last_page           score=67.3   risk=LOW
+  [LOW] [ADP]  test_pagination_with_filters        score=67.3   risk=LOW
+  [LOW] [ADP]  test_pagination_max_limit           score=67.3   risk=LOW
+  [MED] [DOM]  test_hybrid_orchestrator            score=54.0   risk=MEDIUM
+  [HIGH] [DOM]  test_different_strategies           score=57.2   risk=HIGH
+  [HIGH] [DOM]  print_header                        score=57.2   risk=HIGH
+  [HIGH] [DOM]  print_result                        score=57.2   risk=HIGH
+  [HIGH] [DOM]  test_scenario                       score=57.2   risk=HIGH
+  [LOW] [DOM]  test_full_journey                   score=70.2   risk=LOW
+  [MED] [DOM]  test_ml_model                       score=54.0   risk=MEDIUM
+  [MED] [DOM]  test_integration                    score=54.0   risk=MEDIUM
+  [LOW] [DOM]  test_phase1                         score=70.5   risk=LOW
+  [MED] [DOM]  check_file                          score=41.7   risk=MEDIUM
+  [MED] [DOM]  check_module                        score=41.7   risk=MEDIUM
+
+PERSISTIDO EN BD
+  entity_name  : mvpRBAMOTORBACK
+  entity_type  : MICROSERVICE
+  language     : python
+  metrics      : {
+    "total_files": 72,
+    "total_lines": 5751,
+    "languages": [
+        "python"
+    ]
+}

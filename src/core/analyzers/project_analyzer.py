@@ -14,19 +14,40 @@ logger = get_logger(__name__)
 class ProjectAnalyzerService:
     """Servicio para analizar proyectos completos."""
     
-    # Carpetas a ignorar
+    # Carpetas a ignorar (dependencias, cache, build artifacts)
     IGNORED_FOLDERS: Set[str] = {
-        'ci-scripts', 'service', 'docs', '.amazonq',
-        '.git', '.github', '.vscode', '.idea', '__pycache__', 'node_modules',
-        'venv', 'env', '.env', 'dist', 'build', 'target', 'bin', 'obj',
+        # Control de versiones
+        '.git', '.github', '.gitignore',
+        # IDEs
+        '.vscode', '.idea', '.amazonq',
+        # Python
+        '__pycache__', '.venv', 'venv', 'env', '.env', 'site-packages',
         '.pytest_cache', '.mypy_cache', '.ruff_cache', '.coverage', 'htmlcov',
-        'vendor', 'tmp', 'temp', 'logs', 'log', 'out', 'output'
+        # Node / JS
+        'node_modules', '.npm', '.yarn', '.pnp',
+        # Java / Kotlin
+        'target', 'bin', 'obj', '.gradle', '.mvn',
+        # Build / dist
+        'dist', 'build', 'out', 'output',
+        # Misc
+        'vendor', 'tmp', 'temp', 'logs', 'log',
+        'ci-scripts', 'docs', '.amazonq',
     }
-    
-    # Archivos a ignorar
+
+    # Extensiones de archivos a ignorar (binarios, assets, no código fuente)
+    IGNORED_EXTENSIONS: Set[str] = {
+        '.lock', '.log',
+        '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico',
+        '.pdf', '.docx', '.xlsx',
+        '.zip', '.tar', '.gz', '.whl', '.egg',
+        '.pyc', '.pyo', '.class', '.map',
+    }
+
+    # Archivos a ignorar (lockfiles y archivos de packaging, NO configs)
     IGNORED_FILES: Set[str] = {
-        '.DS_Store', '.gitignore', 'LICENSE', 'README.md', 'CHANGELOG.md',
-        'package-lock.json', 'yarn.lock', 'requirements.txt', 'Dockerfile'
+        '.DS_Store', '.gitignore', 'LICENSE',
+        'package-lock.json', 'yarn.lock', 'poetry.lock',
+        'Pipfile.lock',
     }
     
     def __init__(self) -> None:
@@ -77,7 +98,7 @@ class ProjectAnalyzerService:
             "project_analysis_completed",
             total_files=analysis.total_files,
             total_lines=analysis.total_lines,
-            languages=[lang.value for lang in analysis.languages]
+            languages=analysis.languages  # Ya son strings gracias a use_enum_values=True
         )
         
         return analysis
@@ -86,33 +107,33 @@ class ProjectAnalyzerService:
         """Recolecta archivos válidos para analizar."""
         files: List[Path] = []
         max_size = self.settings.analyzer.max_file_size_kb * 1024
-        
-        for file_path in project_path.rglob('*'):
-            # Ignorar directorios
-            if file_path.is_dir():
+        self._walk_dir(project_path, files, max_size)
+        return files
+
+    def _walk_dir(self, directory: Path, files: List[Path], max_size: int) -> None:
+        """Walk recursivo con pruning de directorios ignorados."""
+        try:
+            entries = list(directory.iterdir())
+        except PermissionError:
+            return
+
+        for entry in entries:
+            if entry.is_dir():
+                if entry.name not in self.IGNORED_FOLDERS:
+                    self._walk_dir(entry, files, max_size)
                 continue
-            
-            # Ignorar carpetas en el path
-            if any(ignored in file_path.parts for ignored in self.IGNORED_FOLDERS):
+
+            if entry.name in self.IGNORED_FILES:
                 continue
-            
-            # Ignorar archivos específicos
-            if file_path.name in self.IGNORED_FILES:
+            if entry.suffix.lower() in self.IGNORED_EXTENSIONS:
                 continue
-            
-            # Ignorar archivos muy grandes
             try:
-                if file_path.stat().st_size > max_size:
-                    logger.debug("file_too_large", file_path=str(file_path))
+                if entry.stat().st_size > max_size:
                     continue
             except OSError:
                 continue
-            
-            # Verificar si tenemos analizador
-            if self.analyzer_factory.get_analyzer(file_path):
-                files.append(file_path)
-        
-        return files
+            if self.analyzer_factory.get_analyzer(entry):
+                files.append(entry)
     
     def _analyze_files_sequential(self, files: List[Path]) -> List[FileAnalysis]:
         """Analiza archivos secuencialmente."""

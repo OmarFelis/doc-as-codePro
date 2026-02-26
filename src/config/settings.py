@@ -4,23 +4,30 @@ from pydantic import Field, validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class OpenAISettings(BaseSettings):
-    """Configuración de OpenAI."""
+class BedrockSettings(BaseSettings):
+    """Configuración de AWS Bedrock."""
     
-    api_key: str = Field(..., description="API key de OpenAI")
-    model: str = Field(default="gpt-4o-mini", description="Modelo a usar")
-    max_tokens: int = Field(default=128000, description="Límite de tokens")
-    temperature: float = Field(default=0.5, ge=0.0, le=2.0)
+    region: str = Field(default="us-east-1", description="Región de AWS")
+    model_id: str = Field(
+        default="anthropic.claude-3-5-sonnet-20241022-v2:0",
+        description="ID del modelo en Bedrock"
+    )
+    max_tokens: int = Field(default=200000, description="Límite de tokens")
+    temperature: float = Field(default=0.5, ge=0.0, le=1.0)
     
-    model_config = SettingsConfigDict(env_prefix="OPENAI_")
+    # Credenciales AWS (opcional, si no usa AWS CLI)
+    aws_access_key_id: Optional[str] = Field(default=None, description="AWS Access Key ID")
+    aws_secret_access_key: Optional[str] = Field(default=None, description="AWS Secret Access Key")
+    
+    model_config = SettingsConfigDict(env_prefix="BEDROCK_")
 
 
 class ConfluenceSettings(BaseSettings):
     """Configuración de Confluence."""
     
-    base_url: str = Field(..., description="URL base de Confluence")
-    email: str = Field(..., description="Email de usuario")
-    api_token: str = Field(..., description="Token API")
+    base_url: Optional[str] = Field(default=None, description="URL base de Confluence")
+    email: Optional[str] = Field(default=None, description="Email de usuario")
+    api_token: Optional[str] = Field(default=None, description="Token API")
     verify_ssl: bool = Field(default=False, description="Verificar SSL")
     
     model_config = SettingsConfigDict(env_prefix="CONFLUENCE_")
@@ -29,9 +36,9 @@ class ConfluenceSettings(BaseSettings):
 class JiraSettings(BaseSettings):
     """Configuración de Jira Assets."""
     
-    base_url: str = Field(..., description="URL base de Jira")
-    email: str = Field(..., description="Email de usuario")
-    api_token: str = Field(..., description="Token API")
+    base_url: Optional[str] = Field(default=None, description="URL base de Jira")
+    email: Optional[str] = Field(default=None, description="Email de usuario")
+    api_token: Optional[str] = Field(default=None, description="Token API")
     workspace_id: str = Field(
         default="cb50f8bc-b8e8-4641-8301-f0096cbe8841",
         description="ID del workspace de Assets"
@@ -68,7 +75,7 @@ class DatabaseSettings(BaseSettings):
     port: int = Field(default=5432, description="Puerto")
     database: str = Field(default="docascode", description="Nombre de la BD")
     username: str = Field(default="postgres", description="Usuario")
-    password: str = Field(..., description="Password")
+    password: Optional[str] = Field(default=None, description="Password")
     
     model_config = SettingsConfigDict(env_prefix="DB_")
     
@@ -98,7 +105,7 @@ class Settings(BaseSettings):
     debug: bool = Field(default=False, description="Modo debug")
     
     # Configuraciones de componentes
-    openai: OpenAISettings = Field(default_factory=OpenAISettings)
+    bedrock: BedrockSettings = Field(default_factory=BedrockSettings)
     confluence: ConfluenceSettings = Field(default_factory=ConfluenceSettings)
     jira: JiraSettings = Field(default_factory=JiraSettings)
     eraser: EraserSettings = Field(default_factory=EraserSettings)

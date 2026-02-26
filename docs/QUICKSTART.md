@@ -10,7 +10,7 @@ pip install poetry
 poetry install
 
 # Opción B: Con pip
-pip install pydantic pydantic-settings structlog
+pip install pydantic pydantic-settings structlog boto3
 ```
 
 ### 2️⃣ Configurar Variables de Entorno
@@ -22,7 +22,7 @@ cp .env.example .env
 # Editar .env (mínimo requerido para testing local)
 # Solo necesitas estas para probar:
 DEBUG=true
-OPENAI_API_KEY=sk-test-dummy  # Opcional para análisis básico
+BEDROCK_REGION=us-east-1  # Región de AWS
 ```
 
 ### 3️⃣ Ejecutar Ejemplo
@@ -104,6 +104,11 @@ pip install pydantic-settings
 ### Error: "structlog not found"
 ```bash
 pip install structlog
+```
+
+### Error: "boto3 not found"
+```bash
+pip install boto3
 ```
 
 ## 📚 Siguiente Paso

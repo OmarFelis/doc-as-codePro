@@ -4,6 +4,9 @@ from typing import Optional, List
 
 from src.core.analyzers.base import CodeAnalyzer
 from src.core.analyzers.python_analyzer import PythonAnalyzer
+from src.core.analyzers.java_analyzer import JavaAnalyzer
+from src.core.analyzers.javascript_analyzer import JavaScriptAnalyzer
+from src.core.analyzers.typescript_analyzer import TypeScriptAnalyzer
 from src.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -15,7 +18,9 @@ class AnalyzerFactory:
     def __init__(self) -> None:
         self._analyzers: List[CodeAnalyzer] = [
             PythonAnalyzer(),
-            # Aquí se agregarán más analizadores: JavaAnalyzer, JSAnalyzer, etc.
+            JavaAnalyzer(),
+            JavaScriptAnalyzer(),
+            TypeScriptAnalyzer(),
         ]
     
     def get_analyzer(self, file_path: Path) -> Optional[CodeAnalyzer]:

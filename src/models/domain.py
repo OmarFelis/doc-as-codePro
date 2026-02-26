@@ -36,6 +36,30 @@ class ComponentType(str, Enum):
     INTEGRATION = "integration"
 
 
+class EntityType(str, Enum):
+    MICROSERVICE = "MICROSERVICE"
+    LOGIC_UNIT = "LOGIC_UNIT"
+
+
+class RiskLevel(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+
+
+class ArchitectureLayer(str, Enum):
+    ADAPTADOR = "adaptador"
+    DOMINIO = "dominio"
+    INFRAESTRUCTURA = "infraestructura"
+
+
+class LogicalUnitType(str, Enum):
+    FLUJO = "UNIDAD_LOGICA_FLUJO"
+    FUNCION = "UNIDAD_LOGICA_FUNCION"
+    DETALLE = "UNIDAD_LOGICA_DETALLE"
+    REGLA_NEGOCIO = "UNIDAD_LOGICA_REGLA_NEGOCIO"
+
+
 class FileAnalysis(BaseModel):
     """Análisis de un archivo individual."""
     
@@ -48,6 +72,7 @@ class FileAnalysis(BaseModel):
     endpoints: List[Dict[str, Any]] = Field(default_factory=list, description="Endpoints API")
     database_calls: List[str] = Field(default_factory=list, description="Llamadas a BD")
     complexity: int = Field(default=0, description="Complejidad ciclomática")
+    error: Optional[str] = Field(default=None, description="Error durante el análisis")
     
     model_config = ConfigDict(use_enum_values=True)
 
@@ -127,3 +152,30 @@ class PublishResponse(BaseModel):
     page_id: str = Field(..., description="ID de la página creada/actualizada")
     page_url: str = Field(..., description="URL de la página")
     message: str = Field(..., description="Mensaje")
+
+
+class QualityAudit(BaseModel):
+    """Mapea directamente a la tabla quality_audits."""
+    id: Optional[str] = None
+    parent_id: Optional[str] = None
+    entity_name: str
+    entity_type: EntityType
+    runtime_env: Optional[str] = None
+    language: Optional[str] = None
+    risk_level: RiskLevel = RiskLevel.MEDIUM
+    overall_score: Optional[float] = None
+    description: Dict[str, Any] = Field(default_factory=dict)
+    external_relations: Dict[str, Any] = Field(default_factory=dict)
+    metrics: Dict[str, Any] = Field(default_factory=dict)
+    compliance: Dict[str, Any] = Field(default_factory=dict)
+    created_at: Optional[datetime] = None
+
+    model_config = ConfigDict(use_enum_values=True)
+
+
+class BusinessRule(BaseModel):
+    description: str
+    linked_application: str
+    linked_component: str
+    linked_unit_name: str
+

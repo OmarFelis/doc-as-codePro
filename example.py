@@ -42,8 +42,8 @@ def main():
             "analysis_completed",
             total_files=analysis.total_files,
             total_lines=analysis.total_lines,
-            languages=[lang.value for lang in analysis.languages],
-            status=analysis.status.value
+            languages=analysis.languages,  # Ya son strings
+            status=analysis.status  # Ya es string
         )
         
         # Mostrar componentes clasificados
@@ -51,7 +51,7 @@ def main():
             if files:
                 logger.info(
                     "component_classification",
-                    component_type=component_type.value,
+                    component_type=component_type,  # Ya es string
                     file_count=len(files)
                 )
         
@@ -61,7 +61,7 @@ def main():
             logger.info(
                 "file_details",
                 file_path=file_analysis.file_path,
-                language=file_analysis.language.value,
+                language=file_analysis.language,  # Ya es string
                 lines=file_analysis.lines,
                 functions=len(file_analysis.functions),
                 classes=len(file_analysis.classes)

@@ -1,12 +1,27 @@
 # 📚 CONTEXTO COMPLETO - Doc-as-Code PRO v3.0
 
+## ⚡ INICIO AQUÍ — Si eres un agente nuevo o retomas el proyecto
+
+> **Lee primero:** [`CONTEXTO_INICIATIVA_CODE_AGENT.md`](./CONTEXTO_INICIATIVA_CODE_AGENT.md)
+>
+> Este documento resume toda la conversación de análisis realizada, el estado real del código, los bugs conocidos, la brecha con la iniciativa Code-Agent V1 y el orden exacto de implementación. Es el punto de partida correcto.
+
+---
+
 ## 🎯 Propósito de esta Carpeta
 
-Esta carpeta contiene **TODO EL CONTEXTO** necesario para entender el proyecto `doc-as-codePRO` cuando se suba a un nuevo repositorio.
+Esta carpeta contiene **TODO EL CONTEXTO** necesario para entender el proyecto `doc-as-codePRO`.
 
 ## 📋 Archivos de Contexto
 
-### 1. **CONTEXTO_PROYECTO.md** (Inicio aquí)
+### 0. **CONTEXTO_INICIATIVA_CODE_AGENT.md** ⭐ LEER PRIMERO
+- Estado real del código (qué funciona, qué está roto, qué falta)
+- La iniciativa Code-Agent V1 y qué debe construirse
+- Brecha entre lo implementado y lo requerido
+- Orden de implementación con estimados
+- Preguntas abiertas que bloquean avance
+
+### 1. **CONTEXTO_PROYECTO.md** (Contexto histórico)
 - Resumen del proyecto
 - Qué es doc-as-codePRO
 - Diferencias con v2.0
