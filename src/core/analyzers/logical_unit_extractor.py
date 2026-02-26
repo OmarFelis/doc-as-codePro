@@ -5,9 +5,13 @@ from src.models.domain import FileAnalysis, QualityAudit, EntityType, RiskLevel,
 _ADAPTADOR_PATTERNS = {
     # Python
     "fastapi", "flask", "handler", "router", "controller", "starlette", "django",
-    # Java / Spring
+    # Java / Spring MVC
     "org.springframework.web", "org.springframework.stereotype",
     "javax.ws.rs", "jakarta.ws.rs",
+    # Java / Struts
+    "org.apache.struts", "org.apache.struts2",
+    # Java / Servlet
+    "javax.servlet", "jakarta.servlet",
 }
 _INFRA_PATTERNS = {
     # Python
