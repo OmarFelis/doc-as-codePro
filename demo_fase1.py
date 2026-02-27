@@ -168,7 +168,7 @@ async def demo_path(path: str, name: str):
         print(f"\nPERSISTIDO EN BD")
         print(f"  entity_name  : {parent.entity_name}")
         print(f"  entity_type  : {parent.entity_type}")
-        print(f"  language     : {parent.language}")
+        ##print(f"  language     : {parent.language}")
         print(f"  metrics      : {json.dumps(parent.metrics, indent=4)}")
     finally:
         session.close()

@@ -43,27 +43,176 @@ ProjectAnalyzerService          ← ya existe
         ├── FileAnalysis[]       ← ya existe (Python, Java, JS, TS)
         │
         ▼
-LogicalUnitExtractor            ← construir (Fase 1)
+LogicalUnitExtractor            ← Fase 1 ✔ COMPLETADO
         │
-        ├── LogicalUnit[]        ← con layer, scores, risk_level
+        ├── QualityAudit[]       ← con layer, scores, risk_level
         │
         ▼
-BusinessRuleExtractor           ← construir (Fase 1) — solo capa DOMINIO
+BusinessRuleExtractor           ← Fase 1 ✔ COMPLETADO — solo capa DOMINIO
         │
         ├── BusinessRule[]       ← en lenguaje natural, trazabilidad completa
         │
         ▼
-QualityDiagnosticService        ← construir (Fase 1)
+QualityAuditRepository          ← Fase 1 ✔ COMPLETADO
         │
-        ├── QualityAudit[]       ← overall_score, compliance, metrics
-        │
-        ▼
-QualityAuditRepository          ← construir (Fase 1)
-        │
-        └── PostgreSQL: tabla quality_audits (schema de Stefano)
+        └── PostgreSQL: tabla quality_audits
                 │
-                ▼ (opcional, secundario)
-        ConfluencePublisher      ← migrar del piloto (Fase 2)
+                ▼
+        LLMEnricher                 ← Fase 2 — Paso 8
+                │
+                └── Enriquece description + external_relations con Bedrock
+                        │
+                        ▼
+                DiffAnalyzer            ← Fase 2 — Paso 9
+                        └── POST /api/v1/compare (QA vs DEV)
+```
+
+> **Nota:** Paso 7 (fix JS/TS) es prerequisito de Paso 8 — debe completarse primero para garantizar
+> cobertura completa de lenguajes antes de ejecutar el enriquecimiento LLM.
+
+---
+
+## Arquitectura de Componentes
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        doc-as-codePRO v3.0                          │
+│                                                                     │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────────────┐  │
+│  │  FastAPI     │    │   Analyzers  │    │   LLM Layer          │  │
+│  │              │    │              │    │                      │  │
+│  │ POST         │    │ PythonAnalyz │    │ BedrockClient        │  │
+│  │ /analyze     │───▶│ JavaAnalyzer │    │ (Claude 3.5 Sonnet)  │  │
+│  │              │    │ JSAnalyzer   │    │                      │  │
+│  │ POST         │    │ TSAnalyzer   │    │ BusinessRuleExtract  │  │
+│  │ /compare     │    │              │    │ LLMEnricher          │  │
+│  └──────────────┘    └──────┬───────┘    └──────────┬───────────┘  │
+│                             │                       │              │
+│                    ┌────────▼────────┐              │              │
+│                    │ Pipeline Core   │              │              │
+│                    │                 │              │              │
+│                    │ ProjectAnalyzer │              │              │
+│                    │ LogicalUnitExtr │◀─────────────┘              │
+│                    │ QualityAuditRep │                             │
+│                    └────────┬────────┘                             │
+└─────────────────────────────┼───────────────────────────────────────┘
+                              │
+                              ▼
+              ┌───────────────────────────────┐
+              │   PostgreSQL                  │
+              │                               │
+              │   quality_audits              │
+              │   ├── MICROSERVICE (padre)    │
+              │   └── LOGIC_UNIT (hijos)      │
+              │       ├── description  JSONB  │
+              │       ├── external_rel JSONB  │
+              │       ├── metrics      JSONB  │
+              │       └── compliance   JSONB  │
+              └───────────────────────────────┘
+```
+
+---
+
+## Diagrama de Flujo — Pipeline de Análisis
+
+```
+  ENTRADA: ruta del microservicio
+         │
+         ▼
+  ┌─────────────────────┐
+  │  ProjectAnalyzer    │  Recorre directorios, ignora deps
+  │  _walk_dir()        │  (.venv, node_modules, target...)
+  └──────────┬──────────┘
+             │  List[Path]
+             ▼
+  ┌─────────────────────┐
+  │  AnalyzerFactory    │  Selecciona analizador por extensión
+  │  .get_analyzer()    │  .py → Python | .java → Java
+  └──────────┬──────────┘  .js → JS    | .ts → TS
+             │  FileAnalysis[]
+             │  { functions, imports, complexity,
+             │    endpoints, database_calls, lines }
+             ▼
+  ┌─────────────────────┐
+  │ LogicalUnitExtract  │  Por cada función detectada:
+  │ .extract()          │  - Clasifica capa (DOM/INF/ADP)
+  └──────────┬──────────┘  - Calcula atomicity + transparency
+             │              - Calcula overall_score (0-100)
+             │  QualityAudit[]  - Detecta MULTICAPA
+             │  entity_type=LOGIC_UNIT
+             ▼
+  ┌─────────────────────┐
+  │ BusinessRuleExtract │  Solo unidades capa DOMINIO
+  │ .extract()          │  Llama Bedrock si llm_client != None
+  └──────────┬──────────┘  Retorna List[BusinessRule]
+             │
+             ▼
+  ┌─────────────────────┐
+  │ QualityAuditRepo    │  upsert por entity_name + entity_type
+  │ .upsert_all()       │  Padre (MICROSERVICE) + hijos (LOGIC_UNIT)
+  └──────────┬──────────┘
+             │
+             ▼
+  ┌─────────────────────┐   ← Fase 2 — Paso 8
+  │ LLMEnricher         │  Lee QualityAudit de Postgres
+  │ .enrich()           │  Llama Bedrock por unidad DOMINIO
+  └──────────┬──────────┘  Actualiza description + external_relations
+             │
+             ▼
+  ┌─────────────────────┐   ← Fase 2 — Paso 9
+  │ DiffAnalyzer        │  Compara snapshots QA vs DEV
+  │ .compare()          │  Detecta funciones nuevas/eliminadas
+  └──────────┬──────────┘  Cambios en risk_level, score, dependencias
+             │
+             ▼
+  SALIDA: quality_summary + quality_audits en PostgreSQL
+```
+
+---
+
+## Diagrama de Datos — Tabla `quality_audits`
+
+```
+ quality_audits
+ ┌─────────────────────────────────────────────────────────┐
+ │ id          UUID PK                                     │
+ │ parent_id   UUID FK → quality_audits(id)  (nullable)   │
+ │ entity_name VARCHAR(255)                                │
+ │ entity_type MICROSERVICE | LOGIC_UNIT                   │
+ │ runtime_env LAMBDA | ECS_FARGATE | K8S | ON_PREMISE     │
+ │ language    python | java | javascript | typescript     │
+ │ risk_level  LOW | MEDIUM | HIGH                         │
+ │ overall_score DECIMAL(5,2)  0-100                       │
+ │                                                         │
+ │ description JSONB ──────────────────────────────────┐  │
+ │  {                                                  │  │
+ │    "summary": "Valida BIN del emisor...",           │  │
+ │    "purpose": "Aislar reglas de autorización",      │  │
+ │    "business_value": "Crítico para aprobación"      │  │
+ │  }                                          ← LLM  │  │
+ │                                                     │  │
+ │ external_relations JSONB ───────────────────────────┘  │
+ │  {                                                      │
+ │    "outbound": [{"target": "visa-api"}],                │
+ │    "data_storage": [{"resource": "bins-db"}]            │
+ │  }                                          ← LLM      │
+ │                                                         │
+ │ metrics JSONB ← análisis estático                       │
+ │  { "lines_of_code": 45, "cyclomatic_complexity": 8 }   │
+ │                                                         │
+ │ compliance JSONB ← análisis estático                    │
+ │  { "has_multi_layer_coupling": false, "loc_ok": true }  │
+ │                                                         │
+ │ created_at TIMESTAMP WITH TIME ZONE                     │
+ └─────────────────────────────────────────────────────────┘
+
+ Relación padre-hijo:
+
+ MICROSERVICE (parent_id = NULL)
+ └── LOGIC_UNIT (parent_id = microservice.id)
+ └── LOGIC_UNIT
+ └── LOGIC_UNIT
+     ...
 ```
 
 ---
@@ -267,34 +416,80 @@ FileAnalysis[]
 
 ---
 
-## Fase 2 — Integraciones y comparación (deadline: 15 de abril)
+## Fase 2 — Enriquecimiento LLM y comparación (deadline: 15 de abril)
 
-### Paso 7 — Migrar integraciones del piloto (1 día)
+> **Decisión de arquitectura:** Confluence y Jira quedan fuera del alcance.
+> El destino único y fuente de verdad es `quality_audits` en PostgreSQL.
+> Cualquier vista externa (dashboards, reportes) se construye consultando esta tabla.
 
-**Archivos nuevos:**
-- `src/integrations/confluence.py` ← portar lógica de `ci-scripts/post_to_confluence.py`
-- `src/integrations/jira_assets.py` ← portar lógica de `ci-scripts/jira_assets_single.py`
+### Paso 7 — Fix analizadores JS/TS (1 día)
 
-Confluence genera páginas hijas a partir de los `QualityAudit` persistidos en Postgres. Es una vista, no el destino.
+**Archivos a corregir:**
+- `src/core/analyzers/javascript_analyzer.py` — bug `argument of type 'Module' is not iterable` detectado en prueba con FLOTAS-ADQUIRENTE
+- `src/core/analyzers/typescript_analyzer.py` — mismo patrón, verificar
 
-### Paso 8 — Comparación QA vs DEV (1 día)
+**Relación con pasos anteriores:**
+- Habilita Paso 3 (`LogicalUnitExtractor`) para archivos JS/TS — sin este fix, no se generan `QualityAudit` para esos archivos
+- Prerequisito del Paso 8 — el enriquecimiento LLM debe tener cobertura completa antes de ejecutarse
+
+**Criterio de éxito:** Correr el pipeline contra FLOTAS-ADQUIRENTE sin `javascript_analysis_error` y con unidades lógicas JS detectadas en `quality_audits`.
+
+---
+
+### Paso 8 — Enriquecimiento LLM de `quality_audits` (1-2 días)
+
+**Objetivo:** Usar Bedrock (Claude 3.5 Sonnet) para rellenar los campos JSONB que el análisis estático no puede inferir.
+
+**Archivo nuevo:** `src/core/analyzers/llm_enricher.py`
+
+Procesa los `QualityAudit` ya persistidos en Postgres y enriquece:
+
+| Campo JSONB | Qué aporta el LLM |
+|-------------|-------------------|
+| `description.summary` | Qué hace la función/microservicio en lenguaje natural |
+| `description.purpose` | Por qué existe, qué problema resuelve |
+| `description.business_value` | Impacto de negocio si falla o se modifica |
+| `external_relations.outbound` | Dependencias detectadas en el código (APIs, servicios, BDs llamadas) |
+| `external_relations.data_storage` | Recursos de datos accedidos (tablas, caches, buckets) |
+
+**Flujo:**
+```
+QualityAuditRepository.get_by_parent(microservice_id)
+    → filtrar entity_type=LOGIC_UNIT y architecture_layer=dominio
+    → leer source_code del archivo original
+    → BedrockClient.generate() con prompt especializado
+    → parsear JSON response
+    → QualityAuditRepository.upsert() con campos enriquecidos
+```
+
+**Relación con pasos anteriores:**
+- Depende de Paso 5 (`QualityAuditRepository`) — lee y escribe en `quality_audits`
+- Depende de Paso 4 (`BusinessRuleExtractor`) — comparte el `BedrockClient` y el patrón de prompt
+- Extiende Paso 6 (pipeline) — puede ejecutarse como paso opcional post-pipeline o como job independiente
+
+**Criterio de éxito:** Dado un microservicio ya analizado, `description` y `external_relations` de sus unidades de dominio quedan poblados con texto en lenguaje natural consultable.
+
+---
+
+### Paso 9 — Comparación QA vs DEV (1 día)
 
 **Archivo nuevo:** `src/core/analyzers/diff_analyzer.py`
 
 Compara dos snapshots de `quality_audits` del mismo microservicio (uno de QA, uno de DEV):
 - Funciones nuevas / eliminadas
 - Cambios en `risk_level` o `overall_score`
-- Cambios en dependencias AWS (`external_relations`)
+- Cambios en dependencias (`external_relations`)
+- Cambios en `description` generado por LLM (detecta cambios de comportamiento)
 
 Nuevo endpoint: `POST /api/v1/compare` con `{ "base_env": "QA", "target_env": "DEV", "microservice": "ACS" }`
 
-### Paso 9 — Analizadores JS/TS (1 día)
+**Relación con pasos anteriores:**
+- Depende de Paso 7 — el diff es más rico si `description` y `external_relations` están enriquecidos
+- Depende de Paso 5 — consulta `quality_audits` directamente
 
-**Archivos existentes a completar:**
-- `src/core/analyzers/javascript_analyzer.py` — ya existe como stub
-- `src/core/analyzers/typescript_analyzer.py` — ya existe como stub
+---
 
-Completar para cubrir microservicios frontend o Node.js si aplica.
+
 
 ---
 
@@ -304,6 +499,44 @@ Completar para cubrir microservicios frontend o Node.js si aplica.
 - Métricas Prometheus: tiempo de análisis por microservicio, unidades HIGH risk detectadas
 - Endpoint de consulta en lenguaje natural: `GET /api/v1/query?q="¿qué valida ACS antes de procesar un pago?"`
 - Versionamiento de auditorías: comparar estado del código entre sprints
+- **Scoring por función individual:** actualmente LOC y complejidad se calculan a nivel de archivo
+  y se distribuyen equitativamente entre todas las funciones. Mejorar los analizadores para
+  calcular métricas por función individual producirá scores más precisos.
+
+---
+
+## Criterio de Overall Score
+
+El `overall_score` (0-100) se calcula en `logical_unit_extractor.py` con tres componentes:
+
+| Componente | Peso | Cómo se calcula |
+|------------|------|------------------|
+| **Atomicity** | 40% | Base 1.0 — penaliza si LOC > 30 (-0.3) o complexity > 10 (-0.3) |
+| **Transparency** | 40% | Base 1.0 — penaliza si tiene database_calls (-0.4) o imports de infra (-0.3) |
+| **Complexity inverse** | 20% | `1.0 / max(complexity, 1)` — a mayor complejidad, menor aporte |
+
+```
+overall_score = (atomicity × 0.4 + transparency × 0.4 + (1/complexity) × 0.2) × 100
+```
+
+**Ejemplos reales:**
+
+| Función | LOC | Complexity | DB calls | Score | Razón |
+|---------|-----|-----------|----------|-------|-------|
+| `get_settings` | ~5 | 1 | No | 100.0 | Todo perfecto |
+| `FraudPredictor.predict` | ~20 | 5 | No | 84.0 | Buena atomicidad, sin infra |
+| `StageContextManager` | ~40 | 12 | Sí | 41.7 | LOC alto + DB + complexity |
+| `TransactionEnricher` | ~60 | 18 | Sí | 29.2 | Todo penalizado |
+
+**Risk level** se deriva de la complejidad ciclomática (independiente del score):
+- `complexity > 15` → HIGH
+- `complexity 10–15` → MEDIUM
+- `complexity < 10` → LOW
+
+> **Limitación conocida (Fase 1):** LOC y complejidad se calculan a nivel de archivo y se
+> distribuyen equitativamente entre todas las funciones del archivo. Si un archivo tiene 10
+> funciones, todas reciben el mismo score aunque algunas sean simples y otras complejas.
+> La mejora a scoring por función individual está planificada para Fase 3.
 
 ---
 
@@ -334,11 +567,12 @@ Completar para cubrir microservicios frontend o Node.js si aplica.
 ## Orden de ejecución recomendado
 
 ```
-Semana 1:  Paso 1 (bugs) → Paso 2 (modelos) → Paso 3 (LogicalUnitExtractor)
-Semana 2:  Paso 4 (BusinessRuleExtractor) → Paso 5 (Postgres) — confirmar con Stefano
-Semana 3:  Paso 6 (pipeline completo) → validar con microservicio real
-Semana 4:  Buffer + ajustes + Paso 7 (integraciones piloto)
-Post 14/3: Paso 8 (diff QA vs DEV) → Paso 9 (JS/TS)
+Semana 1:  Paso 1 (bugs) → Paso 2 (modelos) → Paso 3 (LogicalUnitExtractor)     ✔ COMPLETADO
+Semana 2:  Paso 4 (BusinessRuleExtractor) → Paso 5 (Postgres)                    ✔ COMPLETADO
+Semana 3:  Paso 6 (pipeline completo) → validar con microservicio real            ✔ COMPLETADO
+Semana 4:  Paso 7 (fix JS/TS) → Paso 8 (LLM enricher)
+           Razón: cobertura completa de lenguajes antes de gastar tokens de Bedrock
+Semana 5:  Paso 9 (diff QA vs DEV)
 ```
 
 ---

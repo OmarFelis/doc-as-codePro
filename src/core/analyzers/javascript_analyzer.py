@@ -36,8 +36,8 @@ class JavaScriptAnalyzer(CodeAnalyzer):
         content = self._read_file_content(file_path)
 
         try:
-            # Parse JavaScript code
-            tree = esprima.parseModule(content, {"loc": True, "tolerant": True})
+            # Parse JavaScript code — convert to dict for uniform traversal
+            tree = esprima.parseModule(content, {"loc": True, "tolerant": True}).toDict()
 
             # Extract information
             functions = self._extract_functions(tree)
