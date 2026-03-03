@@ -5,9 +5,13 @@ from src.models.domain import (
     ComponentType,
     FileAnalysis,
     ProjectAnalysis,
-    Documentation,
-    PublishRequest,
-    PublishResponse,
+    TipoUnidad,
+    RiskLevel,
+    ArchitectureLayer,
+    ArchivoFuente,
+    UnidadLogica,
+    Escaneo,
+    BusinessRule,
 )
 
 __all__ = [
@@ -16,7 +20,11 @@ __all__ = [
     "ComponentType",
     "FileAnalysis",
     "ProjectAnalysis",
-    "Documentation",
-    "PublishRequest",
-    "PublishResponse",
+    "TipoUnidad",
+    "RiskLevel",
+    "ArchitectureLayer",
+    "ArchivoFuente",
+    "UnidadLogica",
+    "Escaneo",
+    "BusinessRule",
 ]

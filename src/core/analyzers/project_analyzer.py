@@ -32,6 +32,10 @@ class ProjectAnalyzerService:
         # Misc
         'vendor', 'tmp', 'temp', 'logs', 'log',
         'ci-scripts', 'docs', '.amazonq',
+        # Java test dirs
+        'test', 'tests', 'it', 'integration-test',
+        # Java web frontend (no es código de negocio)
+        'WebRoot', 'WebContent', 'webapp', 'web', 'static', 'public', 'assets', 'resources',
     }
 
     # Extensiones de archivos a ignorar (binarios, assets, no código fuente)
@@ -41,6 +45,7 @@ class ProjectAnalyzerService:
         '.pdf', '.docx', '.xlsx',
         '.zip', '.tar', '.gz', '.whl', '.egg',
         '.pyc', '.pyo', '.class', '.map',
+        '.min.js',  # minificados JS
     }
 
     # Archivos a ignorar (lockfiles y archivos de packaging, NO configs)
@@ -48,6 +53,26 @@ class ProjectAnalyzerService:
         '.DS_Store', '.gitignore', 'LICENSE',
         'package-lock.json', 'yarn.lock', 'poetry.lock',
         'Pipfile.lock',
+    }
+
+    # Patrones de nombre de archivo a ignorar (vendor libs conocidas)
+    IGNORED_FILE_PATTERNS: Set[str] = {
+        'jquery', 'prototype', 'bootstrap', 'angular', 'react', 'vue',
+        'lodash', 'underscore', 'moment', 'axios', 'popper',
+    }
+
+    # Prefijos de archivos a ignorar (scripts de utilidad, no código de producción)
+    IGNORED_FILE_PREFIXES: Set[str] = {
+        'test_', 'check_', 'verify_', 'debug_', 'seed_',
+        'generate_', 'setup_phase', 'run_migrations', 'create_test',
+        'initial_data', 'init_db',
+        # Java: clases generadas por Hibernate/JPA
+        'Abstract', 'Tvf',
+    }
+
+    # Sufijos de stem a ignorar (backups, versiones alternativas) — sin extensión
+    IGNORED_FILE_STEM_SUFFIXES: Set[str] = {
+        '_ok', '_bak', '_backup', '_old', '_copy', '_orig', '_tmp',
     }
     
     def __init__(self) -> None:
@@ -110,6 +135,11 @@ class ProjectAnalyzerService:
         self._walk_dir(project_path, files, max_size)
         return files
 
+    # Carpetas a ignorar solo cuando su padre tiene este nombre
+    IGNORED_CHILD_FOLDERS: dict[str, Set[str]] = {
+        'hibernate': {'data'},
+    }
+
     def _walk_dir(self, directory: Path, files: List[Path], max_size: int) -> None:
         """Walk recursivo con pruning de directorios ignorados."""
         try:
@@ -119,11 +149,26 @@ class ProjectAnalyzerService:
 
         for entry in entries:
             if entry.is_dir():
-                if entry.name not in self.IGNORED_FOLDERS:
-                    self._walk_dir(entry, files, max_size)
+                if entry.name in self.IGNORED_FOLDERS:
+                    continue
+                parent_name = entry.parent.name
+                if entry.name in self.IGNORED_CHILD_FOLDERS.get(parent_name, set()):
+                    continue
+                self._walk_dir(entry, files, max_size)
                 continue
 
             if entry.name in self.IGNORED_FILES:
+                continue
+            if any(entry.name.startswith(p) for p in self.IGNORED_FILE_PREFIXES):
+                continue
+            if any(entry.stem.endswith(s) for s in self.IGNORED_FILE_STEM_SUFFIXES):
+                continue
+            # Ignorar vendor libs JS por nombre (jquery-x.x.x.js, prototype-x.js, etc.)
+            name_lower = entry.name.lower()
+            if any(pat in name_lower for pat in self.IGNORED_FILE_PATTERNS):
+                continue
+            # Ignorar minificados JS (.min.js)
+            if name_lower.endswith('.min.js'):
                 continue
             if entry.suffix.lower() in self.IGNORED_EXTENSIONS:
                 continue

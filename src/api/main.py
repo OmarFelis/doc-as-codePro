@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from src.api.routes import analysis, health
+from src.api.routes import analysis, health, compare
 from src.config.settings import get_settings
 from src.utils.logging import setup_logging, get_logger
 
@@ -49,6 +49,7 @@ Instrumentator().instrument(app).expose(app, endpoint="/metrics", tags=["Metrics
 # Include routers
 app.include_router(health.router, prefix="", tags=["Health"])
 app.include_router(analysis.router, prefix="/api/v1", tags=["Analysis"])
+app.include_router(compare.router, prefix="/api/v1", tags=["Analysis"])
 
 
 

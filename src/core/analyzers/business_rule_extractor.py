@@ -1,7 +1,7 @@
-"""Extrae reglas de negocio en lenguaje natural usando LLM, solo para capa DOMINIO."""
+"""Extrae reglas de negocio usando LLM, solo para unidades de capa DOMINIO."""
 import json
 from typing import List
-from src.models.domain import BusinessRule, QualityAudit, ArchitectureLayer
+from src.models.domain import BusinessRule, UnidadLogica, ArchitectureLayer
 from src.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -20,23 +20,24 @@ Responde SOLO con JSON válido, sin texto adicional:
 [{{"description": "...", "condition": "...", "result": "..."}}]"""
 
 
-def _is_dominio(audit: QualityAudit) -> bool:
-    return audit.metrics.get("architecture_layer") == ArchitectureLayer.DOMINIO.value
+def _is_dominio(unidad: UnidadLogica) -> bool:
+    return unidad.capa == ArchitectureLayer.DOMINIO.value
 
 
 async def extract(
-    audits: List[QualityAudit],
+    unidades: List[UnidadLogica],
     source_code: str,
     linked_application: str,
     linked_component: str,
     llm_client,
+    lenguaje: str = "python",
 ) -> List[BusinessRule]:
     """Procesa solo unidades de capa DOMINIO y retorna reglas de negocio."""
-    dominio_units = [a for a in audits if _is_dominio(a)]
+    dominio_units = [u for u in unidades if _is_dominio(u)]
     if not dominio_units:
         return []
 
-    language = dominio_units[0].language or "python"
+    language = lenguaje
     prompt = _PROMPT_TEMPLATE.format(source_code=source_code, language=language)
 
     try:
@@ -55,7 +56,7 @@ async def extract(
                 description=item["description"],
                 linked_application=linked_application,
                 linked_component=linked_component,
-                linked_unit_name=unit.entity_name,
+                linked_unit_name=unit.nombre,
             ))
 
     return rules

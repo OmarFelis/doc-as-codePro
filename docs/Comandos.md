@@ -73,7 +73,13 @@ poetry run python demo_fase1.py
 poetry run python demo_fase1.py --fixture dominio_puro
 
 # Demo contra una ruta real del sistema de archivos
-poetry run python demo_fase1.py --path C:/repos/mi-microservicio
+poetry run python demo_fase1.py --path C:\mvpRBAMOTORBACK
+
+# Un repo detallado (como antes)
+poetry run python run_test.py C:\mvpRBAMOTORBACK
+
+# Comparar múltiples repos de una vez
+poetry run python run_test.py --compare "C:\mvpRBAMOTORBACK" "C:\FLOTAS - Assessments\flotas-mod_empresa"
 
 # Demo contra ruta real con nombre personalizado, guardando output en archivo
 poetry run python demo_fase1.py --path C:/repos/mi-microservicio --name MiServicio > output.txt
