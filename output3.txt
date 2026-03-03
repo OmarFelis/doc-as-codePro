@@ -1,502 +1,502 @@
 C:\Users\ocardenas\OneDrive - BIZLINKS SAC\Documentos\doc-as-codePRO>poetry run python run_test.py --compare "C:\mvpRBAMOTORBACK" "C:\FLOTAS - Assessments\flotas-mod_empresa"
 Analizando mvpRBAMOTORBACK...
-2026-03-03 15:47:50 [info     ] starting_project_analysis      project_path=C:\mvpRBAMOTORBACK repository_name=mvpRBAMOTORBACK
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\.env.example
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\app\config\clients\pe_banco_x.yaml
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\COMANDOS.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\AREQ.json
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Autorizacion.json
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Pasarela.json
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\synthetic_transactions.csv
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\FASE1-COMPLETA.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\INSTALACION.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.bat
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.sh
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\001_add_clients_table.sql
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\002_add_users_table.sql
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\003_update_rules_table.sql
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\004_add_audit_log_table.sql
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\feature_engineer.pkl
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\xgboost_fraud_v1.pkl
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvpRBAMOTORBACK.iml
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvp_fraud.db
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\QUICKSTART.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\README.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements-phase1.txt
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements.txt
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\RESUMEN-IMPLEMENTACION.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\start_server.bat
-2026-03-03 15:47:50 [info     ] files_collected                count=52
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\config.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\database.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\models.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\main.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
-2026-03-03 15:47:50 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\__init__.py
-2026-03-03 15:47:50 [info     ] project_analysis_completed     languages=['python'] total_files=52 total_lines=3681
+2026-03-03 16:05:58 [info     ] starting_project_analysis      project_path=C:\mvpRBAMOTORBACK repository_name=mvpRBAMOTORBACK
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\.env.example
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\app\config\clients\pe_banco_x.yaml
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\COMANDOS.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\AREQ.json
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Autorizacion.json
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\Pasarela.json
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\data\synthetic_transactions.csv
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\FASE1-COMPLETA.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\INSTALACION.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.bat
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\install.sh
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\001_add_clients_table.sql
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\002_add_users_table.sql
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\003_update_rules_table.sql
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\migrations\004_add_audit_log_table.sql
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\feature_engineer.pkl
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\models\xgboost_fraud_v1.pkl
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvpRBAMOTORBACK.iml
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\mvp_fraud.db
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\QUICKSTART.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\README.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements-phase1.txt
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\requirements.txt
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\RESUMEN-IMPLEMENTACION.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\mvpRBAMOTORBACK\start_server.bat
+2026-03-03 16:05:58 [info     ] files_collected                count=52
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\areq_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\autorizacion_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\pasarela_adapter.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\adapters\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_routes.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\rules_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\api\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\dependencies.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\jwt.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\routes.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\auth\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\client_config.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\config\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\config.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\orchestrator.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\core\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\context_manager.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_audit.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\crud_users.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\database.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\models.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\db\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\main.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\advanced_features.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\device_tracker.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\enrichment.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\features.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\ip_enricher.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\model.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\trainer.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\velocity.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\ml\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\unified.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\models\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autenticacion_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\autorizacion_schemas.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autenticacion.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\autorizacion.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\pasarela.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\evaluators\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\hybrid_orchestrator.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\schemas.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\stage_routes.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\orchestration\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\engine.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=PythonAnalyzer file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\rules\__init__.py
+2026-03-03 16:05:58 [info     ] analyzing_python_file          file_path=C:\mvpRBAMOTORBACK\app\__init__.py
+2026-03-03 16:05:58 [info     ] project_analysis_completed     languages=['python'] total_files=52 total_lines=3681
 Analizando flotas-mod_empresa...
-2026-03-03 15:47:50 [info     ] starting_project_analysis      project_path=C:\FLOTAS - Assessments\flotas-mod_empresa repository_name=flotas-mod_empresa
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\bitbucket-pipelines.yml
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-ear\pom.xml
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\pom.xml
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\AccesAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardVehicleReceivedAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CostCentersAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DownloadFileAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DriversAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\GraphicAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\JSONCenterCost.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogoutAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogPrintAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\PlannedAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportAuditCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportBalanceVehicleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCardVehicleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCompanyEstimated.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCostCenterVehicleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportExpiringCardCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportKilometrageAreaResponsibleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompanyCsv.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportResponsibleAreaCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportsAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStatementAccountVehicleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStationWatchCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportTypeFuelClassCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportWithoutSupplyingVehicleCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\RoleAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserChangeAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UsersAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\VehicleAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ZipAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BEAN.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuel.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuelVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COMPANY.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COSTCENTER.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\DRIVER.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GeneralConsumerReportBean.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean2.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean3.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\ISSUER.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Pagina.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\PaginaCentroCosto.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Paging.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\RangoFechas.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\State.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Vales.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\connection\Configuracion.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DB.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBBin.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCard.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCompany.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBConfigPassword.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenter.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicleAccount.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBDriver.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBIssuer.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBKey.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListReportMileageCostCenter.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListVehicleFuel.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBPassword.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBReportMileageCostCenter.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBRole.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBTransaction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBUser.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicleFuel.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccount.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccountimporthead.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCard.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCardRequest.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCfgVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCostCenter.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicFilePlanned.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicMigrationVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicProperty.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicRole.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicTvfFile.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicUser.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleAudit.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleDriver.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVFuel.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\enums\Estado.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MyConnectionException.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MySQLException.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\AuthenticationFilter.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\Eventos.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\HibernateSessionFactory.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\servlet\StarterServlet.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\AccessLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardVehicleReceivedLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CostCentersLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\DriversLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\GraphicLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\PlannedLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReasignCreditLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportConsumeLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportsLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\RoleLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserChangeLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UsersLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UtilsLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\VehicleLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\rules\MyValidatorRules.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\security\Security.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateServlet.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateTop.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\DisplayTest.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\FormUpdateServlet.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\Logic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\SesionServlet.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\UpdateListServlet.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseLogic.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\UserContainer.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CharacterWrapper.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CheckLogonTag.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateFormat.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateTimeForma.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\ALGTimer.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Bean.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DatedFileAppender.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplaytagFormatEstimatedValue.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplayTagImportUserState.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\FileUtil.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReports.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReportsVehicle.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoadProperties.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoginPrepago.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\MyConstants.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Result.java
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\scrapbookPage.jpage
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\SendEmail.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Utils.java
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-cipher-1.0.jar
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-eventLog-1.0.jar
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-hikm-1.0.jar
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\loadlib.cmd
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\loadlib.sh
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\owasp-esapi-1.4.jar
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\sample-1.0.jar
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\pom.xml
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\README.md
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\settings.xml
-2026-03-03 15:47:50 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\WAS_PASSWORD
-2026-03-03 15:47:50 [info     ] files_collected                count=139
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\AccesAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardVehicleReceivedAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CostCentersAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DownloadFileAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DriversAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\GraphicAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\JSONCenterCost.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogoutAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogPrintAction.java
-2026-03-03 15:47:50 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\PlannedAction.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportAuditCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportBalanceVehicleCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCardVehicleCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCompanyEstimated.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCostCenterVehicleCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportExpiringCardCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportKilometrageAreaResponsibleCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompanyCsv.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportResponsibleAreaCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportsAction.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStatementAccountVehicleCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStationWatchCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportTypeFuelClassCompany.java
-2026-03-03 15:47:51 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportWithoutSupplyingVehicleCompany.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\RoleAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserChangeAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UsersAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\VehicleAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ZipAction.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BEAN.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuel.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuelVehicle.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COMPANY.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COSTCENTER.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\DRIVER.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GeneralConsumerReportBean.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean2.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean3.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\ISSUER.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Pagina.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\PaginaCentroCosto.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Paging.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\RangoFechas.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\State.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Vales.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\connection\Configuracion.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DB.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBBin.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCard.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCompany.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBConfigPassword.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenter.java
-2026-03-03 15:47:52 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicle.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicleAccount.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBDriver.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBIssuer.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBKey.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListReportMileageCostCenter.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListVehicleFuel.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBPassword.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBReportMileageCostCenter.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBRole.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBTransaction.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBUser.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicle.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicleFuel.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccount.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccountimporthead.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCard.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCardRequest.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCfgVehicle.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCostCenter.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicFilePlanned.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicMigrationVehicle.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicProperty.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicRole.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicTvfFile.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicUser.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicle.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleAudit.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleDriver.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVFuel.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\enums\Estado.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MyConnectionException.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MySQLException.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\AuthenticationFilter.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\Eventos.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\HibernateSessionFactory.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\servlet\StarterServlet.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\AccessLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardVehicleReceivedLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CostCentersLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\DriversLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\GraphicLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\PlannedLogic.java
-2026-03-03 15:47:53 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReasignCreditLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportConsumeLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportsLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\RoleLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserChangeLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UsersLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UtilsLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\VehicleLogic.java
-2026-03-03 15:47:54 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\rules\MyValidatorRules.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\security\Security.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateServlet.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateTop.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\DisplayTest.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\FormUpdateServlet.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\Logic.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\SesionServlet.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\UpdateListServlet.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseAction.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseLogic.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\UserContainer.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CharacterWrapper.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CheckLogonTag.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateFormat.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateTimeForma.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\ALGTimer.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Bean.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DatedFileAppender.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplaytagFormatEstimatedValue.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplayTagImportUserState.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\FileUtil.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReports.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReportsVehicle.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoadProperties.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoginPrepago.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\MyConstants.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Result.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\SendEmail.java
-2026-03-03 15:47:55 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Utils.java
-2026-03-03 15:47:56 [info     ] project_analysis_completed     languages=['java'] total_files=139 total_lines=47899
+2026-03-03 16:05:58 [info     ] starting_project_analysis      project_path=C:\FLOTAS - Assessments\flotas-mod_empresa repository_name=flotas-mod_empresa
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\bitbucket-pipelines.yml
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-ear\pom.xml
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\pom.xml
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\AccesAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardVehicleReceivedAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CostCentersAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DownloadFileAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DriversAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\GraphicAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\JSONCenterCost.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogoutAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogPrintAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\PlannedAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportAuditCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportBalanceVehicleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCardVehicleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCompanyEstimated.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCostCenterVehicleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportExpiringCardCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportKilometrageAreaResponsibleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompanyCsv.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportResponsibleAreaCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportsAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStatementAccountVehicleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStationWatchCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportTypeFuelClassCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportWithoutSupplyingVehicleCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\RoleAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserChangeAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UsersAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\VehicleAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ZipAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BEAN.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuel.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuelVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COMPANY.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COSTCENTER.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\DRIVER.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GeneralConsumerReportBean.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean2.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean3.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\ISSUER.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Pagina.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\PaginaCentroCosto.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Paging.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\RangoFechas.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\State.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Vales.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\connection\Configuracion.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DB.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBBin.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCard.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCompany.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBConfigPassword.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenter.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicleAccount.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBDriver.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBIssuer.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBKey.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListReportMileageCostCenter.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListVehicleFuel.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBPassword.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBReportMileageCostCenter.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBRole.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBTransaction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBUser.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicleFuel.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccount.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccountimporthead.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCard.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCardRequest.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCfgVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCostCenter.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicFilePlanned.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicMigrationVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicProperty.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicRole.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicTvfFile.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicUser.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleAudit.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleDriver.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVFuel.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\enums\Estado.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MyConnectionException.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MySQLException.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\AuthenticationFilter.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\Eventos.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\HibernateSessionFactory.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\servlet\StarterServlet.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\AccessLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardVehicleReceivedLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CostCentersLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\DriversLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\GraphicLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\PlannedLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReasignCreditLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportConsumeLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportsLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\RoleLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserChangeLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UsersLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UtilsLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\VehicleLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\rules\MyValidatorRules.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\security\Security.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateServlet.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateTop.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\DisplayTest.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\FormUpdateServlet.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\Logic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\SesionServlet.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\UpdateListServlet.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseLogic.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\UserContainer.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CharacterWrapper.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CheckLogonTag.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateFormat.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateTimeForma.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\ALGTimer.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Bean.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DatedFileAppender.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplaytagFormatEstimatedValue.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplayTagImportUserState.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\FileUtil.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReports.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReportsVehicle.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoadProperties.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoginPrepago.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\MyConstants.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Result.java
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\scrapbookPage.jpage
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\SendEmail.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Utils.java
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-cipher-1.0.jar
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-eventLog-1.0.jar
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\alg-hikm-1.0.jar
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\loadlib.cmd
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\loadlib.sh
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\owasp-esapi-1.4.jar
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\libs\sample-1.0.jar
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\pom.xml
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\README.md
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\settings.xml
+2026-03-03 16:05:58 [debug    ] no_analyzer_found              file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\WAS_PASSWORD
+2026-03-03 16:05:58 [info     ] files_collected                count=139
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\AccesAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CardVehicleReceivedAction.java
+2026-03-03 16:05:58 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\CostCentersAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DownloadFileAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\DriversAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\GraphicAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\JSONCenterCost.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogoutAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\LogPrintAction.java
+2026-03-03 16:05:59 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\PlannedAction.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportAuditCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportBalanceVehicleCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCardVehicleCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCompanyEstimated.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportCostCenterVehicleCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportExpiringCardCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportKilometrageAreaResponsibleCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompany.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportQueryGeneralCompanyCsv.java
+2026-03-03 16:06:00 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportResponsibleAreaCompany.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportsAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStatementAccountVehicleCompany.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportStationWatchCompany.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportTypeFuelClassCompany.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ReportWithoutSupplyingVehicleCompany.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\RoleAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UserChangeAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\UsersAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\VehicleAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\action\ZipAction.java
+2026-03-03 16:06:01 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BEAN.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuel.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\BeanFuelVehicle.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COMPANY.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\COSTCENTER.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\DRIVER.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GeneralConsumerReportBean.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean2.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\GraphicBean3.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\ISSUER.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Pagina.java
+2026-03-03 16:06:02 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\PaginaCentroCosto.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Paging.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\RangoFechas.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\State.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\bean\Vales.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\connection\Configuracion.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DB.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBBin.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCard.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCompany.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBConfigPassword.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenter.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicle.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBCostCenterVehicleAccount.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBDriver.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBIssuer.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBKey.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListReportMileageCostCenter.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBListVehicleFuel.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBPassword.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBReportMileageCostCenter.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBRole.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBTransaction.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBUser.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicle.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\DBVehicleFuel.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccount.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicAccountimporthead.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCard.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCardRequest.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCfgVehicle.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicCostCenter.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicFilePlanned.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicMigrationVehicle.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicProperty.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicRole.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicTvfFile.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicUser.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicle.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleAudit.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVehicleDriver.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\db\LogicVFuel.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\enums\Estado.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MyConnectionException.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\exception\MySQLException.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\AuthenticationFilter.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\filter\Eventos.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\HibernateSessionFactory.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\hibernate\servlet\StarterServlet.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\AccessLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CardVehicleReceivedLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\CostCentersLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\DriversLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\GraphicLogic.java
+2026-03-03 16:06:03 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\PlannedLogic.java
+2026-03-03 16:06:04 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReasignCreditLogic.java
+2026-03-03 16:06:04 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportConsumeLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\ReportsLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\RoleLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserChangeLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UserLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UsersLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\UtilsLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\logic\VehicleLogic.java
+2026-03-03 16:06:05 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\rules\MyValidatorRules.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\security\Security.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateServlet.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\AccountUpdateTop.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\DisplayTest.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\FormUpdateServlet.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\Logic.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\SesionServlet.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\servlet\UpdateListServlet.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseAction.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\CustomBaseLogic.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\session\UserContainer.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CharacterWrapper.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\CheckLogonTag.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateFormat.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\tags\DisplaytagDateTimeForma.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\ALGTimer.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Bean.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DatedFileAppender.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplaytagFormatEstimatedValue.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\DisplayTagImportUserState.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\FileUtil.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReports.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\GenerarReportsVehicle.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoadProperties.java
+2026-03-03 16:06:06 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\LoginPrepago.java
+2026-03-03 16:06:07 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\MyConstants.java
+2026-03-03 16:06:07 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Result.java
+2026-03-03 16:06:07 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\SendEmail.java
+2026-03-03 16:06:07 [debug    ] analyzer_found                 analyzer=JavaAnalyzer file_path=C:\FLOTAS - Assessments\flotas-mod_empresa\flotas-empresa-war\src\main\java\com\alignet\vfleets\company\utils\Utils.java
+2026-03-03 16:06:07 [info     ] project_analysis_completed     languages=['java'] total_files=139 total_lines=47899
 
 ================================================================================
   COMPARATIVA DE REPOS
 ================================================================================
 Repo                    Arch    LOC   Cls  Func    Avg    Min  HIGH   MED
 --------------------------------------------------------------------------------
-  flotas-mod_empresa       139  47899   139  1289   62.9   44.1   812    71 ⚠
-  mvpRBAMOTORBACK           52   3681    64   126   79.1   42.9     0     4
+  flotas-mod_empresa       139  47899   139  1289   62.9   44.1   821    71 ⚠
+  mvpRBAMOTORBACK           52   3681    64   126   79.1   42.9    12    23 ⚠
 ================================================================================
 
   TOP 10 funciones con score más bajo (candidatas a refactor):
   Repo                 Función                             Capa            Risk     Score
   ---------------------------------------------------------------------------
-  mvpRBAMOTORBACK      _calculate_user_baseline            infraestructura LOW      42.86
-  mvpRBAMOTORBACK      get_metrics                         infraestructura LOW      42.86
-  mvpRBAMOTORBACK      list_rules                          infraestructura LOW      43.33
+  mvpRBAMOTORBACK      _calculate_user_baseline            infraestructura HIGH     42.86
+  mvpRBAMOTORBACK      get_metrics                         infraestructura HIGH     42.86
+  mvpRBAMOTORBACK      list_rules                          infraestructura HIGH     43.33
   flotas-mod_empresa   getKeyMethodMap                     infraestructura HIGH     44.06
   flotas-mod_empresa   vehicleSearchList                   infraestructura HIGH     44.06
   flotas-mod_empresa   ReportVehicleListCOM                infraestructura HIGH     44.06

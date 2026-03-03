@@ -81,10 +81,10 @@ def _calc_overall(atomicity: float, transparency: float, complexity: int) -> flo
     return round(((atomicity * 0.4) + (transparency * 0.4) + (complexity_score * 0.2)) * 100, 2)
 
 
-def _calc_risk(complexity: int) -> RiskLevel:
-    if complexity > 15:
+def _calc_risk(complexity: int, score: float) -> RiskLevel:
+    if complexity > 15 or score < 50:
         return RiskLevel.HIGH
-    if complexity >= 10:
+    if complexity >= 10 or score < 70:
         return RiskLevel.MEDIUM
     return RiskLevel.LOW
 
@@ -121,6 +121,11 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
     for clase_nombre in file_analysis.classes:
         uid = str(_uuid.uuid4())
         clase_ids[clase_nombre] = uid
+        clase_score = _calc_overall(
+                _calc_atomicity(file_analysis.lines // max(len(file_analysis.classes), 1), file_analysis.complexity),
+                _calc_transparency(file_analysis.database_calls, imports),
+                file_analysis.complexity,
+            )
         unidades.append(UnidadLogica(
             id=uid,
             activo_id=activo_id,
@@ -131,12 +136,8 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
             lineas_codigo=file_analysis.lines // max(len(file_analysis.classes), 1),
             accede_bd=accede_bd,
             llamadas_externas=aws_services,
-            risk_level=_calc_risk(file_analysis.complexity),
-            overall_score=_calc_overall(
-                _calc_atomicity(file_analysis.lines // max(len(file_analysis.classes), 1), file_analysis.complexity),
-                _calc_transparency(file_analysis.database_calls, imports),
-                file_analysis.complexity,
-            ),
+            risk_level=_calc_risk(file_analysis.complexity, clase_score),
+            overall_score=clase_score,
             compliance={"has_multi_layer_coupling": multi_layer},
         ))
 
@@ -156,6 +157,7 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
         atomicity = _calc_atomicity(loc_per_func, func_complexity)
         transparency = _calc_transparency(file_analysis.database_calls, imports)
 
+        func_score = _calc_overall(atomicity, transparency, func_complexity)
         unidades.append(UnidadLogica(
             activo_id=activo_id,
             nombre=nombre,
@@ -166,8 +168,8 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
             lineas_codigo=loc_per_func,
             accede_bd=accede_bd,
             llamadas_externas=aws_services,
-            risk_level=_calc_risk(func_complexity),
-            overall_score=_calc_overall(atomicity, transparency, func_complexity),
+            risk_level=_calc_risk(func_complexity, func_score),
+            overall_score=func_score,
             compliance={
                 "has_multi_layer_coupling": multi_layer,
                 "loc_ok": loc_per_func <= 30,
@@ -186,6 +188,6 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
         if scores:
             clase.overall_score = round(sum(scores) / len(scores), 2)
             max_complexity = max(h.complejidad for h in hijos)
-            clase.risk_level = _calc_risk(max_complexity).value
+            clase.risk_level = _calc_risk(max_complexity, clase.overall_score).value
 
     return archivo, unidades

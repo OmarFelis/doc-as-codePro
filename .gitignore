@@ -49,3 +49,6 @@ Thumbs.db
 
 # AWS
 .aws/
+
+#IDEA
+.idea
