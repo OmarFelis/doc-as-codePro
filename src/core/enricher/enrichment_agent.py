@@ -25,31 +25,37 @@ def build_enrichment_agent():
 
         @tool
         def enriquecer_unidades(archivo_id: str, source_code: str) -> str:
-            """Genera resúmenes en español para cada función/clase de capa DOMINIO.
-            Retorna JSON: [{"nombre": str, "resumen": str}]
+            """OBLIGATORIO llamar para analizar un archivo.
+            Analiza el código y retorna SOLO JSON sin texto adicional:
+            [{"nombre": "NombreFuncion", "resumen": "descripcion en español"}]
+            NO generes código. NO expliques. SOLO el JSON.
             """
-            return json.dumps([
-                {"nombre": "desconocido", "resumen": "Ver código fuente"}
-            ])
+            return json.dumps([])
 
         @tool
         def extraer_reglas_negocio(source_code: str) -> str:
-            """Extrae reglas de negocio: validaciones, cálculos, flujos de pago.
-            Retorna JSON: [{"descripcion": str, "funcion_origen": str, "tipo": str}]
+            """Extrae reglas de negocio del código.
+            Retorna SOLO JSON sin texto adicional:
+            [{"descripcion": str, "funcion_origen": str, "tipo": str}]
+            NO generes código. NO expliques. SOLO el JSON.
             """
             return json.dumps([])
 
         @tool
         def analizar_owasp(source_code: str) -> str:
-            """Detecta patrones OWASP Top 10 en código de capa INFRAESTRUCTURA.
-            Retorna JSON: [{"categoria": str, "descripcion": str, "linea": int}]
+            """Detecta vulnerabilidades OWASP Top 10.
+            Retorna SOLO JSON sin texto adicional:
+            [{"categoria": str, "descripcion": str, "linea": int}]
+            NO generes código. NO expliques. SOLO el JSON.
             """
             return json.dumps([])
 
         @tool
         def generar_resumen_microservicio(inventario_funciones: str) -> str:
-            """Genera resumen ejecutivo del microservicio completo.
-            Retorna JSON: {"summary": str, "purpose": str, "data_sensitivity": str}
+            """Genera resumen ejecutivo del microservicio.
+            Retorna SOLO JSON sin texto adicional:
+            {"summary": str, "purpose": str, "data_sensitivity": str}
+            NO generes código. NO expliques. SOLO el JSON.
             """
             return json.dumps({"summary": "", "purpose": "", "data_sensitivity": "unknown"})
 
@@ -62,8 +68,13 @@ def build_enrichment_agent():
             model=model,
             tools=[enriquecer_unidades, extraer_reglas_negocio, analizar_owasp, generar_resumen_microservicio],
             system_prompt=(
-                "Eres un analista técnico de software de pagos digitales. "
-                "Respondes siempre en español. Produces JSON válido sin markdown ni bloques de código."
+                "Eres un analizador estático de código. "
+                "REGLAS ESTRICTAS: "
+                "1. SIEMPRE usa las tools disponibles — nunca respondas en texto libre. "
+                "2. NUNCA generes código fuente, ejemplos ni implementaciones. "
+                "3. NUNCA uses bloques markdown ni backticks. "
+                "4. Tu única salida válida es invocar una tool. "
+                "5. Responde en español dentro de los campos JSON."
             ),
         )
 

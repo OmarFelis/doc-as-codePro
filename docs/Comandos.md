@@ -81,6 +81,9 @@ poetry run python run_test.py C:\mvpRBAMOTORBACK
 # Comparar múltiples repos de una vez
 poetry run python run_test.py --compare "C:\mvpRBAMOTORBACK" "C:\FLOTAS - Assessments\flotas-mod_empresa"
 
+# Comparar múltiples repos de una vez fase 2
+poetry run python run_pipeline.py "C:\FLOTAS - Assessments\flotas-mod_empresa" --dry-run --enrich --max-files=10
+
 # Demo contra ruta real con nombre personalizado, guardando output en archivo
 poetry run python demo_fase1.py --path C:/repos/mi-microservicio --name MiServicio > output.txt
 
