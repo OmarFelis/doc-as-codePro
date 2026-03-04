@@ -1,270 +1,263 @@
 """
 Casos de prueba end-to-end — Fase 1
-Validan el pipeline completo con microservicios de ejemplo realistas.
-
-Casos cubiertos:
-  CT-01: Microservicio de dominio puro → capa DOMINIO, scores altos
-  CT-02: Acoplamiento multicapa → has_multi_layer_coupling = True
-  CT-03: Infraestructura pura → capa INFRAESTRUCTURA, no procesa reglas
-  CT-04: Alta complejidad → risk_level HIGH, overall_score bajo
-  CT-05: Doble análisis del mismo microservicio → no duplica registros
-  CT-06: Pipeline retorna quality_summary con todos los campos requeridos
+CT-01: Dominio puro → capa DOMINIO, scores altos
+CT-02: Acoplamiento multicapa → has_multi_layer_coupling = True
+CT-03: Infraestructura pura → capa INFRAESTRUCTURA
+CT-04: Alta complejidad → risk_level HIGH, score bajo
+CT-05: Doble análisis → escaneos INSERT-only, archivos re-insertados
+CT-06: Pipeline retorna summary con campos requeridos
 """
-import pytest
 import uuid
+import shutil
+import tempfile
+import pytest
 from pathlib import Path
 from datetime import datetime, timezone
-from sqlalchemy import create_engine, Column, String, Float, DateTime, JSON
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, Column, String, Float, DateTime, Boolean, Integer, JSON, Text
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from sqlalchemy.pool import StaticPool
 
-from src.db.models import Base
 from src.db import repository as repo
 from src.core.analyzers import logical_unit_extractor
 from src.models.domain import FileAnalysis, LanguageType
 
 FIXTURES = Path(__file__).parent / "fixtures" / "microservicios"
+ACTIVO_ID = str(uuid.uuid4())
 
 
-# --- ORM SQLite para tests ---
+class _Base(DeclarativeBase):
+    pass
 
-class QualityAuditORMTest(Base):
-    __tablename__ = "qa_e2e"
+
+class ArchivoFuenteTest(_Base):
+    __tablename__ = "archivos_fuente_e2e"
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    activo_id = Column(String(36), nullable=False)
+    aplicacion_id = Column(String(255), nullable=True)
+    nombre = Column(String(255), nullable=False)
+    ruta_archivo = Column(Text, nullable=False)
+    proposito = Column(Text, nullable=True)
+    capa = Column(String(50), nullable=True)
+    lenguaje = Column(String(50), nullable=True)
+    total_funciones = Column(Integer, default=0)
+    total_clases = Column(Integer, default=0)
+    endpoints = Column(JSON, default=list)
+    operaciones_bd = Column(JSON, default=list)
+    llamadas_externas = Column(JSON, default=list)
+    complejidad_ciclomatica = Column(Integer, default=0)
+    lineas_codigo = Column(Integer, default=0)
+    resumen = Column(Text, nullable=True)
+    metadata_ = Column("metadata", JSON, default=dict)
+    build_number = Column(String(100), nullable=True)
+    commit_hash = Column(String(40), nullable=True)
+    escaneado_en = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    activo = Column(Boolean, default=True)
+
+
+class UnidadLogicaTest(_Base):
+    __tablename__ = "unidades_logicas_e2e"
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    archivo_id = Column(String(36), nullable=True)
     parent_id = Column(String(36), nullable=True)
-    entity_name = Column(String(255), nullable=False)
-    entity_type = Column(String(50), nullable=False)
-    runtime_env = Column(String(50), nullable=True)
-    language = Column(String(50), nullable=True)
-    risk_level = Column(String(10), nullable=False, default="MEDIUM")
+    activo_id = Column(String(36), nullable=False)
+    nombre = Column(String(255), nullable=False)
+    tipo = Column(String(20), nullable=False)
+    capa = Column(String(50), nullable=True)
+    proposito = Column(Text, nullable=True)
+    complejidad = Column(Integer, default=0)
+    lineas_codigo = Column(Integer, default=0)
+    accede_bd = Column(Boolean, default=False)
+    llamadas_externas = Column(JSON, default=list)
+    docstring = Column(Boolean, default=False)
+    resumen = Column(Text, nullable=True)
+    metadata_ = Column("metadata", JSON, default=dict)
+    risk_level = Column(String(10), default="MEDIUM")
     overall_score = Column(Float, nullable=True)
-    description = Column(JSON, nullable=False, default=dict)
-    external_relations = Column(JSON, nullable=False, default=dict)
-    metrics = Column(JSON, nullable=False, default=dict)
-    compliance = Column(JSON, nullable=False, default=dict)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    compliance = Column(JSON, default=dict)
+    activo = Column(Boolean, default=True)
+
+
+class EscaneoTest(_Base):
+    __tablename__ = "escaneos_e2e"
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    activo_id = Column(String(36), nullable=False)
+    aplicacion_id = Column(String(255), nullable=True)
+    build_number = Column(String(100), nullable=True)
+    commit_hash = Column(String(40), nullable=True)
+    escaneado_en = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    generado_por = Column(String(100), default="code-agent-v1")
+    score_general = Column(Float, nullable=True)
+    nivel_riesgo = Column(String(10), nullable=True)
+    archivos_total = Column(Integer, default=0)
+    funciones_total = Column(Integer, default=0)
+    clases_total = Column(Integer, default=0)
+    dominios_negocio = Column(JSON, default=list)
+    metricas = Column(JSON, default=dict)
+    arquitectura = Column(JSON, default=dict)
+    seguridad = Column(JSON, default=dict)
+    rendimiento = Column(JSON, default=dict)
+    negocio = Column(JSON, default=dict)
+    cumplimiento = Column(JSON, default=dict)
 
 
 @pytest.fixture
 def session():
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False}, poolclass=StaticPool)
-    Base.metadata.create_all(engine, tables=[QualityAuditORMTest.__table__])
+    engine = create_engine(
+        "sqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    _Base.metadata.create_all(engine)
+    orig_a, orig_u, orig_e = repo.ArchivoFuenteORM, repo.UnidadLogicaORM, repo.EscaneoORM
+    repo.ArchivoFuenteORM = ArchivoFuenteTest
+    repo.UnidadLogicaORM = UnidadLogicaTest
+    repo.EscaneoORM = EscaneoTest
     Session = sessionmaker(bind=engine)
     s = Session()
-    original = repo.QualityAuditORM
-    repo.QualityAuditORM = QualityAuditORMTest
     yield s
     s.close()
-    repo.QualityAuditORM = original
+    repo.ArchivoFuenteORM, repo.UnidadLogicaORM, repo.EscaneoORM = orig_a, orig_u, orig_e
 
 
 def _analyze_fixture(filename: str) -> FileAnalysis:
-    """Analiza un fixture usando el PythonAnalyzer real."""
     from src.core.analyzers.python_analyzer import PythonAnalyzer
     return PythonAnalyzer().analyze_file(FIXTURES / filename)
 
 
-# ─────────────────────────────────────────────
-# CT-01: Dominio puro
-# ─────────────────────────────────────────────
+# ── CT-01: Dominio puro ───────────────────────────────────────────────────────
 
 def test_ct01_dominio_puro_clasifica_capa_correcta():
-    """CT-01: Funciones sin imports de infra → capa DOMINIO."""
     fa = _analyze_fixture("dominio_puro.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    layers = {a.metrics["architecture_layer"] for a in audits}
-    assert layers == {"dominio"}, f"Se esperaba solo 'dominio', se obtuvo: {layers}"
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    layers = {u.capa for u in unidades}
+    assert layers == {"dominio"}, f"Esperado solo 'dominio', obtenido: {layers}"
 
 
 def test_ct01_dominio_puro_scores_altos():
-    """CT-01: Funciones simples de dominio → overall_score > 60."""
     fa = _analyze_fixture("dominio_puro.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    for audit in audits:
-        assert audit.overall_score is not None
-        assert audit.overall_score > 60, (
-            f"{audit.entity_name}: overall_score={audit.overall_score} esperado > 60"
-        )
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    for u in unidades:
+        assert u.overall_score is not None
+        assert u.overall_score > 60, f"{u.nombre}: score={u.overall_score} esperado > 60"
 
 
 def test_ct01_dominio_puro_risk_low():
-    """CT-01: Funciones simples → risk_level LOW."""
     fa = _analyze_fixture("dominio_puro.py")
-    audits = logical_unit_extractor.extract(fa)
-    assert all(a.risk_level == "LOW" for a in audits)
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert all(u.risk_level == "LOW" for u in unidades)
 
 
 def test_ct01_dominio_puro_sin_multi_layer():
-    """CT-01: Sin imports mixtos → has_multi_layer_coupling = False."""
     fa = _analyze_fixture("dominio_puro.py")
-    audits = logical_unit_extractor.extract(fa)
-    assert all(a.compliance["has_multi_layer_coupling"] is False for a in audits)
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert all(u.compliance.get("has_multi_layer_coupling") is False for u in unidades if u.compliance)
 
 
-# ─────────────────────────────────────────────
-# CT-02: Acoplamiento multicapa
-# ─────────────────────────────────────────────
+# ── CT-02: Acoplamiento multicapa ─────────────────────────────────────────────
 
 def test_ct02_multicapa_detecta_coupling():
-    """CT-02: Imports de fastapi + boto3 → has_multi_layer_coupling = True."""
     fa = _analyze_fixture("acoplamiento_multicapa.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    assert len(audits) > 0
-    assert any(a.compliance["has_multi_layer_coupling"] is True for a in audits), (
-        "Se esperaba al menos una unidad con has_multi_layer_coupling=True"
-    )
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert any(u.compliance.get("has_multi_layer_coupling") is True for u in unidades)
 
 
 def test_ct02_multicapa_capa_infraestructura():
-    """CT-02: Archivo con boto3 + fastapi → capa INFRAESTRUCTURA (infra tiene precedencia)."""
     fa = _analyze_fixture("acoplamiento_multicapa.py")
-    audits = logical_unit_extractor.extract(fa)
-    layers = {a.metrics["architecture_layer"] for a in audits}
-    assert "infraestructura" in layers
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert any(u.capa == "infraestructura" for u in unidades)
 
 
-# ─────────────────────────────────────────────
-# CT-03: Infraestructura pura
-# ─────────────────────────────────────────────
+# ── CT-03: Infraestructura pura ───────────────────────────────────────────────
 
 def test_ct03_infraestructura_clasifica_correcta():
-    """CT-03: Imports de boto3/psycopg2 → capa INFRAESTRUCTURA."""
     fa = _analyze_fixture("infraestructura_pura.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    layers = {a.metrics["architecture_layer"] for a in audits}
-    assert layers == {"infraestructura"}, f"Se esperaba solo 'infraestructura', se obtuvo: {layers}"
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    layers = {u.capa for u in unidades}
+    assert layers == {"infraestructura"}, f"Esperado solo 'infraestructura', obtenido: {layers}"
 
 
 def test_ct03_infraestructura_detecta_aws_services():
-    """CT-03: Imports de boto3/s3/sqs → aws_services poblado."""
     fa = _analyze_fixture("infraestructura_pura.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    aws_services = audits[0].metrics.get("aws_services", [])
-    assert len(aws_services) > 0, "Se esperaban AWS services detectados"
+    archivo, _ = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert len(archivo.llamadas_externas) > 0, "Se esperaban AWS services detectados"
 
 
 def test_ct03_infraestructura_no_es_dominio():
-    """CT-03: Ninguna unidad de infraestructura debe clasificar como dominio."""
     fa = _analyze_fixture("infraestructura_pura.py")
-    audits = logical_unit_extractor.extract(fa)
-    assert all(a.metrics["architecture_layer"] != "dominio" for a in audits)
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert all(u.capa != "dominio" for u in unidades)
 
 
-# ─────────────────────────────────────────────
-# CT-04: Alta complejidad
-# ─────────────────────────────────────────────
+# ── CT-04: Alta complejidad ───────────────────────────────────────────────────
 
 def test_ct04_alta_complejidad_risk_high():
-    """CT-04: Función con complejidad > 15 → risk_level HIGH."""
     fa = _analyze_fixture("alta_complejidad.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    assert any(a.risk_level == "HIGH" for a in audits), (
-        "Se esperaba al menos una unidad con risk_level=HIGH"
-    )
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    assert any(u.risk_level == "HIGH" for u in unidades)
 
 
 def test_ct04_alta_complejidad_score_bajo():
-    """CT-04: Alta complejidad → overall_score < 60."""
     fa = _analyze_fixture("alta_complejidad.py")
-    audits = logical_unit_extractor.extract(fa)
-
-    high_risk = [a for a in audits if a.risk_level == "HIGH"]
-    assert all(a.overall_score < 60 for a in high_risk), (
-        "Unidades HIGH risk deberían tener overall_score < 60"
-    )
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    high_risk = [u for u in unidades if u.risk_level == "HIGH"]
+    assert all(u.overall_score < 60 for u in high_risk)
 
 
 def test_ct04_alta_complejidad_compliance_flag():
-    """CT-04: Complejidad > 10 → compliance.complexity_ok = False."""
     fa = _analyze_fixture("alta_complejidad.py")
-    audits = logical_unit_extractor.extract(fa)
+    _, unidades = logical_unit_extractor.extract(fa, ACTIVO_ID)
+    high_risk = [u for u in unidades if u.risk_level == "HIGH" and u.compliance]
+    assert all(u.compliance.get("complexity_ok") is False for u in high_risk)
 
-    high_risk = [a for a in audits if a.risk_level == "HIGH"]
-    assert all(a.compliance["complexity_ok"] is False for a in high_risk)
 
-
-# ─────────────────────────────────────────────
-# CT-05: Persistencia — no duplica registros
-# ─────────────────────────────────────────────
+# ── CT-05: Persistencia ───────────────────────────────────────────────────────
 
 @pytest.mark.asyncio
-async def test_ct05_doble_analisis_no_duplica(session):
-    """CT-05: Analizar el mismo microservicio dos veces no duplica en BD."""
+async def test_ct05_doble_analisis_escaneos_insert_only(session):
     from src.core.analyzers import pipeline
-
-    fixtures_path = FIXTURES
-    await pipeline.run(fixtures_path, "ACS-TEST", session)
+    await pipeline.run(FIXTURES, ACTIVO_ID, "ACS-TEST", session)
     session.commit()
-    await pipeline.run(fixtures_path, "ACS-TEST", session)
+    await pipeline.run(FIXTURES, ACTIVO_ID, "ACS-TEST", session)
     session.commit()
-
-    rows = session.query(QualityAuditORMTest).filter_by(entity_name="ACS-TEST").all()
-    assert len(rows) == 1, f"Se esperaba 1 registro padre, se encontraron {len(rows)}"
+    rows = session.query(EscaneoTest).filter_by(activo_id=ACTIVO_ID).all()
+    assert len(rows) == 2  # INSERT-only, historial inmutable
 
 
 @pytest.mark.asyncio
-async def test_ct05_unidades_logicas_persisten_con_parent_id(session):
-    """CT-05: Las unidades lógicas tienen parent_id apuntando al microservicio."""
+async def test_ct05_unidades_logicas_tienen_archivo_id(session):
     from src.core.analyzers import pipeline
-
-    summary = await pipeline.run(FIXTURES, "ACS-TEST", session)
+    await pipeline.run(FIXTURES, ACTIVO_ID, "ACS-TEST", session)
     session.commit()
-
-    parent = repo.get_by_name(session, "ACS-TEST")
-    children = repo.get_by_parent(session, parent.id)
-
-    assert len(children) > 0
-    assert all(c.parent_id == parent.id for c in children)
-    assert all(c.entity_type == "LOGIC_UNIT" for c in children)
+    unidades = session.query(UnidadLogicaTest).filter_by(activo_id=ACTIVO_ID).all()
+    assert len(unidades) > 0
+    assert all(u.archivo_id is not None for u in unidades)
 
 
-# ─────────────────────────────────────────────
-# CT-06: Quality summary completo
-# ─────────────────────────────────────────────
+# ── CT-06: Quality summary ────────────────────────────────────────────────────
 
 @pytest.mark.asyncio
 async def test_ct06_quality_summary_campos_requeridos(session):
-    """CT-06: El pipeline retorna todos los campos del quality_summary."""
     from src.core.analyzers import pipeline
-
-    summary = await pipeline.run(FIXTURES, "ACS-TEST", session)
-
-    required_fields = [
-        "microservice_id", "microservice_name", "overall_score",
-        "risk_level", "units_count", "business_rules_count", "high_risk_units"
-    ]
-    for field in required_fields:
+    summary = await pipeline.run(FIXTURES, ACTIVO_ID, "ACS-TEST", session)
+    for field in ["escaneo_id", "activo_id", "score_general", "nivel_riesgo",
+                  "archivos_total", "clases_total", "funciones_total"]:
         assert field in summary, f"Campo requerido ausente: {field}"
 
 
 @pytest.mark.asyncio
 async def test_ct06_quality_summary_risk_level_valido(session):
-    """CT-06: risk_level del summary debe ser LOW, MEDIUM o HIGH."""
     from src.core.analyzers import pipeline
-
-    summary = await pipeline.run(FIXTURES, "ACS-TEST", session)
-    assert summary["risk_level"] in {"LOW", "MEDIUM", "HIGH"}
+    summary = await pipeline.run(FIXTURES, ACTIVO_ID, "ACS-TEST", session)
+    assert summary["nivel_riesgo"] in {"LOW", "MEDIUM", "HIGH"}
 
 
 @pytest.mark.asyncio
 async def test_ct06_quality_summary_detecta_high_risk(session):
-    """CT-06: Con fixture de alta complejidad → high_risk_units > 0."""
     from src.core.analyzers import pipeline
-
-    # Solo el fixture de alta complejidad
-    import tempfile, shutil
     tmp = Path(tempfile.mkdtemp())
     shutil.copy(FIXTURES / "alta_complejidad.py", tmp / "alta_complejidad.py")
-
     try:
-        summary = await pipeline.run(tmp, "COMPLEJO", session)
-        assert summary["high_risk_units"] > 0, "Se esperaban unidades HIGH risk"
-        assert summary["risk_level"] == "HIGH"
+        summary = await pipeline.run(tmp, ACTIVO_ID, "COMPLEJO", session)
+        assert summary["nivel_riesgo"] == "HIGH"
     finally:
         shutil.rmtree(tmp)

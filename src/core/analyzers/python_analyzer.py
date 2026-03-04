@@ -40,7 +40,8 @@ class PythonAnalyzer(CodeAnalyzer):
                 imports=visitor.imports,
                 endpoints=visitor.endpoints,
                 database_calls=visitor.database_calls,
-                complexity=visitor.complexity
+                complexity=visitor.complexity,
+                func_complexity=visitor.func_complexity,
             )
         except SyntaxError as e:
             logger.warning("syntax_error_in_file", file_path=str(file_path), error=str(e))
@@ -62,39 +63,47 @@ class PythonASTVisitor(ast.NodeVisitor):
         self.database_calls: List[str] = []
         self.complexity = 0
         self._current_class: str | None = None
+        self._func_complexity: Dict[str, int] = {}
+
+    @property
+    def func_complexity(self) -> Dict[str, int]:
+        return self._func_complexity
     
     def visit_ClassDef(self, node: ast.ClassDef) -> None:
-        """Visita definición de clase."""
         self.classes.append(node.name)
+        prev = self._current_class
         self._current_class = node.name
         self.generic_visit(node)
-        self._current_class = None
-    
+        self._current_class = prev
+
     def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
-        """Visita definición de función."""
+        """Visita definición de función (sync y async)."""
         func_name = f"{self._current_class}.{node.name}" if self._current_class else node.name
         self.functions.append(func_name)
-        
-        # Detectar endpoints (decoradores comunes)
+        self._func_complexity[func_name] = self._calculate_complexity(node)
+
+        _HTTP_METHODS = {'route', 'get', 'post', 'put', 'delete', 'patch'}
         for decorator in node.decorator_list:
-            if isinstance(decorator, ast.Name):
-                if decorator.id in ['route', 'get', 'post', 'put', 'delete', 'patch']:
-                    self.endpoints.append({
-                        'function': func_name,
-                        'decorator': decorator.id,
-                        'line': node.lineno
-                    })
-            elif isinstance(decorator, ast.Call) and isinstance(decorator.func, ast.Attribute):
-                if decorator.func.attr in ['route', 'get', 'post', 'put', 'delete', 'patch']:
-                    self.endpoints.append({
-                        'function': func_name,
-                        'decorator': decorator.func.attr,
-                        'line': node.lineno
-                    })
-        
-        # Calcular complejidad ciclomática básica
-        self.complexity += self._calculate_complexity(node)
+            attr = None
+            if isinstance(decorator, ast.Name) and decorator.id in _HTTP_METHODS:
+                attr = decorator.id
+            elif isinstance(decorator, ast.Call):
+                func = decorator.func
+                if isinstance(func, ast.Attribute) and func.attr in _HTTP_METHODS:
+                    attr = func.attr
+                elif isinstance(func, ast.Name) and func.id in _HTTP_METHODS:
+                    attr = func.id
+            if attr:
+                self.endpoints.append({'function': func_name, 'decorator': attr, 'line': node.lineno})
+
+        self.complexity += self._func_complexity[func_name]
+        # Visitar el cuerpo sin propagar _current_class a funciones anidadas
+        prev = self._current_class
+        self._current_class = None
         self.generic_visit(node)
+        self._current_class = prev
+
+    visit_AsyncFunctionDef = visit_FunctionDef
     
     def visit_Import(self, node: ast.Import) -> None:
         """Visita import."""

@@ -8,8 +8,12 @@ import uuid
 from src.api.schemas.requests import AnalysisRequest
 from src.api.schemas.responses import AnalysisResponse, AnalysisStatus
 from src.core.analyzers import pipeline
+from src.core.llm.bedrock_client import BedrockClient
 from src.db.session import get_session
 from src.utils.logging import get_logger
+
+# Instancia compartida del cliente LLM
+_llm_client = BedrockClient()
 
 router = APIRouter()
 logger = get_logger(__name__)
@@ -92,6 +96,7 @@ async def _run_analysis(analysis_id: str, project_path: Path, request: AnalysisR
                 project_path=project_path,
                 microservice_name=project_path.name,
                 session=session,
+                llm_client=_llm_client if _llm_client.is_available() else None,
             )
         finally:
             session.close()

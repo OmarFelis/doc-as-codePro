@@ -1,0 +1,232 @@
+C:\Users\ocardenas\OneDrive - BIZLINKS SAC\Documentos\doc-as-codePRO>poetry run python run_pipeline.py "C:\FLOTAS - Assessments\flotas-mod_empresa" --dry-run --enrich --max-files=5
+
+============================================================
+  Proyecto  : C:\FLOTAS - Assessments\flotas-mod_empresa
+  Activo ID : e78c118f-19bc-4f50-98f4-3e9df8e8fe29  (generado)
+  Nombre    : flotas-mod_empresa
+  Modo      : 🧪 dry-run (SQLite)
+  Enrich    : ✅ Strands + Bedrock
+  Max-files : 5 (solo los más complejos)
+============================================================
+
+Cargando agente Strands + Bedrock...
+  ✅ Agente listo
+
+{"project_path": "C:\\FLOTAS - Assessments\\flotas-mod_empresa", "repository_name": "flotas-mod_empresa", "event": "starting_project_analysis", "level
+": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T20:14:55.514805Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"count": 139, "event": "files_collected", "level": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T20:14:55.623804Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"total_files": 139, "total_lines": 47899, "languages": ["java"], "event": "project_analysis_completed", "level": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T20:15:08.058808Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"total": 139, "enriching": 5, "event": "max_files_applied", "level": "info", "logger": "src.core.analyzers.pipeline", "timestamp": "2026-03-04T20:15:08.060810Z", "service": "doc-as-code-service", "version": "3.0.0"}
+  ⚠️  max-files=5: enriqueciendo los 5 archivos más complejos de 139
+  [1/139] CardAction.java ... Creating Strands MetricsClient
+Loading cached SSO token for codeagent
+SSO Token refresh succeeded
+Detecté que el código fuente está incompleto ya que termina abruptamente. Sin embargo, puedo analizar la parte disponible usando las herramientas provistas:
+Tool #1: enriquecer_unidades
+
+Tool #2: extraer_reglas_negocio
+
+Tool #3: analizar_owasp
+Me disculpo, pero el código fuente proporcionado está incompleto ya que termina abruptamente en medio de la implementación del método vehicleSearch. P
+ara poder realizar un análisis completo y preciso, necesitaría el código fuente completo del archivo CardAction.java. ¿Podrías proporcionarme el código completo?  [2/139] CardVehicleReceivedAction.java ... El código está nuevamente incompleto, sin embargo analizaré la parte disponible:
+Tool #4: enriquecer_unidades
+
+Tool #5: extraer_reglas_negocio
+
+Tool #6: analizar_owasp
+El código fuente proporcionado está incompleto ya que termina abruptamente en medio de la implementación del método cardVehicleReceivedList. Para pode
+r realizar un análisis completo y preciso, necesitaría el código fuente completo del archivo CardVehicleReceivedAction.java. ¿Podrías proporcionarme el código completo?  [3/139] AccesAction.java ... Basado en el código proporcionado, analizaré el archivo AccesAction.java:
+Tool #7: enriquecer_unidades
+
+Tool #8: extraer_reglas_negocio
+
+Tool #9: analizar_owasp
+El código fuente proporcionado está incompleto ya que termina abruptamente en medio de la implementación del método systemAccess. Para poder realizar
+un análisis completo y preciso de las reglas de negocio, vulnerabilidades y enriquecimiento de unidades, necesitaría el código fuente completo del arc
+hivo AccesAction.java. ¿Podrías proporcionarme el código completo?  [4/139] DownloadFileAction.java ... Analizaré el código proporcionado del archivo DownloadFileAction.java:
+Tool #10: enriquecer_unidades
+
+Tool #11: extraer_reglas_negocio
+
+Tool #12: analizar_owasp
+El código fuente proporcionado está incompleto ya que termina abruptamente en medio de la implementación del método execute. Sin embargo, del código d
+isponible se pueden identificar algunas reglas de negocio y potenciales vulnerabilidades OWASP. ¿Podrías proporcionarme el código completo del archivo DownloadFileAction.java para realizar un análisis más exhaustivo?  [5/139] JSONCenterCost.java ... Analizaré el archivo JSONCenterCost.java:
+Tool #13: enriquecer_unidades
+
+Tool #14: extraer_reglas_negocio
+
+Tool #15: analizar_owasp
+Del código proporcionado puedo identificar:
+
+1. Es un servlet que maneja peticiones GET para obtener centros de costo
+2. Recibe dos parámetros:
+   - snivel: nivel del centro de costo
+   - idCompany: identificador de la compañía
+3. Consulta los centros de costo por nivel y compañía usando LogicCostCenter
+4. Convierte los resultados a JSON con el formato {id: nombre}
+5. Retorna el JSON en la respuesta HTTP
+
+Sin embargo, hay algunas vulnerabilidades potenciales de seguridad que no están siendo manejadas, como:
+
+1. No hay validación de parámetros de entrada
+2. No hay control de acceso/autenticación visible
+3. Posible exposición de IDs internos en la respuesta JSON
+4. No hay manejo de excepciones para conversión de tipos (Integer.parseInt)
+5. No hay sanitización de datos de salida
+
+¿Te gustaría que profundizara en algún aspecto específico del análisis?  [6/139] GraphicAction.java ... skip
+  [7/139] LogoutAction.java ... skip
+  [8/139] CostCentersAction.java ... skip
+  [9/139] LogPrintAction.java ... skip
+  [10/139] DriversAction.java ... skip
+  [11/139] ReportAuditCompany.java ... skip
+  [12/139] ReportCardVehicleCompany.java ... skip
+  [13/139] PlannedAction.java ... skip
+  [14/139] ReportBalanceVehicleCompany.java ... skip
+  [15/139] ReportCompanyEstimated.java ... skip
+  [16/139] ReportCostCenterVehicleCompany.java ... skip
+  [17/139] ReportKilometrageAreaResponsibleCompany.java ... skip
+  [18/139] ReportQueryGeneralCompany.java ... skip
+  [19/139] ReportExpiringCardCompany.java ... skip
+  [20/139] ReportQueryGeneralCompanyCsv.java ... skip
+  [21/139] ReportResponsibleAreaCompany.java ... skip
+  [22/139] ReportStatementAccountVehicleCompany.java ... skip
+  [23/139] ReportTypeFuelClassCompany.java ... skip
+  [24/139] ReportStationWatchCompany.java ... skip
+  [25/139] ReportWithoutSupplyingVehicleCompany.java ... skip
+  [26/139] ReportsAction.java ... skip
+  [27/139] UserAction.java ... skip
+  [28/139] RoleAction.java ... skip
+  [29/139] UserChangeAction.java ... skip
+  [30/139] ZipAction.java ... skip
+  [31/139] BEAN.java ... skip
+  [32/139] BeanFuel.java ... skip
+  [33/139] BeanFuelVehicle.java ... skip
+  [34/139] COMPANY.java ... skip
+  [35/139] UsersAction.java ... skip
+  [36/139] COSTCENTER.java ... skip
+  [37/139] DRIVER.java ... skip
+  [38/139] GeneralConsumerReportBean.java ... skip
+  [39/139] GraphicBean.java ... skip
+  [40/139] GraphicBean2.java ... skip
+  [41/139] ISSUER.java ... skip
+  [42/139] GraphicBean3.java ... skip
+  [43/139] Pagina.java ... skip
+  [44/139] PaginaCentroCosto.java ... skip
+  [45/139] Paging.java ... skip
+  [46/139] RangoFechas.java ... skip
+  [47/139] Vales.java ... skip
+  [48/139] Configuracion.java ... skip
+  [49/139] State.java ... skip
+  [50/139] DB.java ... skip
+  [51/139] DBBin.java ... skip
+  [52/139] DBCard.java ... skip
+  [53/139] VehicleAction.java ... skip
+  [54/139] DBCompany.java ... skip
+  [55/139] DBCostCenter.java ... skip
+  [56/139] DBConfigPassword.java ... skip
+  [57/139] DBCostCenterVehicle.java ... skip
+  [58/139] DBDriver.java ... skip
+  [59/139] DBCostCenterVehicleAccount.java ... skip
+  [60/139] DBListReportMileageCostCenter.java ... skip
+  [61/139] DBKey.java ... skip
+  [62/139] DBIssuer.java ... skip
+  [63/139] DBListVehicleFuel.java ... skip
+  [64/139] DBReportMileageCostCenter.java ... skip
+  [65/139] DBPassword.java ... skip
+  [66/139] DBTransaction.java ... skip
+  [67/139] DBRole.java ... skip
+  [68/139] DBUser.java ... skip
+  [69/139] LogicAccount.java ... skip
+  [70/139] DBVehicleFuel.java ... skip
+  [71/139] DBVehicle.java ... skip
+  [72/139] LogicAccountimporthead.java ... skip
+  [73/139] LogicCard.java ... skip
+  [74/139] LogicCostCenter.java ... skip
+  [75/139] LogicCfgVehicle.java ... skip
+  [76/139] LogicCardRequest.java ... skip
+  [77/139] LogicProperty.java ... skip
+  [78/139] LogicMigrationVehicle.java ... skip
+  [79/139] LogicFilePlanned.java ... skip
+  [80/139] LogicRole.java ... skip
+  [81/139] LogicUser.java ... skip
+  [82/139] LogicTvfFile.java ... skip
+  [83/139] LogicVehicleAudit.java ... skip
+  [84/139] LogicVehicle.java ... skip
+  [85/139] LogicVehicleDriver.java ... skip
+  [86/139] Estado.java ... skip
+  [87/139] LogicVFuel.java ... skip
+  [88/139] MyConnectionException.java ... skip
+  [89/139] MySQLException.java ... skip
+  [90/139] AuthenticationFilter.java ... skip
+  [91/139] Eventos.java ... skip
+  [92/139] StarterServlet.java ... skip
+  [93/139] HibernateSessionFactory.java ... skip
+  [94/139] CardVehicleReceivedLogic.java ... skip
+  [95/139] CardLogic.java ... skip
+  [96/139] AccessLogic.java ... skip
+  [97/139] DriversLogic.java ... skip
+  [98/139] ReasignCreditLogic.java ... skip
+  [99/139] CostCentersLogic.java ... skip
+  [100/139] ReportConsumeLogic.java ... skip
+  [101/139] ReportsLogic.java ... skip
+  [102/139] UserChangeLogic.java ... skip
+  [103/139] UserLogic.java ... skip
+  [104/139] PlannedLogic.java ... skip
+  [105/139] RoleLogic.java ... skip
+  [106/139] UtilsLogic.java ... skip
+  [107/139] GraphicLogic.java ... skip
+  [108/139] Security.java ... skip
+  [109/139] MyValidatorRules.java ... skip
+  [110/139] UsersLogic.java ... skip
+  [111/139] AccountUpdateTop.java ... skip
+  [112/139] AccountUpdateServlet.java ... skip
+  [113/139] DisplayTest.java ... skip
+  [114/139] Logic.java ... skip
+  [115/139] FormUpdateServlet.java ... skip
+  [116/139] UpdateListServlet.java ... skip
+  [117/139] SesionServlet.java ... skip
+  [118/139] CustomBaseLogic.java ... skip
+  [119/139] CustomBaseAction.java ... skip
+  [120/139] CharacterWrapper.java ... skip
+  [121/139] UserContainer.java ... skip
+  [122/139] CheckLogonTag.java ... skip
+  [123/139] DisplaytagDateFormat.java ... skip
+  [124/139] DisplaytagDateTimeForma.java ... skip
+  [125/139] ALGTimer.java ... skip
+  [126/139] Bean.java ... skip
+  [127/139] DatedFileAppender.java ... skip
+  [128/139] DisplaytagFormatEstimatedValue.java ... skip
+  [129/139] DisplayTagImportUserState.java ... skip
+  [130/139] FileUtil.java ... skip
+  [131/139] GenerarReports.java ... skip
+  [132/139] GenerarReportsVehicle.java ... skip
+  [133/139] LoadProperties.java ... skip
+  [134/139] VehicleLogic.java ... skip
+  [135/139] Result.java ... skip
+  [136/139] LoginPrepago.java ... skip
+  [137/139] SendEmail.java ... skip
+  [138/139] MyConstants.java ... skip
+  [139/139] Utils.java ... skip
+  [resumen] generando resumen ejecutivo de 'flotas-mod_empresa' ...
+Tool #16: generar_resumen_microservicio
+Necesito más información sobre las funciones y su implementación para poder generar un resumen ejecutivo significativo del microservicio. El inventari
+o de funciones proporcionado solo contiene los nombres pero no su lógica de negocio, propósito o tipo de datos que manejan. ¿Podrías proporcionar más detalles sobre:
+
+1. La lógica de negocio implementada en cada función
+2. Los tipos de datos que procesan
+3. Las reglas de negocio aplicadas
+4. Las integraciones con otros sistemas
+5. El propósito general del microservicio
+
+Con esta información adicional podré generar un resumen ejecutivo más preciso y útil.ok
+
+============================================================
+  escaneo_id      : a48294a8-14fa-4821-91c4-e7faf20da617
+  score_general   : 63.46
+  nivel_riesgo    : HIGH
+  archivos_total  : 139
+  clases_total    : 139
+  funciones_total : 1289
+  enriquecido     : True
+============================================================
