@@ -28,28 +28,30 @@ def build_enrichment_agent():
             """Genera resúmenes en español para cada función/clase de capa DOMINIO.
             Retorna JSON: [{"nombre": str, "resumen": str}]
             """
-            ...
+            return json.dumps([
+                {"nombre": "desconocido", "resumen": "Ver código fuente"}
+            ])
 
         @tool
         def extraer_reglas_negocio(source_code: str) -> str:
             """Extrae reglas de negocio: validaciones, cálculos, flujos de pago.
             Retorna JSON: [{"descripcion": str, "funcion_origen": str, "tipo": str}]
             """
-            ...
+            return json.dumps([])
 
         @tool
         def analizar_owasp(source_code: str) -> str:
             """Detecta patrones OWASP Top 10 en código de capa INFRAESTRUCTURA.
             Retorna JSON: [{"categoria": str, "descripcion": str, "linea": int}]
             """
-            ...
+            return json.dumps([])
 
         @tool
         def generar_resumen_microservicio(inventario_funciones: str) -> str:
             """Genera resumen ejecutivo del microservicio completo.
             Retorna JSON: {"summary": str, "purpose": str, "data_sensitivity": str}
             """
-            ...
+            return json.dumps({"summary": "", "purpose": "", "data_sensitivity": "unknown"})
 
         model = BedrockModel(
             model_id="us.anthropic.claude-3-5-sonnet-20241022-v2:0",

@@ -1,0 +1,4455 @@
+Microsoft Windows [Versión 10.0.19045.6456]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\ocardenas\OneDrive - BIZLINKS SAC\Documentos\doc-as-codePRO>poetry run python run_pipeline.py C:\mvpRBAMOTORBACK --dry-run --enrich
+
+============================================================
+  Proyecto  : C:\mvpRBAMOTORBACK
+  Activo ID : b9cdca47-47d6-4938-9a84-547835e9642b  (generado)
+  Nombre    : mvpRBAMOTORBACK
+  Modo      : 🧪 dry-run (SQLite)
+  Enrich    : ✅ Strands + Bedrock
+============================================================
+
+Cargando agente Strands + Bedrock...
+  ✅ Agente listo
+
+{"project_path": "C:\\mvpRBAMOTORBACK", "repository_name": "mvpRBAMOTORBACK", "event": "starting_project_analysis", "level": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T15:12:01.259198Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"count": 52, "event": "files_collected", "level": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T15:12:01.300103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\adapters\\areq_adapter.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.301103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\adapters\\autorizacion_adapter.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.301103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\adapters\\pasarela_adapter.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.302102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\adapters\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.302102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\api\\routes.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.308102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\api\\rules_routes.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.310102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\api\\rules_schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.311103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\api\\schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.311103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\api\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.318101Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\auth\\dependencies.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.318101Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\auth\\jwt.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.323104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\auth\\routes.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.324105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\auth\\schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.326102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\auth\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.327102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\config\\client_config.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.340105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\config\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.340105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\core\\config.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.341103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\core\\orchestrator.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.341103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\core\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.345103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\context_manager.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.347105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\crud_audit.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.348105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\crud_users.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.348105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\database.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.349104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\models.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.416118Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\db\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.418104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\main.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.419106Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\advanced_features.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.422107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\device_tracker.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.423104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\enrichment.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.423104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\features.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.428108Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\ip_enricher.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.435199Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\model.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.436102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\routes.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.436102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.438107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\trainer.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.442107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\velocity.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.443104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\ml\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.444102Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\models\\unified.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.449107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\models\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.449107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\autenticacion_schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.449107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\autorizacion_schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.450105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\evaluators\\autenticacion.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.452107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\evaluators\\autorizacion.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.452107Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\evaluators\\pasarela.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.458105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\evaluators\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.458105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\hybrid_orchestrator.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.458105Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\schemas.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.465103Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\stage_routes.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.469104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\orchestration\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.469104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\rules\\engine.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.474184Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\rules\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.483111Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"file_path": "C:\\mvpRBAMOTORBACK\\app\\__init__.py", "event": "analyzing_python_file", "level": "info", "logger": "src.core.analyzers.python_analyzer", "timestamp": "2026-03-04T15:12:01.487104Z", "service": "doc-as-code-service", "version": "3.0.0"}
+{"total_files": 52, "total_lines": 3681, "languages": ["python"], "event": "project_analysis_completed", "level": "info", "logger": "src.core.analyzers.project_analyzer", "timestamp": "2026-03-04T15:12:01.489159Z", "service": "doc-as-code-service", "version": "3.0.0"}
+  [1/52] autorizacion_adapter.py ... Creating Strands MetricsClient
+Loading cached SSO token for codeagent
+Disculpa, pero noto que el código proporcionado está incompleto - parece que se cortó en medio del método `_map_currency`. Sin embargo, puedo ayudarte a analizar las unidades del código que sí está disponible usando la función `enriquecer_unidades`.
+Tool #1: enriquecer_unidades
+Veo que el código está incompleto, lo que limita mi capacidad para proporcionar un análisis completo de todas las unidades. Para poder darte un análisis más preciso y detallado, necesitaría el código completo incluyendo:
+
+1. El resto del método `_map_currency`
+2. La implementación del método `_parse_entry_mode`
+3. La implementación del método `_parse_iso_timestamp`
+
+¿Podrías proporcionarme el código completo de esta clase para poder realizar un análisis más exhaustivo?  [2/52] areq_adapter.py ... Noto que el código está incompleto, pero puedo analizar las unidades disponibles del código proporcionado usando la función `enriquecer_unidades`.
+Tool #2: enriquecer_unidades
+También podemos extraer las reglas de negocio disponibles en este código:
+Tool #3: extraer_reglas_negocio
+El código está incompleto, faltando la implementación de varios métodos auxiliares importantes:
+
+1. El resto del método `_map_currency`
+2. La implementación del método `_map_country_code`
+3. La implementación del método `_parse_timestamp`
+4. La implementación del método `_safe_int`
+
+Sin embargo, del código disponible podemos ver que es un adaptador que convierte datos de autenticación 3D Secure (AREQ) a un modelo unificado de transacción, con las siguientes características principales:
+
+1. Conversión de montos de centavos a unidades enteras
+2. Mapeo de códigos de moneda y países
+3. Detección de transacciones internacionales comparando país del comercio vs país de facturación
+4. Captura de datos del navegador y dispositivo para autenticación 3DS
+5. Manejo de timestamps y cálculos derivados (hora del día, día de la semana)
+
+¿Podrías proporcionar el código completo de los métodos faltantes para poder realizar un análisis más exhaustivo?  [3/52] pasarela_adapter.py ... Noto que el código está incompleto, pero puedo analizar las unidades disponibles usando la función `enriquecer_unidades`:
+Tool #4: enriquecer_unidades
+También podemos extraer las reglas de negocio disponibles:
+Tool #5: extraer_reglas_negocio
+El código está incompleto, faltando:
+
+1. El resto del método `_map_currency` (aunque vemos el inicio del mapeo de códigos de moneda)
+2. La implementación del método `_parse_timestamp`
+3. La implementación del método `_infer_merchant_country`
+
+Sin embargo, del código disponible podemos ver que es un adaptador que convierte datos de una pasarela de pago a un modelo unificado de transacción, con las siguientes características principales:
+
+1. Manejo de información de facturación y envío
+2. Detección de transacciones internacionales comparando país de facturación vs país de envío
+3. Captura de datos técnicos como IP y user agent
+4. Mapeo de códigos de moneda numéricos ISO 4217 a códigos alfabéticos
+5. Manejo de timestamps y cálculos derivados (hora del día, día de la semana)
+6. Soporte para múltiples monedas latinoamericanas (PEN, MXN, COP, CLP, ARS, CRC) además de USD y EUR
+
+¿Podrías proporcionar el código completo de los métodos faltantes para poder realizar un análisis más exhaustivo?  [4/52] __init__.py ... Este es un a
+rchivo de inicialización de paquete Python vacío que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de adaptadores, pero no contiene ninguna implementación de código.
+Tool #6: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negoci
+o para extraer. Su único propósito es marcar el directorio como un paquete Python que contiene los diferentes adaptadores que hemos visto anteriorment
+e (AutorizacionAdapter, AREQAdapter, PasarelaAdapter).  [5/52] rules_routes.py ... Analizaré este código de la capa de infraestructura para detectar posibles problemas de seguridad usando la función `analizar_owasp`:
+Tool #7: analizar_owasp
+Este archivo contiene rutas de API para el manejo de reglas, aunque el código está incompleto ya que solo muestra los endpoints `list_rules` y parte del `get_rule`. Sin embargo, del código disponible podemos observar:
+
+1. Es una API REST construida con FastAPI
+2. Implementa seguridad multi-tenant a través de `get_current_user`
+3. Usa SQLAlchemy para acceso a base de datos
+4. Incluye funcionalidades de:
+   - Paginación
+   - Filtrado por múltiples campos
+   - Búsqueda en texto
+   - Ordenamiento configurable
+
+Aspectos de seguridad implementados:
+1. Autenticación de usuario requerida (`Depends(get_current_user)`)
+2. Filtrado por tenant (client_id) para prevenir acceso no autorizado
+3. Validación de parámetros:
+   - Límites en paginación (1-100)
+   - Regex para sort_order (solo asc/desc)
+   - Valores mínimos para page
+4. Uso de ORMs para prevenir SQL injection
+
+Necesitaría ver el resto del código para analizar los demás endpoints mencionados en las unidades:
+- get_rule (completo)
+- get_rule_history
+- create_rule
+- update_rule
+- delete_rule
+- toggle_rule
+
+¿Podrías proporcionar el código completo para realizar un análisis más exhaustivo?  [6/52] routes.py ... Analizaré este código de la capa adaptador, comenzando con la extracción de reglas de negocio:
+Tool #8: extraer_reglas_negocio
+Este es un módulo de rutas FastAPI que sirve como capa adaptadora para el servicio de detección de fraude. Contiene tres endpoints principales:
+
+1. `/health` (GET)
+   - Endpoint de health check
+   - Retorna estado del servicio y versión
+   - Usado para monitoreo de disponibilidad
+
+2. `/evaluate` (POST)
+   - Endpoint principal para evaluación de transacciones
+   - Recibe un TransactionRequest con:
+     * ID de transacción
+     * Monto
+     * Categoría del comercio
+     * Timestamp
+     * País
+     * Flag de transacción internacional
+     * ID de usuario (opcional)
+   - Delega la evaluación al DecisionOrchestrator
+   - Implementa logging para trazabilidad
+   - Manejo de errores con respuestas HTTP 500
+
+3. `/metrics` (GET)
+   - Endpoint placeholder para métricas
+   - Marcado como pendiente para Fase 4
+   - Actualmente solo retorna estado básico
+
+Aspectos destacables de la implementación:
+
+1. Separación de responsabilidades:
+   - La ruta solo maneja aspectos HTTP/REST
+   - La lógica de evaluación está delegada al orquestador
+   - Uso de schemas Pydantic para validación
+
+2. Observabilidad:
+   - Logging estructurado de eventos
+   - Health check para monitoreo
+   - Preparación para métricas futuras
+
+3. Manejo de errores:
+   - Try/catch con logging de errores
+   - Conversión a HTTP 500 con mensaje descriptivo
+   - No expone detalles de error internos
+
+4. Buenas prácticas API:
+   - Documentación clara de parámetros
+   - Uso de tags para agrupación
+   - Response models definidos
+   - Versionado en health check
+
+Este código sirve como punto de entrada HTTP para el servicio, actuando como adaptador entre el protocolo REST y la lógica de dominio implementada en
+el orquestador.  [7/52] rules_schemas.py ... Voy a analizar los schemas Pydantic definidos para el dominio de reglas usando la función `enriquecer_unidades`:
+Tool #9: enriquecer_unidades
+El código define los siguientes schemas Pydantic para el dominio de reglas:
+
+1. `RuleResponse`
+   - Schema para respuesta de una regla individual
+   - Campos principales:
+     * id, alias, stage, type, score
+     * configuración como diccionario
+     * estado activo/inactivo
+     * client_id (multi-tenant)
+     * prioridad
+     * auditoría (created/updated at/by)
+
+2. `RuleListResponse`
+   - Schema para lista paginada de reglas
+   - Metadatos de paginación:
+     * total, página actual, límite
+     * total de páginas
+     * indicadores has_next/has_prev
+   - Lista de RuleResponse
+
+3. `AuditLogEntry`
+   - Schema para entrada de auditoría
+   - Campos de auditoría:
+     * acción realizada
+     * usuario (id/email)
+     * datos anteriores/nuevos
+     * IP y timestamp
+
+4. `RuleHistoryResponse`
+   - Schema para historial de cambios
+   - ID de regla + lista de entradas de auditoría
+
+5. `RuleCreate`
+   - Schema para crear nueva regla
+   - Validaciones:
+     * alias max 60 chars
+     * stage válido (pasarela/autenticacion/autorizacion)
+     * score entre 0-1000
+     * type max 50 chars
+   - Valores por defecto:
+     * is_active = True
+     * priority = 0
+
+6. `RuleUpdate`
+   - Schema para actualización parcial
+   - Todos los campos opcionales
+   - Mismas validaciones que RuleCreate
+   - Permite actualizar subconjunto de campos
+
+Aspectos destacables:
+
+1. Validación estricta:
+   - Longitudes máximas
+   - Rangos numéricos
+   - Enumeraciones para stage
+
+2. Soporte multi-tenant:
+   - client_id en respuestas
+   - segregación de datos
+
+3. Auditoría completa:
+   - Tracking de creación/modificación
+   - Historial de cambios detallado
+   - Captura de IP
+
+4. Paginación robusta:
+   - Metadata completa
+   - Indicadores de navegación
+
+5. Actualización flexible:
+   - Campos opcionales en update
+   - Mantiene validaciones
+
+Los schemas están diseñados para soportar operaciones CRUD sobre reglas con un fuerte énfasis en validación, auditoría y multi-tenancy.  [8/52] schemas.py ... El código está incompleto (cortado en la definición de HealthResponse), pero analizaré los schemas disponibles del dominio:
+Tool #10: enriquecer_unidades
+Vamos a extraer las reglas de negocio implícitas en estos schemas:
+Tool #11: extraer_reglas_negocio
+El código define los schemas principales para el dominio de evaluación de riesgo de transacciones:
+
+1. `DecisionType` (Enum)
+   - Define los tipos posibles de decisión:
+     * APPROVE: Aprobar transacción
+     * REVIEW: Revisión manual
+     * REJECT: Rechazar transacción
+
+2. `TransactionRequest`
+   - Schema para solicitud de evaluación
+   - Campos obligatorios:
+     * transaction_id: Identificador único
+     * amount: Monto (debe ser > 0)
+     * merchant_category: Categoría del comercio
+   - Campos con valores por defecto:
+     * timestamp: Hora actual
+     * country: "PE" (Perú)
+     * is_international: false
+   - Campos opcionales:
+     * user_id
+   - Incluye validación adicional para amount
+
+3. `RiskFactor`
+   - Representa un factor individual de riesgo
+   - Campos:
+     * factor: Nombre del factor
+     * value: Valor numérico
+     * contribution: Puntos aportados al score
+
+4. `EvaluationResponse`
+   - Respuesta de la evaluación
+   - Campos principales:
+     * transaction_id: Referencia a la transacción
+     * risk_score: Puntaje de riesgo (0-1000)
+     * decision: Tipo de decisión (del enum)
+     * risk_factors: Lista de factores que contribuyeron
+     * evaluation_time_ms: Tiempo de evaluación
+     * timestamp: Hora de evaluación
+
+5. `HealthResponse` (incompleto)
+   - Schema para health check
+   - Incluye status y versión
+
+Características destacables:
+
+1. Validación robusta:
+   - Tipos de datos estrictos
+   - Validaciones de rango (score 0-1000)
+   - Validación personalizada para amount
+   - Enumeraciones para valores fijos
+
+2. Documentación:
+   - Descripciones detalladas en Fields
+   - Ejemplos JSON incluidos
+   - Docstrings en clases
+
+3. Valores por defecto:
+   - Timestamps automáticos
+   - País por defecto
+   - Flags booleanos
+
+4. Trazabilidad:
+   - IDs de transacción
+   - Timestamps en requests/responses
+   - Medición de tiempos
+
+Los schemas están diseñados para soportar un sistema de evaluación de riesgo de transacciones con énfasis en la validación de datos y la trazabilidad
+de las decisiones.  [9/52] __init__.py ... Este es un archivo de inicialización de paquete Python vacío que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de API, pero no contiene ninguna implementación de código.
+Tool #12: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negoci
+o para extraer. Su único propósito es marcar el directorio como un paquete Python que contiene los diferentes componentes de la API que hemos visto anteriormente (schemas, rutas, etc.).
+
+Los archivos `__init__.py` vacíos son una práctica común en Python para:
+1. Marcar un directorio como paquete Python
+2. Permitir importaciones relativas
+3. Organizar el código en módulos
+4. Mantener una estructura clara del proyecto
+
+En este caso, el comentario "API package" sirve como documentación básica del propósito del paquete.  [10/52] dependencies.py ... Analizaré este código de la capa adaptador que maneja las dependencias de autenticación. Primero, veamos las reglas de negocio implícitas:
+Tool #13: extraer_reglas_negocio
+Ahora veamos si hay potenciales problemas de seguridad OWASP:
+Tool #14: analizar_owasp
+El código implementa un sistema de autenticación y autorización basado en JWT con las siguientes características principales:
+
+1. `get_current_user`
+   - Función principal de autenticación
+   - Valida token JWT del header Authorization
+   - Extrae información del usuario del token:
+     * user_id (sub)
+     * email
+     * role
+     * client_id
+   - Retorna 401 si el token es inválido
+   - Valida campos obligatorios (user_id, client_id)
+
+2. `require_role`
+   - Factory de dependencias para autorización por rol
+   - Permite especificar rol requerido (admin, analyst, viewer)
+   - Retorna función validadora (role_checker)
+   - Retorna 403 si el rol no coincide
+
+3. `require_admin`
+   - Shortcut para requerir rol admin
+   - Similar a require_role("admin")
+   - Uso más conveniente para endpoints administrativos
+
+Aspectos de seguridad implementados:
+
+1. Autenticación:
+   - Uso de JWT (JSON Web Tokens)
+   - Validación de firma (via decode_token)
+   - Manejo de excepciones JWTError
+   - Headers WWW-Authenticate apropiados
+
+2. Autorización:
+   - Sistema de roles granular
+   - Validación estricta de roles
+   - Separación de responsabilidades por rol
+
+3. Multi-tenant:
+   - client_id obligatorio en token
+   - Segregación de datos por cliente
+
+4. Buenas prácticas:
+   - Mensajes de error genéricos
+   - Uso de status codes apropiados
+   - Documentación clara
+   - Tipado de retornos
+
+5. Composición:
+   - Uso de FastAPI Depends
+   - Funciones componibles
+   - Reutilización de lógica
+
+Este código forma la base del sistema de seguridad de la aplicación, implementando tanto autenticación como autorización de manera robusta y siguiendo
+ buenas prácticas de seguridad.  [11/52] jwt.py ... Analizaré este código de utilidades JWT de la capa de dominio. Primero, busquemos las reglas de negocio:
+Tool #15: extraer_reglas_negocio
+Ahora veamos si hay potenciales problemas de seguridad OWASP:
+Tool #16: analizar_owasp
+El código implementa utilidades de seguridad para manejo de contraseñas y tokens JWT, con las siguientes características principales:
+
+1. Configuración de Seguridad:
+   - SECRET_KEY tomada de variables de ambiente
+   - Valor por defecto con advertencia para producción
+   - Algoritmo HS256 para JWT
+   - Expiración de tokens configurable (60 minutos por defecto)
+
+2. Manejo de Contraseñas:
+   - `verify_password`:
+     * Valida contraseña contra hash
+     * Usa bcrypt para comparación segura
+     * Manejo correcto de encodings UTF-8
+
+   - `get_password_hash`:
+     * Genera hash seguro con bcrypt
+     * Salt generado automáticamente
+     * Retorna hash en formato string UTF-8
+
+3. Gestión de Tokens JWT:
+   - `create_access_token`:
+     * Genera tokens JWT firmados
+     * Copia datos para no modificar original
+     * Tiempo de expiración configurable
+     * Usa UTC para timestamps
+
+   - `decode_token`:
+     * Valida y decodifica tokens
+     * Verifica firma
+     * Maneja expiración automáticamente
+     * Propaga errores JWT
+
+Aspectos de Seguridad Destacables:
+
+1. Contraseñas:
+   - Uso de bcrypt (algoritmo seguro y actual)
+   - Salt único por contraseña
+   - Manejo consistente de encodings
+
+2. JWT:
+   - Firma de tokens obligatoria
+   - Expiración incluida por defecto
+   - Validación de algoritmo específico
+   - Manejo de errores explícito
+
+3. Buenas Prácticas:
+   - SECRET_KEY configurable
+   - Advertencia sobre valor por defecto
+   - Documentación clara
+   - Tipado de parámetros/retornos
+
+Posibles Mejoras:
+
+1. Seguridad:
+   - Validar longitud mínima de SECRET_KEY
+   - Considerar rotación de tokens
+   - Agregar blacklist de tokens revocados
+   - Validar contenido del payload
+
+2. Configuración:
+   - Hacer ALGORITHM configurable
+   - Agregar validación de SECRET_KEY en producción
+   - Considerar diferentes tipos de tokens (access/refresh)
+
+Este módulo proporciona las funciones fundamentales de seguridad para la autenticación y autorización en la aplicación, implementando prácticas segura
+s para el manejo de credenciales y tokens.  [12/52] schemas.py ... Analizaré estos schemas del dominio de autenticación. Primero veamos las unidades disponibles:
+Tool #17: enriquecer_unidades
+Veamos las reglas de negocio implícitas:
+Tool #18: extraer_reglas_negocio
+El código define tres schemas Pydantic para el flujo de autenticación:
+
+1. `LoginRequest`
+   - Schema para petición de login
+   - Campos requeridos:
+     * username: identificador del usuario
+     * password: contraseña en texto plano
+   - Usado para el endpoint de login
+
+2. `TokenResponse`
+   - Schema para respuesta de autenticación exitosa
+   - Campos:
+     * access_token: token JWT generado
+     * token_type: tipo de token (siempre "bearer")
+     * expires_in: tiempo de expiración en segundos
+     * user: datos del usuario autenticado
+   - Sigue el estándar OAuth2/Bearer token
+
+3. `UserResponse`
+   - Schema para información de usuario
+   - Datos principales:
+     * id: identificador único
+     * username: nombre de usuario
+     * email: correo electrónico
+     * role: rol asignado
+     * client_id: identificador del cliente (multi-tenant)
+   - Datos de estado:
+     * is_active: estado de la cuenta
+     * created_at: fecha de creación
+     * last_login: último acceso (opcional)
+   - Configurado para ORM con from_attributes
+
+Aspectos destacables:
+
+1. Seguridad:
+   - No se almacena password en respuestas
+   - Información sensible limitada
+   - Soporte para desactivación de cuentas
+
+2. Multi-tenant:
+   - client_id como parte del modelo
+   - Segregación de usuarios por cliente
+
+3. Auditoría:
+   - Tracking de fechas de creación
+   - Tracking de últimos accesos
+   - Historial básico
+
+4. Validación:
+   - Tipos estrictos
+   - Campos requeridos vs opcionales
+   - Soporte para mapeo ORM
+
+5. Estándares:
+   - Compatibilidad OAuth2
+   - Bearer token authentication
+   - Formato JWT
+
+Los schemas están diseñados para soportar un sistema de autenticación robusto con soporte multi-tenant y seguimiento de actividad de usuarios. La estructura sigue buenas prácticas de seguridad al limitar la exposición de información sensible y mantener registro de actividades importantes.
+
+Posibles Mejoras:
+1. Agregar validaciones más estrictas:
+   - Longitud mínima de password
+   - Formato de username
+   - Validación de email con EmailStr
+2. Incluir más campos de auditoría:
+   - Updated_at
+   - Password_changed_at
+   - Failed_login_attempts
+3. Expandir información de seguridad:
+   - Permisos específicos
+   - MFA status
+   - Security preferences  [13/52] routes.py ... Analizaré estas rutas de autenticación de la capa de infraestructura. Primero, veamos si hay vulnerabilidades potenciales OWASP:
+Tool #19: analizar_owasp
+Ahora veamos las reglas de negocio implementadas:
+Tool #20: extraer_reglas_negocio
+El código implementa dos endpoints de autenticación:
+
+1. `/login` (POST)
+   - Proceso de autenticación:
+     * Búsqueda de usuario por username o email
+     * Verificación de contraseña con bcrypt
+     * Validación de cuenta activa
+     * Actualización de last_login
+     * Generación de JWT token
+
+   - Medidas de seguridad:
+     * Mensajes de error genéricos
+     * Verificación de cuenta activa
+     * Uso de hash para contraseñas
+     * Tokens JWT firmados
+
+   - Datos incluidos en token:
+     * user_id (sub)
+     * email
+     * role
+     * client_id
+
+2. `/logout` (POST)
+   - Endpoint simple
+   - No invalida tokens (stateless)
+   - Cliente responsable de eliminar token
+
+Aspectos de Seguridad Destacables:
+
+1. Autenticación:
+   - Soporte para login con username o email
+   - Contraseñas hasheadas con bcrypt
+   - Verificación de cuenta activa
+   - Tokens JWT con expiración
+
+2. Protección contra Enumeración:
+   - Mismo mensaje para usuario no existente y password incorrecto
+   - No revela estado de cuentas inexistentes
+
+3. Auditoría:
+   - Tracking de último login
+   - Actualización automática de timestamps
+
+4. Respuestas HTTP:
+   - 401 para credenciales incorrectas
+   - 403 para cuentas inactivas
+   - Mensajes de error apropiados
+
+Posibles Mejoras:
+
+1. Seguridad:
+   - Implementar rate limiting
+   - Agregar tracking de intentos fallidos
+   - Considerar bloqueo temporal de cuentas
+   - Implementar invalidación de tokens en logout
+
+2. Funcionalidad:
+   - Soporte para refresh tokens
+   - MFA/2FA
+   - Remember me functionality
+   - Session tracking
+
+3. Auditoría:
+   - Logging de intentos fallidos
+   - Tracking de IP/dispositivo
+   - Notificaciones de login sospechoso
+
+4. Validación:
+   - Validar fortaleza de contraseñas
+   - Agregar captcha para protección adicional
+   - Validar formato de email/username
+
+El código implementa un sistema de autenticación básico pero seguro, siguiendo buenas prácticas de seguridad como hashing de contraseñas, manejo adecu
+ado de errores y tokens JWT. Sin embargo, podría beneficiarse de características adicionales para mayor seguridad y funcionalidad.  [14/52] __init__.p
+y ... Este es un archivo de inicialización de paquete Python que solo contiene un comentario docstring. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de autenticación.
+Tool #21: enriquecer_unidades
+Como el archivo solo contiene un docstring y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de autenticación
+2. Documentar brevemente el propósito del módulo
+3. Permitir importaciones relativas dentro del paquete
+4. Mantener una estructura organizada del proyecto
+
+El comentario docstring "Authentication module" indica que este paquete contiene la funcionalidad relacionada con autenticación que hemos visto en los otros archivos:
+- JWT utilities
+- Schemas de autenticación
+- Rutas de login/logout
+- Dependencias de seguridad
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples.  [15/52] client_config.py ... Analizaré este código del dominio que maneja la configuración por cliente. Primero, veamos las unidades disponibles:
+Tool #22: enriquecer_unidades
+Ahora veamos las reglas de negocio implementadas:
+Tool #23: extraer_reglas_negocio
+El código implementa un sistema de configuración por cliente con las siguientes características principales:
+
+1. Clase `ClientConfig`:
+   - Gestiona configuración específica por cliente
+   - Carga configuración desde archivos YAML
+   - Proporciona valores por defecto
+   - Métodos de acceso a configuración específica
+
+2. Estructura de Configuración:
+   - Por etapas (stages):
+     * Estado habilitado/deshabilitado
+     * Timeout en milisegundos
+   - Umbrales de decisión:
+     * approve_max: límite para aprobación automática
+     * review_max: límite para revisión manual
+     * reject_min: límite para rechazo automático
+   - Campos requeridos por etapa
+
+3. Valores por Defecto:
+   - Stage 'pasarela' habilitado
+   - Timeout de 200ms
+   - Umbrales predefinidos:
+     * Aprobación: 0-200
+     * Revisión: 201-500
+     * Rechazo: 501+
+   - Campo requerido: purchaseAmount
+
+4. Funcionalidad:
+   - `is_stage_enabled`: verifica si una etapa está activa
+   - `get_thresholds`: obtiene umbrales de decisión
+   - `get_required_fields`: obtiene campos obligatorios
+   - `get_timeout`: obtiene timeout configurado
+
+5. Optimizaciones:
+   - Caché LRU para configs (maxsize=100)
+   - Lectura lazy de archivos
+   - Manejo de casos sin archivo
+
+Aspectos destacables:
+
+1. Multi-tenant:
+   - Configuración separada por cliente
+   - Archivos YAML individuales
+   - Valores por defecto seguros
+
+2. Flexibilidad:
+   - Configuración por etapas
+   - Umbrales ajustables
+   - Campos requeridos configurables
+
+3. Performance:
+   - Caché de configuraciones
+   - Lectura única de archivos
+   - Acceso rápido a valores
+
+4. Mantenibilidad:
+   - Estructura clara
+   - Documentación adecuada
+   - Tipado de datos
+
+Valores por Defecto Importantes:
+1. Timeouts:
+   - Default: 500ms
+   - Pasarela: 200ms
+
+2. Umbrales:
+   - Aprobación: <= 200
+   - Revisión: 201-500
+   - Rechazo: >= 501
+
+3. Stages:
+   - Pasarela habilitada por defecto
+   - Otras etapas deshabilitadas
+
+Este módulo proporciona una base flexible para configurar el comportamiento del sistema por cliente, permitiendo personalización mientras mantiene val
+ores por defecto seguros.  [16/52] __init__.py ... Este es un archivo de inicialización de paquete Python vacío que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de configuración.
+Tool #24: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de configuración
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con configuración
+4. Mantener una estructura clara del proyecto
+
+El comentario "Config package" indica que este directorio contiene módulos relacionados con la configuración del sistema, como el `client_config.py` que vimos anteriormente, que maneja:
+- Configuraciones específicas por cliente
+- Valores por defecto
+- Umbrales y parámetros del sistema
+- Carga y gestión de configuraciones
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples.  [17/52] config.py ... Analizaré este código del dominio que define la configuración global de la aplicación usando Pydantic Settings.
+Tool #25: enriquecer_unidades
+Veamos las reglas de negocio implícitas en esta configuración:
+Tool #26: extraer_reglas_negocio
+El código define la configuración global de la aplicación usando Pydantic Settings con los siguientes grupos de configuración:
+
+1. Configuración de Aplicación:
+   - app_name: "Fraud Detection Engine"
+   - app_version: "1.0.0"
+   - debug: true (por defecto)
+   - port: 8080 (por defecto)
+
+2. Configuración de Base de Datos:
+   - database_url: URL de conexión PostgreSQL
+   - Marcado como pendiente para Fase 4
+
+3. Umbrales de Riesgo:
+   - risk_threshold_low: 300
+   - risk_threshold_high: 700
+   - Define rangos de riesgo:
+     * Bajo: < 300
+     * Medio: 300-700
+     * Alto: > 700
+
+4. Motor de Reglas:
+   - Ventana de tiempo:
+     * max_transactions_per_window: 5 transacciones
+     * time_window_minutes: 10 minutos
+   - Umbrales de monto:
+     * high_amount_threshold: $10,000
+     * international_high_amount: $5,000
+
+5. Características de Configuración:
+   - Carga desde archivo .env
+   - Case insensitive
+   - Implementado como singleton con caché
+
+Aspectos destacables:
+
+1. Flexibilidad:
+   - Todos los valores configurables vía variables de entorno
+   - Valores por defecto razonables
+   - Fácilmente extensible
+
+2. Organización:
+   - Agrupación lógica de configuraciones
+   - Comentarios descriptivos
+   - Separación clara de concerns
+
+3. Performance:
+   - Singleton pattern
+   - Caché LRU
+   - Una sola instancia en memoria
+
+4. Tipo de Datos:
+   - Tipado estático con Pydantic
+   - Validación automática
+   - Conversión de tipos
+
+Reglas de Negocio Implícitas:
+
+1. Monitoreo de Velocidad:
+   - Máximo 5 transacciones en 10 minutos
+   - Ventana móvil de tiempo
+
+2. Umbrales de Monto:
+   - Transacciones locales: $10,000
+   - Transacciones internacionales: $5,000 (más estricto)
+
+3. Niveles de Riesgo:
+   - Bajo riesgo: < 300 puntos
+   - Riesgo medio: 300-700 puntos
+   - Alto riesgo: > 700 puntos
+
+Este módulo proporciona una base configuración centralizada y tipada para la aplicación, con énfasis en la detección de fraude y el control de riesgos
+. La implementación permite una fácil modificación de parámetros críticos sin cambios en el código.  [18/52] orchestrator.py ... Analizaré este orquestador de decisiones de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #27: extraer_reglas_negocio
+El `DecisionOrchestrator` es una pieza central del dominio que implementa el proceso de toma de decisiones para transacciones. Sus características principales son:
+
+1. Responsabilidades:
+   - Coordinar la evaluación de transacciones
+   - Integrar diferentes motores de evaluación
+   - Determinar decisiones finales
+   - Medir tiempos de respuesta
+
+2. Proceso de Evaluación:
+   - Captura tiempo inicial
+   - Ejecuta evaluación de reglas
+   - Determina decisión basada en score
+   - Calcula tiempo de procesamiento
+   - Retorna respuesta estructurada
+
+3. Lógica de Decisión:
+   - Basada en umbrales configurables:
+     * APPROVE: score < risk_threshold_low
+     * REVIEW: risk_threshold_low <= score < risk_threshold_high
+     * REJECT: score >= risk_threshold_high
+
+4. Respuesta de Evaluación:
+   - ID de transacción
+   - Score de riesgo
+   - Decisión final
+   - Factores de riesgo detectados
+   - Tiempo de evaluación en ms
+
+Aspectos destacables:
+
+1. Diseño:
+   - Patrón orquestador
+   - Separación de responsabilidades
+   - Preparado para extensiones futuras
+
+2. Medición de Performance:
+   - Tracking de tiempos de respuesta
+   - Precisión en milisegundos
+   - Redondeo a 2 decimales
+
+3. Extensibilidad:
+   - Preparado para ML en Fase 2
+   - Integración modular de engines
+   - Configuración flexible
+
+4. Testabilidad:
+   - Método clear_history para testing
+   - Separación de lógica en métodos
+   - Interfaces claras
+
+Reglas de Negocio Implícitas:
+
+1. Proceso de Decisión:
+   ```
+   if score < risk_threshold_low:
+       decision = APPROVE
+   elif score < risk_threshold_high:
+       decision = REVIEW
+   else:
+       decision = REJECT
+   ```
+
+2. Thresholds Configurables:
+   - Umbrales bajos y altos definidos en settings
+   - Permiten ajuste sin cambios de código
+
+3. Evaluación Multi-Fase:
+   - Fase 1: Solo reglas
+   - Fase 2: Integración con ML (pendiente)
+
+4. Tracking de Performance:
+   - Medición precisa de tiempos
+   - Incluido en cada evaluación
+
+Este orquestador actúa como el cerebro del sistema de detección de fraude, coordinando la evaluación de transacciones y tomando decisiones basadas en scores de riesgo. Su diseño modular permite la extensión futura para incluir más fuentes de evaluación como machine learning.
+
+También proporciona capacidades de observabilidad a través del tracking de tiempos de respuesta y la colección de factores de riesgo, lo que facilita el monitoreo y la optimización del sistema.
+
+La capacidad de limpiar el historial (clear_history) sugiere que el sistema mantiene estado, probablemente para reglas que consideran el comportamient
+o histórico del usuario.  [19/52] __init__.py ... Este es un archivo de inicialización de paquete Python vacío que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python core.
+Tool #28: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python core
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código central de la aplicación
+4. Mantener una estructura clara del proyecto
+
+El comentario "Core package" indica que este directorio contiene los componentes centrales del sistema que hemos visto anteriormente:
+- Orquestador de decisiones
+- Configuraciones globales
+- Lógica de negocio central
+- Componentes fundamentales del sistema
+
+Este paquete probablemente contiene la funcionalidad más crítica y central del sistema de detección de fraude, como se evidencia por los archivos que hemos visto:
+- orchestrator.py: Coordinación de evaluaciones
+- config.py: Configuración global
+- Otros componentes core del sistema
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples.  [20/52] context
+_manager.py ... El código está incompleto (cortado en el manejo de excepción), pero analizaré la implementación del gestor de contexto de la capa de infraestructura. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #29: analizar_owasp
+El `StageContextManager` es un componente de infraestructura que gestiona el estado y contexto entre las diferentes etapas de evaluación de una transacción. Sus características principales son:
+
+1. Gestión de Contexto:
+   - Almacena resultados de cada etapa
+   - Mantiene historial de decisiones
+   - Preserva datos relevantes entre etapas
+
+2. Persistencia:
+   - Usa SQLAlchemy para acceso a BD
+   - Manejo de transacciones
+   - Rollback en caso de error
+
+3. Estructura de Datos:
+   - transaction_id: identificador único
+   - stage: etapa de evaluación
+   - score: puntaje de riesgo
+   - decision: decisión tomada
+   - triggered_rules: reglas activadas
+   - data_snapshot: datos relevantes
+
+4. Funcionalidad:
+   - `save_context`:
+     * Guarda resultado de evaluación
+     * Convierte datos a formato serializable
+     * Manejo de transacciones DB
+     * Logging de operaciones
+
+   - `get_context`:
+     * Recupera contexto histórico
+     * Ordena por timestamp
+     * Estructura datos por etapa
+     * Logging de consultas
+
+5. Manejo de Errores:
+   - Try/catch en operaciones DB
+   - Rollback automático
+   - Logging detallado
+   - Propagación de excepciones
+
+Aspectos destacables:
+
+1. Observabilidad:
+   - Logging extensivo
+   - Tracking de operaciones
+   - Mensajes informativos
+   - Captura de errores
+
+2. Diseño:
+   - Separación de responsabilidades
+   - Interfaz clara
+   - Manejo de transacciones
+   - Serialización de datos
+
+3. Datos Capturados por Regla:
+   - ID y nombre
+   - Tipo de regla
+   - Contribución al score
+   - Razón de activación
+
+4. Trazabilidad:
+   - Historial completo por transacción
+   - Ordenamiento temporal
+   - Contexto entre etapas
+   - Snapshot de datos
+
+Aunque el código está incompleto, podemos ver que es un componente crucial para:
+
+1. Mantener el estado entre etapas de evaluación
+2. Proporcionar contexto histórico para decisiones
+3. Permitir auditoría de decisiones
+4. Facilitar el análisis posterior
+
+Este componente es esencial para:
+- Evaluaciones multi-etapa
+- Decisiones basadas en contexto
+- Auditoría de decisiones
+- Análisis de efectividad de reglas
+
+La implementación muestra un enfoque robusto para el manejo de estado y contexto en un sistema de detección de fraude multi-etapa.  [21/52] crud_users.py ... Analizaré este código CRUD de usuarios de la capa de infraestructura. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #30: analizar_owasp
+El código implementa operaciones CRUD básicas para usuarios con las siguientes características:
+
+1. Operaciones de Lectura:
+   - `get_user_by_email`:
+     * Búsqueda por email
+     * Retorna un solo usuario o None
+     * Usa filtrado directo
+
+   - `get_user_by_username`:
+     * Búsqueda por username
+     * Retorna un solo usuario o None
+     * Usa filtrado directo
+
+2. Operación de Creación:
+   - `create_user`:
+     * Parámetros requeridos:
+       - username
+       - email
+       - password
+       - client_id
+     * Parámetros opcionales:
+       - role (default: "analyst")
+     * Seguridad:
+       - Hash de password
+       - Cuenta activa por defecto
+
+3. Aspectos de Seguridad:
+   - Uso de SQLAlchemy (previene SQL injection)
+   - Hashing de contraseñas
+   - Soporte multi-tenant (client_id)
+   - Roles de usuario
+
+4. Manejo de DB:
+   - Sesiones SQLAlchemy
+   - Transacciones atómicas
+   - Refresh después de commit
+
+Aspectos destacables:
+
+1. Seguridad:
+   - No almacena passwords en texto plano
+   - Usa ORM para queries seguros
+   - Separación por cliente
+   - Sistema de roles
+
+2. Multi-tenant:
+   - client_id requerido
+   - Segregación de usuarios
+   - Soporte para múltiples clientes
+
+3. Diseño:
+   - Funciones específicas y concisas
+   - Tipos de retorno explícitos
+   - Documentación clara
+   - Manejo de nulos
+
+4. Roles:
+   - "analyst" como rol por defecto
+   - Flexibilidad para otros roles
+   - Asignación en creación
+
+Buenas Prácticas Implementadas:
+
+1. Seguridad:
+   - Hashing de contraseñas
+   - Queries parametrizados
+   - Manejo seguro de datos
+
+2. Base de Datos:
+   - Transacciones atómicas
+   - Refresh después de cambios
+   - Queries optimizados
+
+3. Código:
+   - Tipado estático
+   - Documentación de funciones
+   - Parámetros nombrados
+   - Valores por defecto
+
+Posibles Mejoras:
+
+1. Validación:
+   - Formato de email
+   - Longitud de username
+   - Fortaleza de password
+   - Roles permitidos
+
+2. Seguridad:
+   - Rate limiting
+   - Logging de accesos
+   - Validación de client_id
+   - Prevención de duplicados
+
+3. Funcionalidad:
+   - Actualización de usuario
+   - Desactivación de cuenta
+   - Cambio de contraseña
+   - Historial de cambios
+
+Este módulo proporciona las operaciones fundamentales para la gestión de usuarios en un sistema multi-tenant con consideraciones de seguridad básicas.
+ La implementación es sólida aunque podría beneficiarse de validaciones adicionales y más funcionalidades CRUD.  [22/52] crud_audit.py ... Analizaré este código CRUD de auditoría de la capa de infraestructura. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #31: analizar_owasp
+Ahora veamos las reglas de negocio implícitas:
+Tool #32: extraer_reglas_negocio
+El código implementa un sistema de auditoría para cambios en reglas con las siguientes características:
+
+1. Datos Registrados:
+   - Información de la Regla:
+     * rule_id (opcional)
+     * old_data (estado anterior)
+     * new_data (estado nuevo)
+
+   - Información del Usuario:
+     * user_id
+     * user_email
+     * ip_address (opcional)
+     * user_agent (opcional)
+
+   - Metadata:
+     * action (tipo de cambio)
+     * client_id (multi-tenant)
+     * timestamp (implícito en DB)
+
+2. Tipos de Acciones:
+   - CREATE: Creación de regla
+   - UPDATE: Modificación de regla
+   - DELETE: Eliminación de regla
+   - TOGGLE: Activación/desactivación
+
+3. Almacenamiento:
+   - Serialización JSON de estados
+   - Transacción atómica
+   - Modelo RuleAuditLog
+
+4. Multi-tenant:
+   - Segregación por client_id
+   - Trazabilidad por cliente
+   - Auditoría separada
+
+Aspectos destacables:
+
+1. Seguridad:
+   - Tracking de IPs
+   - Identificación de usuarios
+   - Registro de user-agent
+   - Separación por cliente
+
+2. Auditoría:
+   - Estados completos antes/después
+   - Acciones explícitas
+   - Metadata contextual
+   - Trazabilidad total
+
+3. Diseño:
+   - Función única y específica
+   - Parámetros opcionales
+   - Documentación clara
+   - Manejo de nulos
+
+4. Datos:
+   - Serialización segura
+   - Transacciones DB
+   - Campos flexibles
+
+Buenas Prácticas Implementadas:
+
+1. Seguridad:
+   - No expone datos sensibles
+   - Tracking de origen
+   - Auditoría completa
+   - Multi-tenant
+
+2. Base de Datos:
+   - Transacciones atómicas
+   - Modelo específico
+   - Serialización JSON
+
+3. Código:
+   - Documentación detallada
+   - Tipado estático
+   - Manejo de opcionales
+   - Parámetros nombrados
+
+Posibles Mejoras:
+
+1. Validación:
+   - Formato de action
+   - Estructura de old/new data
+   - Formato de IP
+   - Longitud de campos
+
+2. Seguridad:
+   - Sanitización de user-agent
+   - Validación de client_id
+   - Limpieza de datos JSON
+   - Compresión de datos grandes
+
+3. Funcionalidad:
+   - Consulta de audit log
+   - Exportación de registros
+   - Agregación de eventos
+   - Alertas en cambios críticos
+
+Este módulo proporciona una base sólida para la auditoría de cambios en reglas, esencial para:
+- Cumplimiento normativo
+- Investigación de incidentes
+- Trazabilidad de cambios
+- Responsabilidad de usuarios
+
+La implementación es robusta aunque podría beneficiarse de validaciones adicionales y funcionalidades de consulta.  [23/52] database.py ... Analizaré este código de configuración de base de datos de la capa de infraestructura. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #33: analizar_owasp
+El código implementa la configuración y gestión de conexiones a base de datos usando SQLAlchemy con las siguientes características:
+
+1. Configuración de Base de Datos:
+   - URL configurable vía variable de entorno
+   - SQLite como fallback por defecto
+   - Soporte para múltiples motores DB
+   - Opciones específicas por motor
+
+2. SQLAlchemy Setup:
+   - Engine configurado
+   - Session factory
+   - Base declarativa
+   - Manejo de conexiones
+
+3. Funcionalidades:
+   - `get_db`:
+     * Dependency para FastAPI
+     * Context manager para sesiones
+     * Cierre automático
+
+   - `init_db`:
+     * Inicialización de schema
+     * Creación de tablas
+     * Importación lazy de modelos
+
+4. Configuraciones de Seguridad:
+   - No autocommit
+   - No autoflush
+   - SQL echo deshabilitado
+   - Manejo seguro de conexiones
+
+Aspectos destacables:
+
+1. Diseño:
+   - Separación de configuración
+   - Dependency injection
+   - Manejo de recursos
+   - Lazy loading
+
+2. Flexibilidad:
+   - URL configurable
+   - Soporte multi-motor
+   - Opciones configurables
+   - Debug opcional
+
+3. Seguridad:
+   - Conexiones seguras
+   - Cierre garantizado
+   - Variables de entorno
+   - No credentials en código
+
+4. Performance:
+   - Session pooling
+   - Conexiones reutilizables
+   - Optimizaciones por motor
+
+Buenas Prácticas Implementadas:
+
+1. Configuración:
+   - Uso de variables de entorno
+   - Valores por defecto seguros
+   - Opciones específicas por motor
+   - Debug configurable
+
+2. Manejo de Recursos:
+   - Context managers
+   - Cierre automático
+   - Manejo de errores
+   - Cleanup garantizado
+
+3. Diseño:
+   - Single Responsibility
+   - Dependency Injection
+   - Factory pattern
+   - Lazy loading
+
+Consideraciones por Motor:
+
+1. SQLite:
+   - check_same_thread=False para desarrollo
+   - Path relativo para DB file
+   - Configuración mínima
+
+2. Otros Motores (PostgreSQL, MySQL, etc.):
+   - Configuración estándar
+   - Sin opciones específicas
+   - URL completa requerida
+
+Posibles Mejoras:
+
+1. Seguridad:
+   - Validación de DATABASE_URL
+   - Timeout de conexiones
+   - Pool size configurable
+   - SSL para conexiones remotas
+
+2. Performance:
+   - Pool pre-ping
+   - Pool recycling
+   - Statement cache
+   - Query logging configurable
+
+3. Robustez:
+   - Retry logic
+   - Connection pooling
+   - Health checks
+   - Migration support
+
+4. Monitoreo:
+   - Connection metrics
+   - Pool statistics
+   - Query performance
+   - Error tracking
+
+Este módulo proporciona la base para la interacción con la base de datos, implementando patrones seguros y eficientes para:
+- Manejo de conexiones
+- Gestión de sesiones
+- Inicialización de schema
+- Dependency injection
+
+La implementación es sólida para un MVP aunque podría beneficiarse de características adicionales para producción.  [24/52] __init__.py ... Este es un
+ archivo de inicialización de paquete Python que solo contiene un docstring. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de base de datos.
+Tool #34: enriquecer_unidades
+Como el archivo solo contiene un docstring y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de base de datos
+2. Documentar brevemente el propósito del módulo
+3. Permitir importaciones relativas dentro del paquete
+4. Mantener una estructura organizada del proyecto
+
+El comentario "Database package" indica que este directorio contiene los componentes relacionados con la base de datos que hemos visto anteriormente:
+- Configuración de base de datos
+- Modelos
+- Operaciones CRUD
+- Gestión de sesiones y conexiones
+
+Este paquete probablemente contiene:
+- database.py: Configuración y conexión
+- models.py: Definición de modelos
+- crud_*.py: Operaciones CRUD específicas
+- Otros utilitarios de base de datos
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. El uso de docstr
+ings en lugar de comentarios simples también permite que la documentación sea accesible mediante herramientas de generación de documentación.  [25/52]
+ models.py ... El código está incompleto (cortado en la definición de la clase Evaluation), pero analizaré los modelos SQLAlchemy definidos. Veamos primero las reglas de negocio implícitas:
+Tool #35: extraer_reglas_negocio
+El código define los siguientes modelos SQLAlchemy:
+
+1. `Client` (clientes/bancos):
+   - Campos Principales:
+     * id: String(50), PK
+     * name: String(100), requerido
+     * country: String(2), código de país
+     * is_active: Boolean, default True
+     * created_at: DateTime con timezone
+   - Relaciones:
+     * users: One-to-Many con User
+     * rules: One-to-Many con Rule
+
+2. `User` (usuarios):
+   - Campos Principales:
+     * id: Integer, PK, indexed
+     * username: String(100), único, indexed
+     * email: String(100), único, indexed
+     * password_hash: String(255)
+     * client_id: FK a clients
+     * role: String(20), default "analyst"
+     * is_active: Boolean
+     * created_at: DateTime
+     * last_login: DateTime
+   - Relaciones:
+     * client: Many-to-One con Client
+
+3. `Rule` (reglas de fraude):
+   - Campos Principales:
+     * id: Integer, PK, indexed
+     * alias: String(60)
+     * stage: String(20), indexed
+     * type: String(50)
+     * score: Integer
+     * config: JSON
+     * is_active: Boolean, indexed
+     * client_id: FK a clients
+     * priority: Integer, default 0
+     * created_by/updated_by: FK a users
+     * created_at/updated_at: DateTime
+   - Relaciones:
+     * client: Many-to-One con Client
+
+4. `StageContext` (contexto entre etapas):
+   - Campos:
+     * id: Integer, PK, indexed
+     * transaction_id: String(100), indexed
+     * stage: String(20)
+     * score: Integer
+     * decision: String(20)
+     * triggered_rules: JSON
+     * data_snapshot: JSON
+     * created_at: DateTime
+
+Aspectos destacables:
+
+1. Multi-tenant:
+   - client_id en users y rules
+   - Segregación de datos por cliente
+   - Relaciones bidireccionales
+
+2. Seguridad:
+   - Password hasheado
+   - Sistema de roles
+   - Estado activo/inactivo
+   - Auditoría de cambios
+
+3. Indexación:
+   - PKs y FKs
+   - Campos de búsqueda frecuente
+   - Campos de filtrado
+
+4. Auditoría:
+   - Timestamps automáticos
+   - Tracking de creación/actualización
+   - Historial de contexto
+
+Características por Modelo:
+
+1. Client:
+   - Identificación por string (flexible)
+   - Soporte internacional (country)
+   - Activación/desactivación
+
+2. User:
+   - Autenticación username/email
+   - Roles de usuario
+   - Tracking de último acceso
+   - Vinculación a cliente
+
+3. Rule:
+   - Configuración flexible (JSON)
+   - Etapas y tipos
+   - Sistema de prioridades
+   - Auditoría completa
+
+4. StageContext:
+   - Tracking de decisiones
+   - Almacenamiento de contexto
+   - Reglas activadas
+   - Snapshot de datos
+
+Este diseño de base de datos soporta:
+- Sistema multi-tenant
+- Gestión de usuarios y permisos
+- Motor de reglas configurable
+- Auditoría y trazabilidad
+- Procesamiento multi-etapa
+
+La estructura es robusta y bien pensada para un sistema de detección de fraude, con énfasis en seguridad, auditoría y flexibilidad.  [26/52] advanced_
+features.py ... El código está incompleto (cortado en la extracción de device features), pero analizaré esta implementación de feature engineering avanzado. Primero veamos las reglas de negocio:
+Tool #36: extraer_reglas_negocio
+El código implementa un sistema avanzado de feature engineering para machine learning en detección de fraude, combinando múltiples fuentes de datos:
+
+1. Features Básicas:
+   - Información de Transacción:
+     * amount: monto
+     * merchant_category: categoría del comercio
+     * is_international: flag de transacción internacional
+     * card_present: flag de tarjeta presente
+   - Temporales:
+     * hour_of_day: hora del día (0-23)
+     * day_of_week: día de la semana (0-6)
+
+2. Features de Velocidad:
+   - Ventanas de Tiempo:
+     * 10 minutos
+     * 1 hora
+   - Métricas:
+     * velocity_10min: transacciones en 10 min
+     * velocity_1hour: transacciones en 1 hora
+     * is_high_velocity: flag de velocidad alta
+
+3. Features de IP:
+   - Geolocalización:
+     * ip_country: país de origen
+   - Indicadores de Riesgo:
+     * ip_is_proxy: uso de proxy
+     * ip_is_mobile: red móvil
+     * ip_is_vpn: uso de VPN
+     * ip_risk_score: score de riesgo de IP
+
+Aspectos destacables:
+
+1. Diseño:
+   - Modular y extensible
+   - Método estático único
+   - Separación por categorías
+   - Documentación clara
+
+2. Fuentes de Datos:
+   - Datos de transacción
+   - Historial de usuario
+   - Información de red
+   - Contexto de dispositivo
+
+3. Procesamiento:
+   - Conversión a tipos numéricos
+   - Valores por defecto
+   - Manejo de opcionales
+   - Normalización de formatos
+
+4. Integración:
+   - Base de datos
+   - HTTP request
+   - Servicios externos
+   - Cálculos en tiempo real
+
+Características por Categoría:
+
+1. Básicas:
+   - Features fundamentales
+   - Datos de transacción
+   - Contexto temporal
+   - Flags binarios
+
+2. Velocidad:
+   - Múltiples ventanas
+   - Agregaciones temporales
+   - Detección de anomalías
+   - Tracking de usuario
+
+3. IP:
+   - Enriquecimiento de datos
+   - Indicadores de riesgo
+   - Geolocalización
+   - Detección de evasión
+
+Este módulo es crucial para:
+- Detección de fraude con ML
+- Análisis de patrones
+- Identificación de anomalías
+- Evaluación de riesgo
+
+La implementación muestra un enfoque sofisticado para la generación de features, aunque está incompleta en la parte de device features. El código está bien estructurado y preparado para extensión futura.
+
+Mejoras Potenciales:
+1. Caché de resultados
+2. Procesamiento asíncrono
+3. Validación de datos
+4. Métricas de performance  [27/52] main.py ... Analizaré este código de punto de entrada de la aplicación. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #37: analizar_owasp
+El código implementa el punto de entrada principal de la aplicación FastAPI con las siguientes características:
+
+1. Configuración Inicial:
+   - Logging estructurado JSON
+   - Niveles de log según modo debug
+   - Configuración desde settings
+   - Inicialización de DB
+
+2. FastAPI Setup:
+   - Metadata de la API
+   - Documentación automática
+   - CORS middleware
+   - Múltiples routers
+
+3. Rutas Incluidas:
+   - /auth: Autenticación
+   - /rules: CRUD de reglas
+   - /ml: Machine Learning
+   - /api/v1: API Legacy
+   - /stage: Etapas de evaluación
+
+4. Eventos del Ciclo de Vida:
+   - Startup:
+     * Log de configuración
+     * Inicialización de DB
+     * Verificación de umbrales
+   - Shutdown:
+     * Log de cierre
+
+Aspectos destacables:
+
+1. Observabilidad:
+   - Logging JSON estructurado
+   - Niveles configurables
+   - Mensajes informativos
+   - Manejo de errores
+
+2. Documentación:
+   - OpenAPI (/docs)
+   - ReDoc (/redoc)
+   - Descripción clara
+   - Versión visible
+
+3. Seguridad:
+   - CORS configurado
+   - Autenticación separada
+   - Modo debug configurable
+   - Manejo de errores
+
+4. Modularidad:
+   - Routers separados
+   - Configuración centralizada
+   - Inicialización ordenada
+   - Separación de concerns
+
+Puntos de Atención:
+
+1. CORS:
+   ```python
+   app.add_middleware(
+       CORSMiddleware,
+       allow_origins=["*"],
+       allow_credentials=True,
+       allow_methods=["*"],
+       allow_headers=["*"],
+   )
+   ```
+   - Configuración permisiva (desarrollo)
+   - Recomendable restringir en producción
+
+2. Logging:
+   ```python
+   logger.setLevel(logging.INFO if not settings.debug else logging.DEBUG)
+   ```
+   - Nivel según modo debug
+   - Log estructurado JSON
+   - Timestamp incluido
+
+3. Inicialización DB:
+   ```python
+   try:
+       init_db()
+       logger.info("Base de datos inicializada correctamente")
+   except Exception as e:
+       logger.error(f"Error inicializando base de datos: {str(e)}")
+   ```
+   - Manejo de errores
+   - Logging de estado
+
+4. Servidor:
+   ```python
+   uvicorn.run(
+       "app.main:app",
+       host="0.0.0.0",
+       port=settings.port,
+       reload=settings.debug
+   )
+   ```
+   - Reload en debug
+   - Puerto configurable
+   - Bind a todas las interfaces
+
+Mejoras Recomendadas:
+
+1. Seguridad:
+   - Restringir CORS en producción
+   - Configurar rate limiting
+   - Agregar security headers
+   - Validar configuración
+
+2. Observabilidad:
+   - Métricas de aplicación
+   - Tracing distribuido
+   - Health checks detallados
+   - Monitoreo de performance
+
+3. Operación:
+   - Graceful shutdown
+   - Manejo de señales
+   - Comprobaciones de startup
+   - Gestión de conexiones
+
+4. Desarrollo:
+   - Entornos separados
+   - Tests automáticos
+   - CI/CD integration
+   - Documentación extendida
+
+Este código proporciona una base sólida para la aplicación, con énfasis en observabilidad y modularidad, aunque requiere ajustes de seguridad para pro
+ducción.  [28/52] device_tracker.py ... El código está incompleto (cortado en medio de un return), pero analizaré esta implementación de tracking de dispositivos. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #38: analizar_owasp
+El código implementa un sistema de tracking y fingerprinting de dispositivos con las siguientes características principales:
+
+1. Modelo `UserDevice`:
+   - Campos Principales:
+     * id: Identificador único
+     * user_id: ID del usuario
+     * device_fingerprint: Hash SHA256
+     * user_agent: String del navegador
+     * ip_address: Dirección IP
+   - Campos de Tracking:
+     * first_seen: Primera vez visto
+     * last_seen: Última vez visto
+     * is_trusted: Flag de confianza
+     * transaction_count: Contador de transacciones
+
+2. `DeviceTracker`:
+   - Generación de Fingerprint:
+     * Señales principales:
+       - User Agent
+       - IP Address
+     * Señales opcionales:
+       - Resolución de pantalla
+       - Idioma del navegador
+     * Hash SHA256 para fingerprint
+
+   - Verificación de Dispositivo:
+     * Búsqueda por user_id y fingerprint
+     * Actualización de last_seen
+     * Incremento de contador
+     * Registro de dispositivos nuevos
+
+Aspectos destacables:
+
+1. Seguridad:
+   - Uso de hashing SHA256
+   - No almacenamiento directo de señales
+   - Tracking de confianza
+   - Índices en campos clave
+
+2. Tracking:
+   - Primera/última vez visto
+   - Contador de transacciones
+   - Estado de confianza
+   - Histórico temporal
+
+3. Fingerprinting:
+   - Múltiples señales
+   - Señales opcionales
+   - Hash único
+   - Formato consistente
+
+4. Base de Datos:
+   - Índices optimizados
+   - Campos timestamped
+   - Relaciones user-device
+   - Contadores integrados
+
+Características de Seguridad:
+
+1. Fingerprint:
+   ```python
+   fingerprint_data = f"{user_agent}|{ip}"
+   if screen_width and screen_height:
+       fingerprint_data += f"|{screen_width}x{screen_height}"
+   if language:
+       fingerprint_data += f"|{language}"
+   return hashlib.sha256(fingerprint_data.encode()).hexdigest()
+   ```
+   - Combinación de múltiples señales
+   - Separador seguro (|)
+   - Hash criptográfico
+   - Encoding consistente
+
+2. Device Tracking:
+   ```python
+   device = db.query(UserDevice).filter(
+       UserDevice.user_id == user_id,
+       UserDevice.device_fingerprint == device_fingerprint
+   ).first()
+   ```
+   - Búsqueda por usuario y device
+   - Actualización atómica
+   - Tracking de uso
+   - Estado de confianza
+
+3. Almacenamiento:
+   - Longitudes de campo adecuadas
+   - Índices apropiados
+   - Timestamps automáticos
+   - Flags de estado
+
+Usos en Detección de Fraude:
+
+1. Detección de Anomalías:
+   - Dispositivos nuevos
+   - Cambios de patrón
+   - Múltiples dispositivos
+   - Dispositivos sospechosos
+
+2. Análisis de Riesgo:
+   - Historial de transacciones
+   - Confianza del dispositivo
+   - Tiempo de uso
+   - Patrones de uso
+
+3. Features para ML:
+   - Is_new_device
+   - Device_trust_level
+   - Transaction_count
+   - Days_since_first_seen
+
+Mejoras Potenciales:
+
+1. Seguridad:
+   - Salt en fingerprints
+   - Más señales del dispositivo
+   - Validación de señales
+   - Rate limiting
+
+2. Funcionalidad:
+   - Detección de anomalías
+   - Scoring de dispositivos
+   - Blacklisting
+   - Geolocalización
+
+3. Performance:
+   - Caché de dispositivos
+   - Batch updates
+   - Cleanup de registros
+   - Índices adicionales
+
+Este sistema proporciona una base sólida para el tracking de dispositivos en un sistema de detección de fraude, aunque el código está incompleto en al
+gunas partes.  [29/52] enrichment.py ... El código está incompleto (cortado en la sección de IP), pero analizaré esta implementación del enriquecedor de transacciones. Primero veamos las reglas de negocio:
+Tool #39: extraer_reglas_negocio
+El `TransactionEnricher` es un componente crucial que enriquece las transacciones con datos adicionales para machine learning. Sus características principales son:
+
+1. Fuentes de Datos:
+   - Datos básicos de transacción
+   - Información temporal
+   - Historial de usuario (velocity)
+   - Datos del dispositivo
+   - Información de IP
+
+2. Datos Básicos Procesados:
+   - transaction_id
+   - amount
+   - currency
+   - merchant_mcc
+   - billing_country
+   - is_international
+
+3. Features Temporales:
+   - hour_of_day: hora del día (0-23)
+   - day_of_week: día de la semana (0-6)
+   - is_weekend: flag de fin de semana
+
+4. Enriquecimientos:
+   - Velocity:
+     * Cálculos desde BD
+     * Patrones de frecuencia
+
+   - Device:
+     * Fingerprinting
+     * Historial de uso
+     * Datos del navegador
+
+   - IP (incompleto en el código):
+     * Geolocalización
+     * Riesgo asociado
+     * Tipo de red
+
+Aspectos destacables:
+
+1. Diseño:
+   - Método estático único
+   - Modular y extensible
+   - Separación de concerns
+   - Logging integrado
+
+2. Integración:
+   - Base de datos
+   - HTTP request
+   - APIs externas
+   - Servicios internos
+
+3. Procesamiento:
+   - Cálculos en tiempo real
+   - Fallbacks para valores nulos
+   - Agregación de múltiples fuentes
+   - Enriquecimiento incremental
+
+4. Observabilidad:
+   - Logging estructurado
+   - Trazabilidad por transacción
+   - Separación de fuentes
+   - Documentación clara
+
+Features Generados:
+
+1. Temporales:
+   ```python
+   "hour_of_day": transaction.timestamp.hour if transaction.timestamp else datetime.now().hour,
+   "day_of_week": transaction.timestamp.weekday() if transaction.timestamp else datetime.now().weekday(),
+   "is_weekend": (transaction.timestamp.weekday() if transaction.timestamp else datetime.now().weekday()) >= 5,
+   ```
+   - Manejo de nulos
+   - Cálculos derivados
+   - Flags binarios
+
+2. Velocity (referenciado):
+   ```python
+   **TransactionEnricher._calculate_velocity(transaction, db),
+   ```
+   - Patrones de frecuencia
+   - Análisis histórico
+   - Agregaciones temporales
+
+3. Device (referenciado):
+   ```python
+   **TransactionEnricher._enrich_device(transaction, request, db),
+   ```
+   - Fingerprinting
+   - Tracking de dispositivos
+   - Análisis de comportamiento
+
+Usos en Detección de Fraude:
+
+1. Análisis Temporal:
+   - Patrones horarios
+   - Comportamiento en fines de semana
+   - Estacionalidad
+
+2. Análisis de Velocidad:
+   - Frecuencia de transacciones
+   - Picos de actividad
+   - Comportamiento anormal
+
+3. Análisis de Dispositivo:
+   - Nuevos dispositivos
+   - Cambios de patrón
+   - Comportamiento sospechoso
+
+4. Análisis de IP:
+   - Geolocalización
+   - Uso de proxies/VPN
+   - Riesgo asociado
+
+Este enriquecedor es fundamental para:
+- Feature engineering
+- Detección de anomalías
+- Análisis de comportamiento
+- Evaluación de riesgo
+
+La implementación muestra un enfoque sofisticado para la generación de features, aunque está incompleta en la parte de enriquecimiento de IP.  [30/52] features.py ... Analizaré este código de feature engineering de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #40: extraer_reglas_negocio
+El `FeatureEngineer` es una clase que implementa la transformación de datos crudos en features para machine learning con las siguientes características:
+
+1. Transformadores:
+   - StandardScaler para montos
+   - LabelEncoder para categorías
+   - Estado de ajuste (fitted)
+
+2. Operaciones Principales:
+   - `fit`: Ajusta transformadores
+   - `transform`: Aplica transformaciones
+   - `fit_transform`: Combina ambos
+   - `save/load`: Persistencia
+
+3. Features Generadas:
+   ```python
+   features = [
+       'amount_scaled',      # Monto normalizado
+       'hour_of_day',       # Hora (0-23)
+       'day_of_week',       # Día (0-6)
+       'category_encoded',   # Categoría codificada
+       'transaction_velocity', # Velocidad de transacciones
+       'is_international',   # Flag internacional
+       'card_present'       # Flag tarjeta presente
+   ]
+   ```
+
+4. Transformaciones:
+   - Normalización de montos:
+     * Escala estándar (media 0, varianza 1)
+     * Manejo de outliers
+
+   - Codificación de categorías:
+     * Conversión a números
+     * Preservación de orden
+     * Mapping consistente
+
+Aspectos destacables:
+
+1. Diseño:
+   - Interfaz sklearn-compatible
+   - Estado interno consistente
+   - Validaciones de estado
+   - Persistencia de modelos
+
+2. Procesamiento:
+   - Copia defensiva de datos
+   - Validación de ajuste
+   - Selección de features
+   - Transformaciones encadenadas
+
+3. Features:
+   - Mix de tipos:
+     * Numéricos escalados
+     * Temporales
+     * Categóricos
+     * Flags binarios
+     * Métricas derivadas
+
+4. Serialización:
+   - Guardado de estado
+   - Carga lazy
+   - Compatibilidad joblib
+   - Estado completo
+
+Implementación de Métodos:
+
+1. `fit`:
+   ```python
+   def fit(self, df):
+       self.scaler.fit(df[['amount']])
+       self.category_encoder.fit(df['merchant_category'])
+       self.fitted = True
+       return self
+   ```
+   - Ajuste de transformadores
+   - Tracking de estado
+   - Retorno chainable
+
+2. `transform`:
+   ```python
+   def transform(self, df):
+       if not self.fitted:
+           raise ValueError("FeatureEngineer no ha sido ajustado...")
+       df = df.copy()
+       df['amount_scaled'] = self.scaler.transform(df[['amount']])
+       df['category_encoded'] = self.category_encoder.transform(df['merchant_category'])
+       return df[features].values
+   ```
+   - Validación de estado
+   - Copia de seguridad
+   - Transformaciones secuenciales
+   - Selección de features
+
+3. Persistencia:
+   ```python
+   def save(self, path):
+       joblib.dump({
+           'scaler': self.scaler,
+           'category_encoder': self.category_encoder
+       }, path)
+   ```
+   - Guardado de transformadores
+   - Formato joblib
+   - Estado completo
+
+Usos en Detección de Fraude:
+
+1. Preparación de Datos:
+   - Normalización de montos
+   - Codificación de categorías
+   - Selección de features
+
+2. Feature Engineering:
+   - Features temporales
+   - Indicadores de riesgo
+   - Métricas de comportamiento
+
+3. Producción:
+   - Transformaciones consistentes
+   - Carga de estado
+   - Procesamiento en tiempo real
+
+Este componente es fundamental para:
+- Preparación de datos para ML
+- Consistencia en transformaciones
+- Reproducibilidad de modelos
+- Despliegue en producción
+
+La implementación sigue buenas prácticas de ML y está diseñada para ser mantenible y escalable.  [31/52] ip_enricher.py ... El código está incompleto (cortado en el return de calculate_distance), pero analizaré esta implementación del enriquecedor de IPs. Primero veamos las reglas de negocio:
+Tool #41: extraer_reglas_negocio
+El `IPEnricher` es una clase que proporciona enriquecimiento de datos de IP para detección de fraude con las siguientes características principales:
+
+1. Obtención de Información (`get_ip_info`):
+   - Fuentes de datos:
+     * API gratuita: ip-api.com
+     * APIs premium mencionadas:
+       - MaxMind GeoIP2
+       - IPQualityScore
+
+   - Datos recolectados:
+     * Geográficos:
+       - País
+       - Ciudad
+       - Región
+       - Coordenadas
+     * Técnicos:
+       - ISP
+       - Tipo de red
+       - Proxy/VPN
+     * Riesgo:
+       - Score de riesgo
+       - Flags de TOR
+
+2. Detección de IPs Sospechosas:
+   ```python
+   suspicious_countries = ["NG", "GH", "PK", "VN"]
+   return (
+       ip_info.get("country") in suspicious_countries or
+       ip_info.get("is_proxy") or
+       ip_info.get("is_vpn") or
+       ip_info.get("is_tor")
+   )
+   ```
+   - Lista configurable de países sospechosos
+   - Detección de proxies/VPNs
+   - Nodos TOR
+
+3. Cálculo de Distancias:
+   - Fórmula de Haversine
+   - Detección de "viajes imposibles"
+   - Coordenadas geográficas
+   - Distancia en kilómetros
+
+Aspectos destacables:
+
+1. Optimización:
+   ```python
+   @lru_cache(maxsize=1000)
+   def get_ip_info(ip_address: str)
+   ```
+   - Caché de resultados
+   - Límite de 1000 IPs
+   - Reducción de llamadas API
+
+2. Resiliencia:
+   ```python
+   try:
+       # API call...
+   except Exception:
+       return {
+           "country": "UNKNOWN",
+           "is_proxy": False,
+           "is_mobile": False,
+           "risk_score": 0
+       }
+   ```
+   - Manejo de errores
+   - Valores por defecto
+   - Timeout de 2 segundos
+
+3. Extensibilidad:
+   - Preparado para APIs premium
+   - Features adicionales comentados
+   - Configuración flexible
+
+Features para ML:
+
+1. Geográficos:
+   - País de origen
+   - Ubicación precisa
+   - Distancias entre IPs
+
+2. Riesgo:
+   - IPs sospechosas
+   - Uso de proxies
+   - Redes anónimas
+
+3. Comportamiento:
+   - Patrones de movimiento
+   - Viajes imposibles
+   - Cambios de ubicación
+
+Usos en Detección de Fraude:
+
+1. Validación Geográfica:
+   - Consistencia de ubicación
+   - Velocidad de movimiento
+   - Países de alto riesgo
+
+2. Evasión de Detección:
+   - Uso de proxies
+   - Redes VPN
+   - Red TOR
+
+3. Análisis de Riesgo:
+   - Score de IP
+   - Patrones sospechosos
+   - Anomalías geográficas
+
+Mejoras Potenciales:
+
+1. APIs Premium:
+   - Mejor detección de proxies
+   - Scores de riesgo precisos
+   - Datos adicionales
+
+2. Performance:
+   - Caché distribuido
+   - Batch processing
+   - Timeout configurable
+
+3. Configuración:
+   - Lista dinámica de países
+   - Umbrales ajustables
+   - Múltiples providers
+
+Este componente es crucial para:
+- Detección de fraude geográfico
+- Identificación de evasión
+- Análisis de riesgo por IP
+- Validación de transacciones
+
+La implementación proporciona una base sólida para el enriquecimiento de datos de IP, con potencial para mejoras significativas mediante APIs premium.  [32/52] model.py ... Analizaré este código del predictor de fraude de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #42: extraer_reglas_negocio
+El `FraudPredictor` es una clase que implementa la predicción de fraude usando XGBoost con las siguientes características principales:
+
+1. Componentes:
+   ```python
+   def __init__(self, model_path='models/xgboost_fraud_v1.pkl',
+                fe_path='models/feature_engineer.pkl'):
+       self.model = joblib.load(model_path)
+       self.feature_engineer = FeatureEngineer.load(fe_path)
+   ```
+   - Modelo XGBoost serializado
+   - Feature Engineer pre-entrenado
+   - Carga lazy via singleton
+
+2. Features Requeridos:
+   - Transaccionales:
+     * amount: Monto
+     * merchant_category: Categoría
+     * is_international: Flag internacional
+     * card_present: Flag presencial
+
+   - Temporales:
+     * hour_of_day: Hora (0-23)
+     * day_of_week: Día (0-6)
+
+   - Comportamiento:
+     * transaction_velocity: Velocidad
+
+3. Predicción:
+   ```python
+   def predict(self, transaction: Dict) -> Dict:
+       df = pd.DataFrame([transaction])
+       X = self.feature_engineer.transform(df)
+       proba = self.model.predict_proba(X)[0, 1]
+       prediction = self.model.predict(X)[0]
+       risk_score = int(proba * 1000)
+
+       return {
+           'fraud_probability': round(float(proba), 4),
+           'risk_score': risk_score,
+           'prediction': 'FRAUD' if prediction == 1 else 'LEGITIMATE'
+       }
+   ```
+
+4. Resultados:
+   - fraud_probability: 0-1 (4 decimales)
+   - risk_score: 0-1000 (entero)
+   - prediction: FRAUD/LEGITIMATE
+
+Aspectos destacables:
+
+1. Diseño:
+   - Patrón Singleton
+   - Lazy loading
+   - Interfaz simple
+   - Batch processing
+
+2. ML Pipeline:
+   - Feature engineering
+   - Normalización
+   - Predicción probabilística
+   - Scoring
+
+3. Performance:
+   - Carga única del modelo
+   - Reutilización de instancia
+   - Procesamiento vectorizado
+   - Batch support
+
+4. Integración:
+   - Entrada dict simple
+   - Salida estructurada
+   - Formato consistente
+   - Error handling implícito
+
+Implementación del Singleton:
+```python
+_predictor = None
+
+def get_predictor():
+    global _predictor
+    if _predictor is None:
+        _predictor = FraudPredictor()
+    return _predictor
+```
+- Instancia única
+- Inicialización lazy
+- Thread-safe implícito
+- Reutilización de recursos
+
+Flujo de Predicción:
+
+1. Preparación:
+   ```python
+   df = pd.DataFrame([transaction])
+   X = self.feature_engineer.transform(df)
+   ```
+   - Conversión a DataFrame
+   - Transformación de features
+
+2. Predicción:
+   ```python
+   proba = self.model.predict_proba(X)[0, 1]
+   prediction = self.model.predict(X)[0]
+   ```
+   - Probabilidad de fraude
+   - Clasificación binaria
+
+3. Scoring:
+   ```python
+   risk_score = int(proba * 1000)
+   ```
+   - Escala 0-1000
+   - Conversión a entero
+
+Usos en Sistema:
+
+1. Evaluación en Tiempo Real:
+   - Predicciones individuales
+   - Respuesta rápida
+   - Scoring consistente
+
+2. Procesamiento Batch:
+   - Múltiples transacciones
+   - Eficiencia computacional
+   - Consistencia de resultados
+
+3. Feature Engineering:
+   - Transformación automática
+   - Normalización
+   - Codificación
+
+Este componente es crucial para:
+- Detección automática de fraude
+- Scoring de riesgo
+- Decisiones en tiempo real
+- Análisis batch
+
+La implementación muestra un diseño robusto y eficiente para predicción de fraude en producción, con consideraciones de performance y mantenibilidad.  [33/52] routes.py ... Analizaré estas rutas de ML de la capa adaptador. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #43: analizar_owasp
+El código implementa dos endpoints para el servicio de ML:
+
+1. `/predict` (POST):
+   - Funcionalidad:
+     * Predicción de fraude
+     * Medición de latencia
+     * Validación de entrada
+
+   - Respuesta:
+     * fraud_probability (0-1)
+     * risk_score (0-1000)
+     * prediction (FRAUD/LEGITIMATE)
+     * latency_ms (opcional)
+
+   - Manejo de Errores:
+     * 503 si no hay modelo
+     * 500 para otros errores
+     * Mensajes descriptivos
+
+2. `/health` (GET):
+   - Verificación de:
+     * Estado del servicio
+     * Carga del modelo
+     * Disponibilidad
+
+   - Estados posibles:
+     * healthy: Modelo listo
+     * unhealthy: Modelo no encontrado
+     * error: Otros problemas
+
+Aspectos destacables:
+
+1. Diseño:
+   ```python
+   router = APIRouter(prefix="/api/v1/ml", tags=["Machine Learning"])
+   ```
+   - Versionado (/v1)
+   - Agrupación por tags
+   - Prefijo específico
+
+2. Predicción:
+   ```python
+   @router.post("/predict", response_model=MLPredictionResponse)
+   async def predict_fraud(request: MLPredictionRequest):
+       start_time = time.time()
+       predictor = get_predictor()
+       result = predictor.predict(request.dict())
+       latency_ms = (time.time() - start_time) * 1000
+   ```
+   - Validación con Pydantic
+   - Medición de performance
+   - Singleton predictor
+   - Respuesta tipada
+
+3. Health Check:
+   ```python
+   @router.get("/health")
+   async def ml_health():
+       try:
+           predictor = get_predictor()
+           return {"status": "healthy", ...}
+   ```
+   - Verificación activa
+   - Estados múltiples
+   - Mensajes informativos
+   - Guía de solución
+
+4. Error Handling:
+   ```python
+   except FileNotFoundError:
+       raise HTTPException(
+           status_code=503,
+           detail="Modelo ML no encontrado. Ejecuta: python app/ml/trainer.py"
+       )
+   ```
+   - Errores específicos
+   - Códigos HTTP apropiados
+   - Mensajes útiles
+   - Instrucciones de solución
+
+Características de Observabilidad:
+
+1. Latencia:
+   ```python
+   latency_ms = (time.time() - start_time) * 1000
+   result['latency_ms'] = round(latency_ms, 2)
+   ```
+   - Medición precisa
+   - Inclusión en respuesta
+   - Redondeo a 2 decimales
+
+2. Health Status:
+   - Estado del servicio
+   - Estado del modelo
+   - Mensajes descriptivos
+   - Guía de troubleshooting
+
+3. Error Information:
+   - Tipos específicos
+   - Mensajes detallados
+   - Códigos HTTP
+   - Instrucciones de resolución
+
+Mejoras Potenciales:
+
+1. Seguridad:
+   - Autenticación
+   - Rate limiting
+   - Validación adicional
+   - Logging de accesos
+
+2. Observabilidad:
+   - Métricas detalladas
+   - Tracing distribuido
+   - Logging estructurado
+   - Alerting
+
+3. Performance:
+   - Caching de resultados
+   - Batch predictions
+   - Timeouts configurables
+   - Circuit breakers
+
+4. Funcionalidad:
+   - Explicabilidad (SHAP)
+   - Versión del modelo
+   - Confidence scores
+   - Feature importance
+
+Este módulo proporciona una interfaz REST limpia para el servicio de ML, con énfasis en:
+- Facilidad de uso
+- Observabilidad
+- Manejo de errores
+- Health checking
+
+La implementación sigue buenas prácticas de API design y está preparada para un entorno de producción.  [34/52] velocity.py ... Analizaré este código del calculador de velocidad de la capa de infraestructura. Primero veamos las reglas de negocio:
+Tool #44: extraer_reglas_negocio
+El `VelocityCalculator` implementa la detección de velocidad transaccional para identificar patrones sospechosos. Sus características principales son:
+
+1. Cálculo de Velocidad por Usuario:
+   ```python
+   @staticmethod
+   def get_transaction_velocity(user_id: str, window_minutes: int, db: Session) -> Dict:
+       now = datetime.now()
+       window_start = now - timedelta(minutes=window_minutes)
+       count = db.query(Evaluation).filter(
+           Evaluation.transaction_id.like(f"{user_id}%"),
+           Evaluation.created_at >= window_start
+       ).count()
+   ```
+   - Ventana deslizante configurable
+   - Conteo de transacciones
+   - Filtrado por usuario
+   - Timestamp preciso
+
+2. Detección de Velocidad Alta:
+   ```python
+   return {
+       "velocity": count,
+       "window_minutes": window_minutes,
+       "is_high_velocity": count > 5,  # Umbral configurable
+       "window_start": window_start,
+       "window_end": now
+   }
+   ```
+   - Umbral configurable (>5)
+   - Metadata completa
+   - Timestamps de ventana
+   - Flag binario
+
+3. Tipos de Velocidad (planificados):
+   - Por Usuario: Comportamiento individual
+   - Por IP: Detección de bots
+   - Por BIN: Testing de tarjetas
+
+Aspectos destacables:
+
+1. Diseño:
+   - Métodos estáticos
+   - Interfaces claras
+   - Documentación detallada
+   - Extensibilidad
+
+2. Funcionalidad:
+   - Ventanas deslizantes
+   - Múltiples dimensiones
+   - Detección configurable
+   - Metadata rica
+
+3. Performance:
+   - Queries optimizadas
+   - Cálculos simples
+   - Resultados cacheables
+   - Métodos independientes
+
+4. Uso en ML:
+   - Features numéricos
+   - Flags binarios
+   - Ventanas variables
+   - Contexto temporal
+
+Patrones de Detección:
+
+1. Velocidad Alta:
+   - Más de 5 transacciones
+   - Ventana configurable
+   - Por usuario/IP/BIN
+   - Metadata temporal
+
+2. Comportamiento Bot:
+   ```python
+   def get_velocity_by_ip(ip_address: str, window_minutes: int, db: Session) -> int:
+       """Velocidad por IP (detecta bots)"""
+       # Similar pero filtrando por IP en lugar de user_id
+       pass
+   ```
+   - Múltiples transacciones
+   - Misma IP
+   - Ventana corta
+   - Patrón automático
+
+3. Testing de Tarjetas:
+   ```python
+   def get_velocity_by_card(card_bin: str, window_minutes: int, db: Session) -> int:
+       """Velocidad por tarjeta (detecta testing de tarjetas)"""
+       # Similar pero filtrando por BIN de tarjeta
+       pass
+   ```
+   - Mismo BIN
+   - Alta frecuencia
+   - Testing sistemático
+   - Patrón de prueba
+
+Usos en Detección de Fraude:
+
+1. Features para ML:
+   - Velocidad numérica
+   - Flags de alta velocidad
+   - Patrones temporales
+   - Comportamiento histórico
+
+2. Reglas de Negocio:
+   - Umbrales configurables
+   - Ventanas ajustables
+   - Múltiples dimensiones
+   - Detección en tiempo real
+
+3. Análisis de Riesgo:
+   - Comportamiento anormal
+   - Patrones sospechosos
+   - Actividad automatizada
+   - Testing sistemático
+
+Mejoras Potenciales:
+
+1. Performance:
+   - Índices específicos
+   - Caché de resultados
+   - Agregaciones pre-calculadas
+   - Batch processing
+
+2. Funcionalidad:
+   - Más dimensiones
+   - Umbrales dinámicos
+   - Ventanas múltiples
+   - Análisis estadístico
+
+3. Detección:
+   - Patrones complejos
+   - Correlación entre dimensiones
+   - Machine learning
+   - Anomaly detection
+
+4. Operación:
+   - Métricas detalladas
+   - Alertas configurables
+   - Dashboard de monitoreo
+   - Análisis histórico
+
+Este componente es crucial para la detección de fraude al identificar patrones sospechosos en la velocidad de transacciones, aunque algunas funcionali
+dades están pendientes de implementación.  [35/52] schemas.py ... Analizaré estos schemas Pydantic para la API de ML. Primero veamos las reglas de negocio:
+Tool #45: extraer_reglas_negocio
+El código define dos schemas Pydantic para la API de ML:
+
+1. `MLPredictionRequest`:
+   - Features para ML:
+     * amount: float > 0
+     * hour_of_day: int 0-23
+     * day_of_week: int 0-6
+     * merchant_category: enum definido
+     * transaction_velocity: int ≥ 0
+     * is_international: int 0/1
+     * card_present: int 0/1
+
+   - Validaciones:
+     ```python
+     amount: float = Field(..., gt=0)
+     hour_of_day: int = Field(..., ge=0, le=23)
+     day_of_week: int = Field(..., ge=0, le=6)
+     merchant_category: Literal['retail', 'grocery', 'gas', 'restaurant', 'online', 'electronics', 'travel']
+     ```
+
+2. `MLPredictionResponse`:
+   - Resultados de predicción:
+     * fraud_probability: float 0-1
+     * risk_score: int 0-1000
+     * prediction: str (FRAUD/LEGITIMATE)
+
+   - Documentación incluida:
+     ```python
+     fraud_probability: float = Field(..., description="Probabilidad de fraude (0-1)")
+     risk_score: int = Field(..., description="Score de riesgo (0-1000)")
+     prediction: str = Field(..., description="FRAUD o LEGITIMATE")
+     ```
+
+Aspectos destacables:
+
+1. Validación Estricta:
+   - Rangos numéricos
+   - Valores enumerados
+   - Tipos específicos
+   - Campos requeridos
+
+2. Categorías de Comercio:
+   ```python
+   merchant_category: Literal[
+       'retail',
+       'grocery',
+       'gas',
+       'restaurant',
+       'online',
+       'electronics',
+       'travel'
+   ]
+   ```
+   - Lista fija
+   - Dominios comunes
+   - Validación automática
+
+3. Documentación:
+   - Descripciones claras
+   - Ejemplos incluidos
+   - Rangos especificados
+   - Unidades indicadas
+
+4. Features Temporales:
+   - Hora del día (0-23)
+   - Día de la semana (0-6)
+   - Velocidad transaccional
+   - Patrones temporales
+
+Ejemplos Proporcionados:
+
+1. Request:
+   ```python
+   {
+       "amount": 1500.50,
+       "hour_of_day": 14,
+       "day_of_week": 2,
+       "merchant_category": "retail",
+       "transaction_velocity": 2,
+       "is_international": 0,
+       "card_present": 1
+   }
+   ```
+
+2. Response:
+   ```python
+   {
+       "fraud_probability": 0.1234,
+       "risk_score": 123,
+       "prediction": "LEGITIMATE"
+   }
+   ```
+
+Características de los Features:
+
+1. Transaccionales:
+   - amount: Monto de transacción
+   - merchant_category: Tipo de comercio
+   - is_international: Flag internacional
+   - card_present: Modalidad de uso
+
+2. Temporales:
+   - hour_of_day: Patrón horario
+   - day_of_week: Patrón semanal
+   - transaction_velocity: Frecuencia
+
+3. Binarios:
+   - is_international: 0/1
+   - card_present: 0/1
+
+4. Categóricos:
+   - merchant_category: 7 categorías
+
+Usos en el Sistema:
+
+1. Validación de Entrada:
+   - Tipos correctos
+   - Rangos válidos
+   - Categorías permitidas
+   - Datos requeridos
+
+2. Documentación API:
+   - OpenAPI/Swagger
+   - Ejemplos útiles
+   - Descripciones claras
+   - Validaciones visibles
+
+3. Feature Engineering:
+   - Preparación de datos
+   - Transformación
+   - Normalización
+   - Codificación
+
+Este diseño proporciona una interfaz clara y validada para el modelo de ML, asegurando que los datos de entrada sean apropiados y que las respuestas s
+ean consistentes.  [36/52] trainer.py ... El código está incompleto (cortado en el print final), pero analizaré este script de entrenamiento del modelo XGBoost. Primero veamos las reglas de negocio:
+Tool #46: extraer_reglas_negocio
+El script implementa el proceso completo de entrenamiento de un modelo XGBoost para detección de fraude. Analicemos cada paso:
+
+1. Carga de Datos:
+   ```python
+   df = pd.read_csv('data/synthetic_transactions.csv')
+   print(f"   Fraudes: {df['is_fraud'].sum()} ({df['is_fraud'].mean()*100:.1f}%)")
+   ```
+   - Datos sintéticos
+   - Reporte de distribución
+   - Balance de clases
+
+2. Feature Engineering:
+   ```python
+   fe = FeatureEngineer()
+   X = fe.fit_transform(df)
+   y = df['is_fraud'].values
+   ```
+   - Transformación de features
+   - Normalización
+   - Codificación
+
+3. Split Train/Test:
+   ```python
+   X_train, X_test, y_train, y_test = train_test_split(
+       X, y, test_size=0.2, random_state=42, stratify=y
+   )
+   ```
+   - 80/20 split
+   - Stratified sampling
+   - Reproducibilidad (seed)
+
+4. Configuración XGBoost:
+   ```python
+   model = xgb.XGBClassifier(
+       n_estimators=100,
+       max_depth=5,
+       learning_rate=0.1,
+       scale_pos_weight=len(y_train[y_train==0]) / len(y_train[y_train==1]),
+       random_state=42,
+       eval_metric='logloss'
+   )
+   ```
+   - Hiperparámetros base
+   - Balance de clases
+   - Métrica de evaluación
+
+5. Evaluación:
+   - Métricas:
+     * Classification report
+     * ROC-AUC score
+     * Matriz de confusión
+   - Focus en:
+     * Falsos positivos
+     * Falsos negativos
+     * Balance precision/recall
+
+6. Feature Importance:
+   ```python
+   feature_names = [
+       'amount_scaled', 'hour_of_day', 'day_of_week',
+       'category_encoded', 'transaction_velocity',
+       'is_international', 'card_present'
+   ]
+   ```
+   - Ranking de importancia
+   - Visualización ordenada
+   - Interpretabilidad
+
+7. Persistencia:
+   ```python
+   joblib.dump(model, 'models/xgboost_fraud_v1.pkl')
+   fe.save('models/feature_engineer.pkl')
+   ```
+   - Modelo serializado
+   - Feature engineering
+   - Versionado (v1)
+
+Aspectos destacables:
+
+1. Proceso ML:
+   - Pipeline completo
+   - Métricas relevantes
+   - Feature engineering
+   - Evaluación robusta
+
+2. Features Utilizados:
+   - amount_scaled
+   - hour_of_day
+   - day_of_week
+   - category_encoded
+   - transaction_velocity
+   - is_international
+   - card_present
+
+3. Consideraciones:
+   - Desbalance de clases
+   - Reproducibilidad
+   - Interpretabilidad
+   - Versionado
+
+4. Documentación:
+   - Output detallado
+   - Métricas claras
+   - Progreso paso a paso
+   - Resultados interpretables
+
+Mejoras Potenciales:
+
+1. Modelado:
+   - Cross-validation
+   - Optimización de hiperparámetros
+   - Más métricas
+   - Threshold tuning
+
+2. Features:
+   - Feature selection
+   - Feature interactions
+   - More engineered features
+   - Feature validation
+
+3. Evaluación:
+   - Más splits (validation)
+   - Curvas ROC/PR
+   - Análisis de errores
+   - Test estadísticos
+
+4. Operacional:
+   - Logging estructurado
+   - Config file
+   - CLI arguments
+   - Más métricas de modelo
+
+Este script proporciona una base sólida para el entrenamiento del modelo de fraude, con énfasis en:
+- Reproducibilidad
+- Evaluación completa
+- Interpretabilidad
+- Facilidad de uso
+
+La implementación sigue buenas prácticas de ML aunque podría beneficiarse de algunas mejoras en términos de robustez y flexibilidad.  [37/52] __init__
+.py ... Este es un archivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de machine learning.
+Tool #47: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de machine learning
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con ML
+4. Mantener una estructura clara del proyecto
+
+El comentario "ML module" indica que este directorio contiene los componentes relacionados con machine learning que hemos visto anteriormente:
+- Modelo XGBoost
+- Feature engineering
+- Entrenamiento
+- Predicción
+- Evaluación
+- Schemas de ML
+
+Este paquete probablemente incluye:
+- model.py: Predictor de fraude
+- features.py: Feature engineering
+- trainer.py: Entrenamiento
+- schemas.py: Schemas de API
+- Otros componentes ML
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. La presencia de
+este archivo permite que Python trate el directorio como un módulo y facilita la importación de sus componentes.  [38/52] __init__.py ... Este es un a
+rchivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de modelos.
+Tool #48: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de modelos
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con modelos de dominio
+4. Mantener una estructura clara del proyecto
+
+El comentario "Models package" indica que este directorio contiene las definiciones de modelos del dominio, que pueden incluir:
+- Entidades de dominio
+- Value objects
+- Agregados
+- Modelos unificados
+- DTOs
+- Otros modelos del dominio
+
+Este tipo de estructura es común en arquitecturas limpias y DDD (Domain-Driven Design) donde los modelos del dominio están claramente separados de la infraestructura y la presentación.
+
+La presencia de este archivo permite que Python trate el directorio como un módulo y facilita la importación de sus componentes, manteniendo una organ
+ización clara del código relacionado con los modelos del dominio.  [39/52] unified.py ... Analizaré este modelo unificado de transacciones de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #49: extraer_reglas_negocio
+El código define un modelo unificado de transacción que abarca todas las etapas del procesamiento con las siguientes características:
+
+1. `TransactionStage` (Enum):
+   ```python
+   class TransactionStage(str, Enum):
+       PASARELA = "pasarela"
+       AUTENTICACION = "autenticacion"
+       AUTORIZACION = "autorizacion"
+   ```
+   - Define el flujo de procesamiento
+   - Etapas secuenciales
+   - Valores string
+
+2. Campos Obligatorios:
+   - Identificadores:
+     * transaction_id
+     * client_id
+   - Financieros:
+     * amount
+     * currency (default: USD)
+   - Comercio:
+     * merchant_id
+   - Etapa:
+     * stage (TransactionStage)
+
+3. Grupos de Datos Opcionales:
+
+   a. Comercio:
+   ```python
+   merchant_name: Optional[str] = None
+   merchant_mcc: Optional[str] = None
+   merchant_country: Optional[str] = None
+   merchant_city: Optional[str] = None
+   ```
+
+   b. Cliente:
+   ```python
+   cardholder_name: Optional[str] = None
+   cardholder_email: Optional[str] = None
+   cardholder_phone: Optional[str] = None
+   ```
+
+   c. Direcciones:
+   ```python
+   billing_country: Optional[str] = None
+   billing_city: Optional[str] = None
+   billing_address: Optional[str] = None
+   billing_zip: Optional[str] = None
+   shipping_country: Optional[str] = None
+   shipping_city: Optional[str] = None
+   shipping_address: Optional[str] = None
+   ```
+
+   d. Datos Técnicos:
+   ```python
+   ip_address: Optional[str] = None
+   user_agent: Optional[str] = None
+   device_channel: Optional[str] = None
+   ```
+
+   e. Navegador (3DS):
+   ```python
+   browser_language: Optional[str] = None
+   browser_screen_width: Optional[int] = None
+   browser_screen_height: Optional[int] = None
+   browser_java_enabled: Optional[bool] = None
+   ```
+
+   f. Tarjeta:
+   ```python
+   card_number_masked: Optional[str] = None
+   card_bin: Optional[str] = None
+   card_last4: Optional[str] = None
+   card_brand: Optional[str] = None
+   entry_mode: Optional[str] = None
+   ```
+
+4. Datos Temporales:
+   ```python
+   timestamp: datetime = Field(default_factory=datetime.now)
+   hour_of_day: Optional[int] = None
+   day_of_week: Optional[int] = None
+   ```
+
+5. Flags de Contexto:
+   ```python
+   is_international: bool = False
+   is_3ds_authenticated: Optional[bool] = None
+   ```
+
+Aspectos destacables:
+
+1. Diseño:
+   - Modelo Pydantic
+   - Campos tipados
+   - Valores por defecto
+   - Documentación clara
+
+2. Flexibilidad:
+   - Campos opcionales
+   - Datos raw
+   - Múltiples etapas
+   - Extensible
+
+3. Seguridad:
+   - Datos enmascarados
+   - Información sensible opcional
+   - Tracking de autenticación
+   - Metadata contextual
+
+4. Multi-tenant:
+   - client_id requerido
+   - Separación de datos
+   - Raw data por cliente
+   - Configuración por etapa
+
+Usos principales:
+
+1. Normalización:
+   - Datos unificados
+   - Formato consistente
+   - Múltiples fuentes
+   - Diferentes etapas
+
+2. Análisis de Riesgo:
+   - Datos de localización
+   - Información del dispositivo
+   - Patrones temporales
+   - Flags de contexto
+
+3. Auditoría:
+   - Tracking completo
+   - Raw data
+   - Timestamps
+   - Estado de autenticación
+
+4. Features ML:
+   - Datos demográficos
+   - Patrones de uso
+   - Señales técnicas
+   - Indicadores de riesgo
+
+Este modelo unificado es crucial para:
+- Procesamiento consistente
+- Análisis de fraude
+- Auditoría completa
+- Machine learning
+- Trazabilidad
+
+La implementación muestra un diseño robusto y completo para el manejo de transacciones en todas sus etapas.  [40/52] autenticacion.py ... El código está incompleto (cortado en la regla 1), pero analizaré este evaluador de la etapa de autenticación. Primero veamos las reglas de negocio:
+Tool #50: extraer_reglas_negocio
+El `AutenticacionStageEvaluator` implementa la evaluación de riesgo en la etapa de autenticación (3DS) con las siguientes características principales:
+
+1. Proceso de Evaluación:
+   ```python
+   def evaluate(self, transaction: UnifiedTransaction,
+                client_config: ClientConfig,
+                context: Optional[Dict[str, Any]] = None) -> StageEvaluationResult:
+   ```
+
+   a. Score Base:
+   ```python
+   base_score = 0
+   if context and 'pasarela_score' in context:
+       base_score = int(context['pasarela_score'] * 0.3)  # 30% del score de Pasarela
+   ```
+
+   b. Evaluación de Reglas:
+   ```python
+   auth_score, triggered_rules = self._evaluate_autenticacion_rules(transaction)
+   total_score = base_score + auth_score
+   ```
+
+   c. Decisión Final:
+   ```python
+   thresholds = client_config.get_thresholds('autenticacion')
+   decision = self._determine_3ds_decision(total_score, thresholds)
+   ```
+
+2. Datos Evaluados:
+   - User Agent
+   - Browser Language
+   - Device Channel
+   - Comportamiento del dispositivo
+   - Contexto de etapa anterior
+
+3. Contexto Generado:
+   ```python
+   context_data={
+       'client_id': transaction.client_id,
+       'base_score_from_pasarela': base_score,
+       'auth_score': auth_score,
+       'user_agent': transaction.user_agent,
+       'browser_language': transaction.browser_language,
+       'device_channel': transaction.device_channel
+   }
+   ```
+
+4. Resultado:
+   ```python
+   StageEvaluationResult(
+       transaction_id=transaction.transaction_id,
+       stage='autenticacion',
+       score=min(total_score, 1000),
+       decision=decision,
+       triggered_rules=triggered_rules,
+       recommendations=recommendations,
+       evaluation_time_ms=round(evaluation_time_ms, 2),
+       context_data=context_data
+   )
+   ```
+
+Aspectos destacables:
+
+1. Multi-etapa:
+   - Hereda score anterior
+   - Peso ponderado (30%)
+   - Contexto acumulativo
+   - Score total limitado
+
+2. Configuración:
+   - Umbrales por cliente
+   - Reglas personalizables
+   - Decisiones configurables
+   - Recomendaciones adaptativas
+
+3. Observabilidad:
+   - Tiempo de evaluación
+   - Reglas activadas
+   - Score desglosado
+   - Contexto completo
+
+4. Decisiones:
+   - Basadas en umbrales
+   - Recomendaciones específicas
+   - Múltiples factores
+   - Contexto previo
+
+Reglas de Negocio (visibles):
+
+1. Herencia de Score:
+   - 30% del score de pasarela
+   - Suma con score de autenticación
+   - Límite máximo de 1000
+
+2. Evaluación 3DS:
+   - Análisis de user agent
+   - Validación de lenguaje
+   - Canal del dispositivo
+   - Comportamiento sospechoso
+
+3. Generación de Contexto:
+   - Datos técnicos
+   - Scores parciales
+   - Identificadores
+   - Metadata relevante
+
+Usos Principales:
+
+1. Evaluación de Riesgo:
+   - Detección de bots
+   - Validación de dispositivo
+   - Análisis de comportamiento
+   - Consistencia de datos
+
+2. Decisiones 3DS:
+   - Requerir autenticación
+   - Bypass para bajo riesgo
+   - Challenge para alto riesgo
+   - Recomendaciones específicas
+
+3. Contexto para Etapas:
+   - Score acumulativo
+   - Datos técnicos
+   - Reglas activadas
+   - Decisiones tomadas
+
+Este evaluador es crucial para:
+- Decisiones 3D Secure
+- Detección de fraude técnico
+- Análisis de dispositivos
+- Evaluación multi-etapa
+
+La implementación muestra un enfoque robusto para la evaluación de riesgo en la etapa de autenticación, aunque está incompleta en la parte de reglas e
+specíficas.  [41/52] autorizacion_schemas.py ... Analizaré este schema de evaluación de autorización de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #51: extraer_reglas_negocio
+El `AutorizacionEvaluationRequest` define la estructura de datos para evaluar una transacción en la etapa de autorización, con foco en el formato ISO 8583. Sus características principales son:
+
+1. Campos Base:
+   ```python
+   class AutorizacionEvaluationRequest(BaseModel):
+       data: dict
+       client_id: str = Field(..., description="ID del cliente (ej: PE_BANCO_X)")
+       transaction_id: str = Field(..., description="ID de transacción de etapas anteriores")
+   ```
+   - Datos ISO 8583
+   - Identificación de cliente
+   - Tracking de transacción
+
+2. Ejemplo ISO 8583:
+   ```python
+   "data": {
+       "processingTransactionIdentifier": "def7dd09-2e2d-4d94-a59e-c1673b92b223",
+       "MTI": "0100",  # Message Type Indicator
+       "DE_2": "5303********9897",  # PAN enmascarado
+       "DE_4": "000000187580",  # Monto
+       "DE_7": {  # Fecha/Hora
+           "DE_7SF1": "0127",  # MMdd
+           "DE_7SF2": "144208"  # HHmmss
+       },
+       "DE_18": "9399",  # MCC
+       "DE_22": {  # Point of Service Entry Mode
+           "DE_22SF1": "81",
+           "DE_22SF2": "0"
+       },
+       "DE_42": "002007595800000",  # Merchant ID
+       "DE_43": {  # Merchant Data
+           "DE_43SF1": "IMPRENTA NACIONAL",  # Nombre
+           "DE_43SF3": "SAN JOSE",  # Ciudad
+           "DE_43SF5": "CRI"  # País
+       },
+       "DE_49": "188"  # Moneda
+   }
+   ```
+
+3. Elementos ISO 8583:
+   - MTI (0100): Request de autorización
+   - DE_2: PAN (enmascarado)
+   - DE_4: Monto (en centavos)
+   - DE_7: Timestamp
+   - DE_18: MCC del comercio
+   - DE_22: Modo de entrada
+   - DE_42: ID del comercio
+   - DE_43: Datos del comercio
+   - DE_49: Código de moneda
+
+4. Convenciones:
+   - PAN enmascarado para seguridad
+   - Montos en centavos
+   - Códigos ISO para países/monedas
+   - Timestamps en formato MMddHHmmss
+
+Aspectos destacables:
+
+1. Seguridad:
+   - PAN enmascarado
+   - Datos sensibles protegidos
+   - Client ID requerido
+   - Tracking explícito
+
+2. Trazabilidad:
+   - ID de transacción
+   - ID de procesamiento
+   - Client ID
+   - Timestamp completo
+
+3. Datos Comerciales:
+   - Nombre del comercio
+   - Ubicación
+   - MCC
+   - ID de comercio
+
+4. Formato ISO 8583:
+   - Data Elements (DE)
+   - Sub-Fields (SF)
+   - MTI específico
+   - Estructura jerárquica
+
+Usos Principales:
+
+1. Evaluación de Autorización:
+   - Validación de transacción
+   - Análisis de riesgo
+   - Decisión de autorización
+   - Tracking de estado
+
+2. Integración:
+   - Procesador de pagos
+   - Switch transaccional
+   - Sistemas bancarios
+   - Redes de pago
+
+3. Análisis:
+   - Detección de fraude
+   - Monitoreo de transacciones
+   - Reportería
+   - Auditoría
+
+Este schema es crucial para:
+- Procesamiento ISO 8583
+- Evaluación de riesgo
+- Trazabilidad de transacciones
+- Integración con sistemas de pago
+
+La implementación muestra un diseño robusto para el manejo de datos de autorización en formato ISO 8583, con consideraciones de seguridad y trazabilid
+ad.  [42/52] autenticacion_schemas.py ... Analizaré este schema de evaluación de autenticación 3DS de la capa de dominio. Primero veamos las reglas de negocio:
+Tool #52: extraer_reglas_negocio
+El `AutenticacionEvaluationRequest` define la estructura de datos para evaluar una transacción en la etapa de autenticación 3DS. Sus características principales son:
+
+1. Campos Base:
+   ```python
+   class AutenticacionEvaluationRequest(BaseModel):
+       data: dict
+       client_id: str = Field(..., description="ID del cliente (ej: PE_BANCO_X)")
+       transaction_id: str = Field(..., description="ID de transacción de etapa anterior")
+   ```
+   - Datos 3DS
+   - Identificación de cliente
+   - Tracking de transacción
+
+2. Datos 3DS:
+   ```python
+   "data": {
+       # Identificadores
+       "threeDSServerTransID": "9d4a2a3f-c091-5702-8000-00003191fdd2",
+       "dsTransID": "21db04b3-9729-44df-86ae-b94b62aeb512",
+
+       # Datos del Comercio
+       "acquirerMerchantID": "7151020",
+       "merchantName": "CGNTX",
+       "mcc": "5817",
+       "merchantCountryCode": "826",
+
+       # Datos del Navegador
+       "browserIP": "167.60.160.114",
+       "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+       "browserLanguage": "es-UY",
+       "browserScreenWidth": "360",
+       "browserScreenHeight": "800",
+       "browserJavaEnabled": False,
+
+       # Datos del Cliente
+       "email": "alvarodl83@hotmail.com",
+       "cardholderName": "DE LEON ALVARO",
+       "billAddrCountry": "858",
+
+       # Datos de la Transacción
+       "purchaseAmount": "10000",
+       "purchaseCurrency": "840",
+       "purchaseDate": "20260128151247"
+   }
+   ```
+
+3. Categorías de Datos:
+   - Identificación:
+     * IDs de transacción 3DS
+     * IDs de comercio
+     * Referencias cruzadas
+
+   - Comercio:
+     * ID del comercio
+     * Nombre
+     * MCC
+     * País
+
+   - Dispositivo/Navegador:
+     * IP
+     * User Agent
+     * Idioma
+     * Resolución
+     * Capacidades
+
+   - Cliente:
+     * Nombre
+     * Email
+     * País de facturación
+
+   - Transacción:
+     * Monto
+     * Moneda
+     * Timestamp
+
+4. Formatos:
+   - UUIDs para IDs
+   - ISO para países/monedas
+   - Timestamp YYYYMMDDHHmmss
+   - Montos en centavos
+
+Aspectos destacables:
+
+1. Seguridad:
+   - Datos del dispositivo
+   - Huellas digitales
+   - Geolocalización
+   - Validación 3DS
+
+2. Trazabilidad:
+   - Múltiples IDs
+   - Referencias entre etapas
+   - Timestamps precisos
+   - Client ID
+
+3. Device Intelligence:
+   - User Agent
+   - Resolución
+   - Lenguaje
+   - Características técnicas
+
+4. Datos de Riesgo:
+   - IP
+   - Ubicación
+   - Comportamiento
+   - Consistencia
+
+Usos Principales:
+
+1. Autenticación 3DS:
+   - Validación de dispositivo
+   - Evaluación de riesgo
+   - Decisión de autenticación
+   - Challenge/Frictionless
+
+2. Análisis de Riesgo:
+   - Device fingerprinting
+   - Geolocalización
+   - Comportamiento del usuario
+   - Patrones de uso
+
+3. Fraude:
+   - Detección de bots
+   - Validación de identidad
+   - Anomalías técnicas
+   - Inconsistencias geográficas
+
+Este schema es crucial para:
+- Autenticación 3D Secure
+- Device fingerprinting
+- Evaluación de riesgo técnico
+- Detección de fraude en dispositivos
+
+La implementación muestra un diseño comprehensivo para el manejo de datos de autenticación 3DS, con énfasis en la recolección de señales técnicas y de
+ comportamiento para la evaluación de riesgo.  [43/52] autorizacion.py ... El código está incompleto (cortado en el logging), pero analizaré este evaluador de la etapa de autorización. Primero veamos las reglas de negocio:
+Tool #53: extraer_reglas_negocio
+El `AutorizacionStageEvaluator` implementa la evaluación final de riesgo combinando reglas y ML con las siguientes características principales:
+
+1. Arquitectura Híbrida:
+   ```python
+   def __init__(self):
+       self.orchestrator = HybridOrchestrator(
+           strategy=CombinationStrategy.WEIGHTED,
+           rules_weight=0.6,  # 60% reglas
+           ml_weight=0.4      # 40% ML
+       )
+   ```
+
+2. Pesos por Etapa:
+   ```python
+   if context:
+       if 'pasarela_score' in context:
+           base_score += int(context['pasarela_score'] * 0.2)  # 20%
+       if 'autenticacion_score' in context:
+           base_score += int(context['autenticacion_score'] * 0.3)  # 30%
+   ```
+   - Pasarela: 20%
+   - Autenticación: 30%
+   - Autorización: 50%
+
+3. Evaluación ML:
+   ```python
+   ml_result = predictor.predict({
+       'amount': transaction.amount,
+       'hour_of_day': transaction.hour_of_day or 12,
+       'day_of_week': transaction.day_of_week or 3,
+       'merchant_category': transaction.merchant_mcc or '0000',
+       'transaction_velocity': 1,
+       'is_international': 1 if transaction.is_international else 0,
+       'card_present': 0 if transaction.entry_mode == 'manual' else 1
+   })
+   ```
+
+4. Features para ML:
+   - amount: Monto
+   - hour_of_day: Hora (0-23)
+   - day_of_week: Día (0-6)
+   - merchant_category: MCC
+   - transaction_velocity: Frecuencia
+   - is_international: Flag internacional
+   - card_present: Modalidad
+
+Aspectos destacables:
+
+1. Diseño Híbrido:
+   - Combinación de enfoques
+   - Pesos configurables
+   - Estrategia ponderada
+   - Fallback a reglas
+
+2. Multi-etapa:
+   - Scores acumulativos
+   - Pesos por etapa
+   - Contexto histórico
+   - Decisión final
+
+3. ML Integration:
+   - Modelo XGBoost
+   - Features normalizados
+   - Valores por defecto
+   - Manejo de errores
+
+4. Logging:
+   - Decisiones ML
+   - Scores parciales
+   - Errores
+   - Trazabilidad
+
+Pesos y Scores:
+
+1. Etapas (100%):
+   - Pasarela: 20%
+   - Autenticación: 30%
+   - Autorización: 50%
+
+2. Autorización (100%):
+   - Reglas: 60%
+   - ML: 40%
+
+3. Features ML:
+   - Transaccionales
+   - Temporales
+   - Comportamiento
+   - Contextuales
+
+Usos Principales:
+
+1. Decisión Final:
+   - Combinación de señales
+   - Multiple etapas
+   - Múltiples enfoques
+   - Scoring final
+
+2. Evaluación de Riesgo:
+   - Reglas de negocio
+   - Predicción ML
+   - Contexto histórico
+   - Patrones conocidos
+
+3. Autorización:
+   - Decisión final
+   - Recomendaciones
+   - Justificación
+   - Logging
+
+Este evaluador es crucial para:
+- Decisión final de autorización
+- Combinación de señales
+- Evaluación holística
+- Trazabilidad completa
+
+La implementación muestra un enfoque sofisticado que combina reglas de negocio y machine learning para tomar decisiones informadas, aunque el código e
+stá incompleto en algunas partes.  [44/52] pasarela.py ... El código está incompleto (cortado en la evaluación de reglas), pero analizaré este evaluador de la etapa de pasarela. Primero veamos las reglas de negocio:
+Tool #54: extraer_reglas_negocio
+El `PasarelaStageEvaluator` implementa la evaluación de riesgo en la primera etapa (pasarela) con las siguientes características principales:
+
+1. Proceso de Evaluación:
+   ```python
+   def evaluate(self, transaction: UnifiedTransaction, client_config: ClientConfig):
+       # 1. Evaluar reglas de Pasarela
+       score, triggered_rules = self._evaluate_pasarela_rules(transaction)
+
+       # 2. Determinar decisión según umbrales
+       thresholds = client_config.get_thresholds('pasarela')
+       decision = self._determine_decision(score, thresholds)
+
+       # 3. Generar recomendaciones
+       recommendations = self._generate_recommendations(decision, triggered_rules)
+   ```
+
+2. Datos Evaluados:
+   ```python
+   context_data={
+       'client_id': transaction.client_id,
+       'amount': transaction.amount,
+       'currency': transaction.currency,
+       'billing_country': transaction.billing_country
+   }
+   ```
+   - Información básica
+   - Datos de facturación
+   - Monto y moneda
+   - Cliente
+
+3. Adaptación Legacy:
+   ```python
+   tx_dict = transaction.model_dump()
+   tx_dict['user_id'] = transaction.transaction_id
+   tx_dict['merchant_category'] = transaction.merchant_mcc or 'unknown'
+   tx_dict['country'] = transaction.billing_country or 'unknown'
+   ```
+   - Compatibilidad con sistema existente
+   - Valores por defecto
+   - Mapeo de campos
+
+4. Control de Scores:
+   ```python
+   score=min(score, 1000)  # Cap a 1000
+   ```
+   - Límite máximo de 1000
+   - Normalización de scores
+   - Consistencia de rangos
+
+Aspectos destacables:
+
+1. Diseño:
+   - Motor de reglas independiente
+   - Configuración por cliente
+   - Medición de tiempos
+   - Recomendaciones contextuales
+
+2. Evaluación:
+   - Reglas específicas de pasarela
+   - Umbrales configurables
+   - Decisiones basadas en score
+   - Recomendaciones dinámicas
+
+3. Performance:
+   - Medición de latencia
+   - Redondeo a 2 decimales
+   - Timeout implícito
+   - Manejo de errores
+
+4. Contexto:
+   - Datos relevantes
+   - Metadata mínima
+   - Estado inicial
+   - Base para etapas siguientes
+
+Flujo de Evaluación:
+
+1. Preparación:
+   ```python
+   start_time = datetime.now()
+   ```
+   - Inicio de medición
+   - Contexto inicial
+   - Configuración cliente
+
+2. Evaluación:
+   ```python
+   score, triggered_rules = self._evaluate_pasarela_rules(transaction)
+   decision = self._determine_decision(score, thresholds)
+   ```
+   - Aplicación de reglas
+   - Cálculo de score
+   - Determinación de decisión
+
+3. Resultados:
+   ```python
+   return StageEvaluationResult(
+       transaction_id=transaction.transaction_id,
+       stage='pasarela',
+       score=min(score, 1000),
+       decision=decision,
+       triggered_rules=triggered_rules,
+       recommendations=recommendations,
+       evaluation_time_ms=round(evaluation_time_ms, 2),
+       context_data=context_data
+   )
+   ```
+   - Score final
+   - Reglas activadas
+   - Recomendaciones
+   - Métricas de tiempo
+
+Este evaluador es crucial para:
+- Primera línea de defensa
+- Evaluación inicial de riesgo
+- Contexto para etapas siguientes
+- Decisiones rápidas
+
+La implementación muestra un enfoque sistemático para la evaluación de riesgo en la etapa de pasarela, aunque el código está incompleto en la parte de
+ evaluación de reglas.  [45/52] __init__.py ... Este es un archivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de evaluadores.
+Tool #55: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de evaluadores
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con evaluación de transacciones
+4. Mantener una estructura clara del proyecto
+
+El comentario "Evaluators package" indica que este directorio contiene los evaluadores de las diferentes etapas que hemos visto anteriormente:
+- PasarelaStageEvaluator
+- AutenticacionStageEvaluator
+- AutorizacionStageEvaluator
+
+Este paquete es crucial para la organización del sistema de detección de fraude ya que contiene:
+- Evaluadores por etapa
+- Lógica de evaluación
+- Reglas específicas
+- Decisiones por etapa
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. La presencia de
+este archivo permite que Python trate el directorio como un módulo y facilita la importación de sus componentes.  [46/52] hybrid_orchestrator.py ... El código está incompleto (cortado en el logging), pero analizaré este orquestador híbrido. Primero veamos las reglas de negocio:
+Tool #56: extraer_reglas_negocio
+El `HybridOrchestrator` implementa la combinación de scores de reglas de negocio y machine learning con las siguientes características principales:
+
+1. Estrategias de Combinación (`CombinationStrategy`):
+   ```python
+   class CombinationStrategy(str, Enum):
+       WEIGHTED = "weighted"    # Promedio ponderado
+       MAX = "max"             # Score máximo
+       MIN = "min"             # Score mínimo
+       RULES_ONLY = "rules_only"
+       ML_ONLY = "ml_only"
+   ```
+
+2. Configuración del Orquestador:
+   ```python
+   def __init__(
+       self,
+       strategy: CombinationStrategy = CombinationStrategy.WEIGHTED,
+       rules_weight: float = 0.6,
+       ml_weight: float = 0.4
+   ):
+   ```
+   - Estrategia por defecto: weighted
+   - Peso reglas: 60%
+   - Peso ML: 40%
+
+3. Validaciones:
+   ```python
+   if strategy == CombinationStrategy.WEIGHTED:
+       if not (0 <= rules_weight <= 1 and 0 <= ml_weight <= 1):
+           raise ValueError("Pesos deben estar entre 0 y 1")
+       if abs((rules_weight + ml_weight) - 1.0) > 0.01:
+           raise ValueError("Pesos deben sumar 1.0")
+   ```
+
+4. Combinación de Scores:
+   ```python
+   def combine_scores(
+       self,
+       rules_score: int,
+       ml_score: Optional[int] = None,
+       ml_probability: Optional[float] = None
+   ) -> Dict:
+   ```
+
+Aspectos destacables:
+
+1. Flexibilidad:
+   - Múltiples estrategias
+   - Pesos configurables
+   - ML opcional
+   - Conversión de probabilidades
+
+2. Validación:
+   - Rango de pesos
+   - Suma de pesos
+   - Valores requeridos
+   - Tipos correctos
+
+3. Fallbacks:
+   ```python
+   if ml_score is None and ml_probability is None:
+       return {
+           "final_score": rules_score,
+           "strategy": "rules_only",
+           "rules_score": rules_score,
+           "ml_score": None,
+           "rules_weight": 1.0,
+           "ml_weight": 0.0
+       }
+   ```
+
+4. Normalización:
+   ```python
+   if ml_score is None and ml_probability is not None:
+       ml_score = int(ml_probability * 1000)
+   ```
+
+Estrategias de Combinación:
+
+1. WEIGHTED:
+   - Promedio ponderado
+   - Pesos configurables
+   - Suma = 1.0
+   - Default strategy
+
+2. MAX:
+   ```python
+   final_score = max(rules_score, ml_score)
+   ```
+   - Score más alto
+   - Más conservador
+   - Mayor sensibilidad
+
+3. MIN:
+   ```python
+   final_score = min(rules_score, ml_score)
+   ```
+   - Score más bajo
+   - Más permisivo
+   - Menor falsos positivos
+
+4. Single Source:
+   - RULES_ONLY: Solo reglas
+   - ML_ONLY: Solo ML
+   - Fallback options
+
+Usos Principales:
+
+1. Decisiones Híbridas:
+   - Combinación de enfoques
+   - Balance configurable
+   - Múltiples estrategias
+   - Fallbacks robustos
+
+2. Evaluación de Riesgo:
+   - Scores combinados
+   - Múltiples fuentes
+   - Pesos adaptables
+   - Explicabilidad
+
+3. Flexibilidad Operacional:
+   - Cambio de estrategias
+   - Ajuste de pesos
+   - ML opcional
+   - Logging completo
+
+Este orquestador es crucial para:
+- Decisiones balanceadas
+- Flexibilidad operativa
+- Robustez del sistema
+- Explicabilidad de decisiones
+
+La implementación muestra un diseño robusto para la combinación de diferentes fuentes de evaluación de riesgo, aunque el código está incompleto en la parte de logging.  [47/52] schemas.py ... Analizaré estos schemas del dominio de evaluación de transacciones. Primero veamos las reglas de negocio:
+Tool #57: extraer_reglas_negocio
+El código define cuatro schemas principales para la evaluación de transacciones:
+
+1. `StageDecision` (Enum):
+   ```python
+   class StageDecision(str, Enum):
+       APPROVE = "APPROVE"
+       REVIEW = "REVIEW"
+       REJECT = "REJECT"
+       SKIP = "SKIP"
+   ```
+   - Decisiones posibles por etapa
+   - Heredando de str para serialización
+
+2. `TriggeredRule`:
+   ```python
+   class TriggeredRule(BaseModel):
+       rule_id: int
+       rule_name: str
+       rule_type: str
+       score_contribution: int
+       reason: str
+   ```
+   - Información de regla activada
+   - Contribución al score
+   - Explicabilidad (reason)
+
+3. `StageEvaluationResult`:
+   ```python
+   class StageEvaluationResult(BaseModel):
+       transaction_id: str
+       stage: str
+       score: int = Field(..., ge=0, le=1000)
+       decision: StageDecision
+       triggered_rules: List[TriggeredRule] = []
+       recommendations: List[str] = []
+       evaluation_time_ms: float
+       timestamp: datetime = Field(default_factory=datetime.now)
+       context_data: Dict[str, Any] = {}
+   ```
+   - Resultado completo de evaluación
+   - Score limitado (0-1000)
+   - Reglas activadas
+   - Métricas de performance
+
+4. `PasarelaEvaluationRequest`:
+   ```python
+   class PasarelaEvaluationRequest(BaseModel):
+       data: dict
+       client_id: str
+   ```
+   Ejemplo de datos:
+   ```python
+   {
+       "metadata": {
+           "timestamp": "2026-01-28T09:59:17"
+       },
+       "data": {
+           "purchaseOperationNumber": "000000126",
+           "purchaseAmount": 250,
+           "purchaseCurrencyCode": 840,
+           "idCommerce": 13634,
+           "billing": {
+               "email": "test@test.com",
+               "country": "US",
+               "city": "CITY"
+           },
+           "technical_info": {
+               "ip": "172.19.212.1"
+           }
+       }
+   }
+   ```
+
+Aspectos destacables:
+
+1. Validación:
+   - Scores acotados (0-1000)
+   - Enums para decisiones
+   - Tipos estrictos
+   - Valores por defecto
+
+2. Explicabilidad:
+   - Reglas activadas
+   - Razones
+   - Recomendaciones
+   - Contexto
+
+3. Observabilidad:
+   - Tiempos de evaluación
+   - Timestamps
+   - Datos de contexto
+   - Métricas
+
+4. Multi-tenant:
+   - client_id requerido
+   - Ejemplo de formato
+   - Estructura consistente
+   - Metadata separada
+
+Usos Principales:
+
+1. Evaluación:
+   - Entrada de datos
+   - Procesamiento por etapa
+   - Decisiones estructuradas
+   - Resultados detallados
+
+2. API:
+   - Schemas validados
+   - Ejemplos claros
+   - Documentación incluida
+   - Formato consistente
+
+3. Auditoría:
+   - Tracking de decisiones
+   - Reglas aplicadas
+   - Tiempos de respuesta
+   - Contexto completo
+
+4. Integración:
+   - Formatos estandarizados
+   - Multi-tenant
+   - Serialización clara
+   - Compatibilidad JSON
+
+Este conjunto de schemas es crucial para:
+- Validación de datos
+- Estructuración de respuestas
+- Auditoría de decisiones
+- Documentación de API
+
+La implementación muestra un diseño robusto para la estructuración y validación de datos en el sistema de detección de fraude.  [48/52] stage_routes.p
+y ... El código está incompleto (cortado en el manejo de excepciones), pero analizaré estas rutas de evaluación por etapas. Primero veamos si hay consideraciones de seguridad OWASP:
+Tool #58: analizar_owasp
+El código implementa las rutas para la evaluación por etapas, mostrando en detalle la implementación de la etapa de pasarela. Analicemos sus características principales:
+
+1. Estructura de la Ruta:
+   ```python
+   @router.post("/pasarela/evaluate", response_model=StageEvaluationResult)
+   async def evaluate_pasarela_stage(
+       request: PasarelaEvaluationRequest,
+       db: Session = Depends(get_db)
+   )
+   ```
+   - Endpoint POST
+   - Modelo de respuesta definido
+   - Dependencia de DB
+   - Validación de request
+
+2. Flujo de Evaluación:
+
+   a. Configuración:
+   ```python
+   client_config = get_client_config(request.client_id)
+   if not client_config.is_stage_enabled('pasarela'):
+       raise HTTPException(
+           status_code=400,
+           detail=f"Etapa 'pasarela' no habilitada para cliente {request.client_id}"
+       )
+   ```
+
+   b. Adaptación:
+   ```python
+   adapter = PasarelaAdapter()
+   unified_transaction = adapter.adapt(request.data, request.client_id)
+   ```
+
+   c. Evaluación:
+   ```python
+   evaluator = PasarelaStageEvaluator()
+   result = evaluator.evaluate(unified_transaction, client_config)
+   ```
+
+   d. Persistencia:
+   ```python
+   context_manager = StageContextManager(db)
+   context_manager.save_context(result)
+   ```
+
+3. Observabilidad:
+   ```python
+   logger.info(f"Evaluando etapa Pasarela para cliente: {request.client_id}")
+   logger.info(f"Transacción adaptada: {unified_transaction.transaction_id}")
+   logger.info(
+       f"Evaluación completada: TXN={result.transaction_id}, "
+       f"Score={result.score}, Decision={result.decision}"
+   )
+   ```
+
+4. Manejo de Errores:
+   ```python
+   try:
+       # Lógica principal
+   except HTTPException:
+       raise
+   except Exception as e:
+       # Manejo general de errores
+   ```
+
+Aspectos destacables:
+
+1. Diseño:
+   - Separación de responsabilidades
+   - Flujo claro
+   - Logging extensivo
+   - Manejo de errores
+
+2. Multi-tenant:
+   - Configuración por cliente
+   - Validación de etapas
+   - Contexto separado
+   - Trazabilidad
+
+3. Adaptación:
+   - Modelo unificado
+   - Adaptadores específicos
+   - Consistencia de datos
+   - Transformación limpia
+
+4. Persistencia:
+   - Contexto entre etapas
+   - Transaccional
+   - Historial completo
+   - Trazabilidad
+
+Evaluación por Etapas:
+
+1. Pasarela:
+   - Datos de usuario
+   - Información de contacto
+   - IP y geolocalización
+   - Monto inicial
+
+2. Decisiones:
+   - APPROVE: Continuar
+   - REVIEW: Agregar fricción
+   - REJECT: Bloquear
+
+3. Contexto:
+   - Guardado en BD
+   - Disponible entre etapas
+   - Historial completo
+   - Auditoría
+
+Este código es crucial para:
+- Evaluación por etapas
+- Flujo transaccional
+- Decisiones de riesgo
+- Trazabilidad completa
+
+La implementación muestra un diseño robusto para la evaluación de transacciones por etapas, aunque el código está incompleto en el manejo de errores.
+ [49/52] engine.py ... El código está incompleto (cortado en _check_transaction_velocity), pero analizaré este motor de reglas del dominio. Primero veamos las reglas de negocio:
+Tool #59: extraer_reglas_negocio
+El `RulesEngine` implementa cinco reglas principales de detección de fraude, cada una con su propia contribución al score de riesgo:
+
+1. Regla 1 - Monto Alto:
+   ```python
+   if transaction_data['amount'] > settings.high_amount_threshold:
+       contribution = 300
+   ```
+   - Umbral configurable
+   - Contribución: 300 puntos
+   - Factor: "high_amount"
+
+2. Regla 2 - Internacional + Monto Alto:
+   ```python
+   if transaction_data['is_international'] and transaction_data['amount'] > settings.international_high_amount:
+       contribution = 250
+   ```
+   - Umbral específico internacional
+   - Contribución: 250 puntos
+   - Factor: "international_high_amount"
+
+3. Regla 3 - Hora Inusual:
+   ```python
+   hour = transaction_data['timestamp'].hour
+   if 2 <= hour <= 5:
+       contribution = 200
+   ```
+   - Ventana: 2am - 5am
+   - Contribución: 200 puntos
+   - Factor: "unusual_hour"
+
+4. Regla 4 - Velocidad Transaccional:
+   ```python
+   user_id = transaction_data.get('user_id')
+   if user_id:
+       velocity_score, velocity_factor = self._check_transaction_velocity(
+           user_id,
+           transaction_data['timestamp']
+       )
+   ```
+   - Tracking por usuario
+   - Ventana de tiempo
+   - Factor: velocidad
+
+5. Regla 5 - Fin de Semana + Monto Alto:
+   ```python
+   day_of_week = transaction_data['timestamp'].weekday()
+   if day_of_week >= 5 and transaction_data['amount'] > 5000:
+       contribution = 150
+   ```
+   - Fines de semana
+   - Monto > 5000
+   - Contribución: 150 puntos
+   - Factor: "weekend_high_amount"
+
+Aspectos destacables:
+
+1. Diseño:
+   - Reglas independientes
+   - Scores aditivos
+   - Límite máximo 1000
+   - Factores explicativos
+
+2. Estado:
+   ```python
+   def __init__(self):
+       self.transaction_history: Dict[str, List[datetime]] = {}
+   ```
+   - Historial por usuario
+   - Tracking temporal
+   - Memoria en proceso
+
+3. Configuración:
+   - Umbrales en settings
+   - Contribuciones fijas
+   - Ventanas definidas
+   - Scores calibrados
+
+4. Explicabilidad:
+   ```python
+   RiskFactor(
+       factor="factor_name",
+       value=value,
+       contribution=contribution
+   )
+   ```
+   - Factores detallados
+   - Valores específicos
+   - Contribuciones claras
+
+Pesos por Regla:
+
+1. Monto Alto: 300 puntos
+   - Mayor peso individual
+   - Umbral configurable
+   - Riesgo base
+
+2. Internacional + Monto: 250 puntos
+   - Segundo mayor peso
+   - Umbral específico
+   - Riesgo compuesto
+
+3. Hora Inusual: 200 puntos
+   - Ventana nocturna
+   - Comportamiento anómalo
+   - Riesgo temporal
+
+4. Velocidad: Variable
+   - Depende de patrón
+   - Tracking histórico
+   - Comportamiento usuario
+
+5. Fin de Semana + Monto: 150 puntos
+   - Menor peso individual
+   - Combinación de factores
+   - Riesgo contextual
+
+Usos Principales:
+
+1. Evaluación de Riesgo:
+   - Múltiples factores
+   - Scores ponderados
+   - Límite definido
+   - Explicabilidad
+
+2. Detección de Patrones:
+   - Comportamiento temporal
+   - Montos inusuales
+   - Velocidad transaccional
+   - Contexto internacional
+
+3. Decisiones:
+   - Score acumulativo
+   - Factores activados
+   - Razones explícitas
+   - Contexto completo
+
+Este motor de reglas es crucial para:
+- Evaluación inicial de riesgo
+- Detección de patrones sospechosos
+- Decisiones explicables
+- Configuración flexible
+
+La implementación muestra un enfoque robusto para la detección de fraude basada en reglas, aunque está incompleta en la parte de velocidad transaccion
+al.  [50/52] __init__.py ... Este es un archivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de orquestación.
+Tool #60: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de orquestación
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con la orquestación del sistema
+4. Mantener una estructura clara del proyecto
+
+El comentario "Orchestration package" indica que este directorio contiene los componentes relacionados con la orquestación del sistema que hemos visto anteriormente:
+- Evaluadores por etapa
+- Orquestador híbrido
+- Schemas de evaluación
+- Flujo de decisiones
+- Coordinación entre componentes
+
+Este paquete es crucial para la organización del sistema ya que maneja:
+- Flujo de evaluación
+- Coordinación entre etapas
+- Combinación de enfoques (reglas + ML)
+- Decisiones finales
+- Contexto entre etapas
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. La presencia de
+este archivo permite que Python trate el directorio como un módulo y facilita la importación de sus componentes.  [51/52] __init__.py ... Este es un a
+rchivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio como un paquete Python de reglas.
+Tool #61: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como un paquete Python de reglas
+2. Permitir importaciones relativas dentro del paquete
+3. Organizar el código relacionado con reglas de negocio
+4. Mantener una estructura clara del proyecto
+
+El comentario "Rules package" indica que este directorio contiene los componentes relacionados con las reglas del sistema que hemos visto anteriormente:
+- Motor de reglas (RulesEngine)
+- Reglas específicas por etapa
+- Evaluación de reglas
+- Factores de riesgo
+- Configuración de reglas
+
+Este paquete es crucial para el sistema ya que maneja:
+- Lógica de negocio
+- Detección de patrones
+- Evaluación de riesgo
+- Decisiones basadas en reglas
+- Explicabilidad de decisiones
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. La presencia de
+este archivo permite que Python trate el directorio como un módulo y facilita la importación de sus componentes relacionados con reglas de negocio.  [
+52/52] __init__.py ... Este es un archivo de inicialización de paquete Python que solo contiene un comentario. En este caso, el archivo `__init__.py` está marcando el directorio raíz de la aplicación.
+Tool #62: enriquecer_unidades
+Como el archivo solo contiene un comentario y no tiene ninguna implementación de código, no hay unidades funcionales para analizar ni reglas de negocio para extraer. Su propósito es:
+
+1. Marcar el directorio como el paquete principal de la aplicación
+2. Permitir importaciones relativas dentro de toda la aplicación
+3. Organizar la estructura global del proyecto
+4. Mantener una estructura clara y modular
+
+El comentario "App package" indica que este es el directorio raíz que contiene todos los submódulos de la aplicación que hemos visto anteriormente:
+
+1. Capa de Dominio:
+   - Modelos de dominio
+   - Reglas de negocio
+   - Lógica core
+   - Evaluadores
+
+2. Capa de Adaptadores:
+   - API endpoints
+   - Adaptadores de datos
+   - Interfaces externas
+   - Rutas HTTP
+
+3. Capa de Infraestructura:
+   - Base de datos
+   - Configuración
+   - Logging
+   - Servicios externos
+
+4. Componentes Principales:
+   - Motor de reglas
+   - Machine Learning
+   - Orquestación
+   - Autenticación
+
+Esta estructura sigue los principios de:
+- Arquitectura limpia
+- Separación de responsabilidades
+- Modularidad
+- Escalabilidad
+
+Esta es una práctica común en Python para mantener el código organizado y documentado, incluso en archivos de inicialización simples. La presencia de
+este archivo en la raíz permite que Python trate todo el directorio como un módulo y facilita la importación entre diferentes componentes de la aplicación.  [resumen] generando resumen ejecutivo de 'mvpRBAMOTORBACK' ...
+Tool #63: generar_resumen_microservicio
+Basado en el inventario de funciones proporcionado, generaré un resumen ejecutivo del microservicio mvpRBAMOTORBACK:
+
+Resumen:
+El mvpRBAMOTORBACK es un motor de reglas de negocio (RBA - Rule Based Analysis) para detección de fraude en transacciones financieras. Implementa un s
+istema multi-etapa que evalúa transacciones en tres fases: pasarela, autenticación (3DS) y autorización (ISO8583), combinando reglas de negocio configurables con autenticación y autorización de tarjetas.
+
+Propósito:
+1. Evaluación de Fraude:
+   - Procesamiento multi-etapa de transacciones
+   - Adaptadores para diferentes formatos (3DS, ISO8583)
+   - Motor de reglas configurable
+   - Scoring y decisiones de riesgo
+
+2. Gestión de Reglas:
+   - CRUD completo de reglas
+   - Historial y auditoría
+   - Activación/desactivación
+   - Roles y permisos
+
+3. Seguridad:
+   - Autenticación JWT
+   - Control de acceso basado en roles
+   - Hashing de contraseñas
+   - Multi-tenant
+
+Sensibilidad de Datos:
+ALTA - El servicio procesa datos sensibles incluyendo:
+- Información de tarjetas de crédito
+- Datos personales de usuarios
+- Información de transacciones financieras
+- Datos de autenticación y autorización
+- Historial transaccional
+- Credenciales de usuarios
+
+Componentes Principales:
+1. Adaptadores de Formato:
+   - AutorizacionAdapter (ISO8583)
+   - AREQAdapter (3D Secure)
+   - PasarelaAdapter (Pasarela)
+
+2. Motor de Reglas:
+   - Gestión de reglas (CRUD)
+   - Evaluación de transacciones
+   - Auditoría de cambios
+   - Métricas y monitoreo
+
+3. Sistema de Autenticación:
+   - JWT tokens
+   - Roles y permisos
+   - Hashing de passwords
+   - Control de acceso
+
+4. API REST:
+   - Endpoints de evaluación
+   - Gestión de reglas
+   - Monitoreo y salud
+   - Métricas operativas
+
+El microservicio está diseñado para ser:
+- Escalable: Arquitectura modular
+- Seguro: Autenticación y autorización robusta
+- Auditable: Logging y tracking completo
+- Configurable: Reglas y umbrales ajustables
+- Observable: Métricas y monitoreook
+
+============================================================
+  escaneo_id      : a9580552-5fa2-4fcd-97dc-0c60b448606e
+  score_general   : 83.18
+  nivel_riesgo    : HIGH
+  archivos_total  : 52
+  clases_total    : 64
+  funciones_total : 126
+  enriquecido     : True
+============================================================

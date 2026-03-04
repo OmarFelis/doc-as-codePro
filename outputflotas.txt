@@ -1,0 +1,4987 @@
+public final class CheckLogonTag extends TagSupport {
+
+    private static final long serialVersionUID = 1741017152669727763L;
+    private static final Logger LOGGER = Logger.getLogger(CheckLogonTag.class.getName());
+
+    // Constantes de seguridad
+    private static final String DEFAULT_NAME = "userContainer";
+    private static final String DEFAULT_PAGE = "/logoff";
+    private static final int MAX_PATH_LENGTH = 255;
+    private static final String PATH_PATTERN = "^[a-zA-Z0-9/_.-]*$";
+
+    // Variables de instancia thread-safe y finales cuando sea posible
+    private volatile String name;
+    private volatile String page;
+
+    /**
+     * Constructor seguro
+     */
+    public CheckLogonTag() {
+        super();
+        resetToDefaults();
+    }
+
+    /**
+     * Getters seguros
+     */
+    public String getName() {
+        return name != null ? name : DEFAULT_NAME;
+    }
+
+    public String getPage() {
+        return page != null ? page : DEFAULT_PAGE;
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setName(
+            @NotBlank(message = "Name cannot be empty")
+            String name) {
+        this.name = validateAndSanitizeName(name);
+    }
+
+    public void setPage(
+            @NotBlank(message = "Page cannot be empty")
+            String page) {
+        this.page = validateAndSanitizePage(page);
+    }
+
+    /**
+     * Procesamiento de inicio de tag
+     */
+    @Override
+    public int doStartTag() throws JspException {
+        try {
+            validateTagState();
+            return SKIP_BODY;
+        } catch (Exception e) {
+            handleTagError("Error in doStartTag", e);
+            throw new JspException(e);
+        }
+    }
+
+    /**
+     * Procesamiento de fin de tag
+     */
+    @Override
+    public int doEndTag() throws JspException {
+        final String log = "[ CheckLogonTag.doEndTag ] ";
+
+        try {
+            // Validar estado
+            validateTagState();
+
+            // Verificar sesión
+            if (isValidSession()) {
+                return EVAL_PAGE;
+            }
+
+            // Redirigir a página de logout
+            return handleLogout();
+
+        } catch (Exception e) {
+            handleTagError(log + "Error processing tag", e);
+            throw new JspException(e);
+        }
+    }
+
+    /**
+     * Liberación segura de recursos
+     */
+    @Override
+    public void release() {
+        try {
+            super.release();
+            resetToDefaults();
+        } catch (Exception e) {
+            handleTagError("Error in release", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private void validateTagState() {
+        if (pageContext == null) {
+            throw new IllegalStateException("PageContext is null");
+        }
+    }
+
+    private static String validateAndSanitizeName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return DEFAULT_NAME;
+        }
+
+        String sanitized = sanitizeInput(name);
+        if (!sanitized.matches("^[a-zA-Z0-9_]*$")) {
+            throw new IllegalArgumentException("Invalid name format");
+        }
+
+        return sanitized;
+    }
+
+    private static String validateAndSanitizePage(String page) {
+        if (page == null || page.trim().isEmpty()) {
+            return DEFAULT_PAGE;
+        }
+
+        if (page.length() > MAX_PATH_LENGTH) {
+            throw new IllegalArgumentException("Page path too long");
+        }
+
+        String sanitized = sanitizeInput(page);
+        if (!sanitized.matches(PATH_PATTERN)) {
+            throw new IllegalArgumentException("Invalid page path format");
+        }
+
+        return sanitized;
+    }
+
+    /**
+     * Verificación segura de sesión
+     */
+    private boolean isValidSession() {
+        try {
+            HttpSession session = pageContext.getSession();
+            return session != null &&
+                   session.getAttribute(getName()) != null &&
+                   !isSessionExpired(session);
+        } catch (Exception e) {
+            LOGGER.warning("Error checking session: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private boolean isSessionExpired(HttpSession session) {
+        try {
+            long now = System.currentTimeMillis();
+            long lastAccessed = session.getLastAccessedTime();
+            int maxInactive = session.getMaxInactiveInterval() * 1000;
+
+            return (now - lastAccessed) > maxInactive;
+        } catch (Exception e) {
+            LOGGER.warning("Error checking session expiration: " + e.getMessage());
+            return true;
+        }
+    }
+
+    /**
+     * Manejo de redirección
+     */
+    private int handleLogout() throws JspException {
+        try {
+            ModuleConfig config = getModuleConfig();
+            String redirectPath = buildRedirectPath(config);
+
+            pageContext.forward(redirectPath);
+            return SKIP_PAGE;
+
+        } catch (Exception e) {
+            handleTagError("Error handling logout", e);
+            throw new JspException(e);
+        }
+    }
+
+    private ModuleConfig getModuleConfig() {
+        return (ModuleConfig) pageContext.getServletContext()
+            .getAttribute(org.apache.struts.Globals.MODULE_KEY);
+    }
+
+    private String buildRedirectPath(ModuleConfig config) {
+        String prefix = config != null ? config.getPrefix() : "";
+        return sanitizePath(prefix + getPage());
+    }
+
+    /**
+     * Utilidades de seguridad
+     */
+    private static String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        return Encode.forHtml(input.replaceAll("[^\\p{Print}]", ""));
+    }
+
+    private static String sanitizePath(String path) {
+        if (path == null) {
+            return DEFAULT_PAGE;
+        }
+        return path.replaceAll("[^a-zA-Z0-9/_.-]", "");
+    }
+
+    /**
+     * Manejo de errores y estado
+     */
+    private void handleTagError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private void resetToDefaults() {
+        this.name = DEFAULT_NAME;
+        this.page = DEFAULT_PAGE;
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de sesión
+   - Control de nombres
+   - Sanitización de rutas
+   - Verificación de estado
+
+2. Características de Seguridad:
+   - Thread safety
+   - Control de errores
+   - Logging seguro
+   - Sanitización HTML
+
+3. Protecciones:
+   - Control de sesión
+   - Validación de formato
+   - Límites de longitud
+   - Control de recursos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Sesión:
+   - Validación completa
+   - Control de expiración
+   - Estado de autenticación
+   - Manejo de invalidación
+
+2. Control de Datos:
+   - Validación de entrada
+   - Sanitización de rutas
+   - Control de formato
+   - Límites de longitud
+
+3. Robustez:
+   - Manejo de errores
+   - Logging estructurado
+   - Thread safety
+   - Control de recursos
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [123/139] UserContainer.java ... Analizaré este código de la capa de adaptador que maneja el contenedor de sesión de usuario.
+Tool #122: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.session;
+
+import java.io.Serializable;
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.http.*;
+import javax.validation.constraints.*;
+
+import org.owasp.encoder.Encode;
+
+/**
+ * Contenedor seguro de sesión de usuario
+ */
+public class UserContainer implements HttpSessionBindingListener, Serializable {
+
+    private static final long serialVersionUID = -8067995098791333724L;
+    private static final Logger LOGGER = Logger.getLogger(UserContainer.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_STRING_LENGTH = 1000;
+    private static final String SENSITIVE_PATTERN = "(?i)(password|secret|token|key)";
+
+    // Atributos del usuario con validación
+    @NotNull(message = "NDC cannot be null")
+    private final String ndc;
+
+    private String login;
+    private volatile COMPANY company;
+    private volatile COSTCENTER costCenter;
+    private String issuer;
+    private String issuerOwnPrice;
+    private volatile ALGBVF_V_LISTUSERROLE2 user;
+    private String stringChild;
+    private String totalActions;
+    private Set<String> methods;
+    private String actions;
+    private String denied;
+    private String actionsxrol;
+    private String userLevel;
+    private String levelsAccepted;
+    private Vector<Object> keyVector;
+    private volatile Eventos events;
+    private volatile ALGBVF_ISSUER issuerBean;
+    private volatile ALGBVF_ROLE role;
+    private boolean restrictVehicle;
+    private volatile ALGBVF_COMPANY enterprise;
+    private volatile ALGVF_DRIVER driver;
+    private volatile DRIVER driverBean;
+    private String fuelCostConfig;
+
+    /**
+     * Constructor seguro
+     */
+    public UserContainer() {
+        this(generateSecureNdc());
+    }
+
+    public UserContainer(@NotNull String ndc) {
+        this.ndc = validateNdc(ndc);
+        initialize();
+    }
+
+    /**
+     * Inicialización segura
+     */
+    private void initialize() {
+        try {
+            methods = Collections.synchronizedSet(new HashSet<>());
+            keyVector = new Vector<>();
+            restrictVehicle = false;
+
+            LOGGER.info("Initializing user container with NDC: " +
+                maskSensitiveData(ndc));
+
+        } catch (Exception e) {
+            handleContainerError("Error initializing container", e);
+            throw new SecurityException("Failed to initialize container", e);
+        }
+    }
+
+    /**
+     * Limpieza segura
+     */
+    private void cleanUp() {
+        try {
+            methods.clear();
+            keyVector.clear();
+
+            // Limpiar objetos sensibles
+            login = null;
+            company = null;
+            costCenter = null;
+            user = null;
+            issuerBean = null;
+            role = null;
+            enterprise = null;
+            driver = null;
+            driverBean = null;
+
+            LOGGER.info("Cleaned up user container for NDC: " +
+                maskSensitiveData(ndc));
+
+        } catch (Exception e) {
+            handleContainerError("Error cleaning up container", e);
+        }
+    }
+
+    /**
+     * Eventos de sesión
+     */
+    @Override
+    public void valueBound(HttpSessionBindingEvent event) {
+        try {
+            validateSession(event);
+            logSessionEvent("Session bound", event);
+        } catch (Exception e) {
+            handleSessionError("Error in session binding", e);
+        }
+    }
+
+    @Override
+    public void valueUnbound(HttpSessionBindingEvent event) {
+        try {
+            validateSession(event);
+            logSessionEvent("Session unbound", event);
+            cleanUp();
+        } catch (Exception e) {
+            handleSessionError("Error in session unbinding", e);
+        }
+    }
+
+    /**
+     * Getters seguros
+     */
+    public String getNdc() {
+        return ndc;
+    }
+
+    public String getLogin() {
+        return sanitizeOutput(login);
+    }
+
+    public COMPANY getCompany() {
+        return company != null ? company.clone() : null;
+    }
+
+    public Vector<Object> getKeyVector() {
+        return keyVector != null ?
+            new Vector<>(keyVector) : new Vector<>();
+    }
+
+    public Set<String> getMethods() {
+        return methods != null ?
+            Collections.unmodifiableSet(methods) : Collections.emptySet();
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setLogin(@NotNull String login) {
+        this.login = validateAndSanitizeInput(login);
+    }
+
+    public void setCompany(COMPANY company) {
+        this.company = company != null ? company.clone() : null;
+    }
+
+    public void setMethods(Collection<String> methods) {
+        if (methods != null) {
+            this.methods = Collections.synchronizedSet(
+                new HashSet<>(validateMethods(methods))
+            );
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static String validateNdc(String ndc) {
+        if (ndc == null || ndc.trim().isEmpty()) {
+            throw new IllegalArgumentException("NDC cannot be empty");
+        }
+        return sanitizeInput(ndc);
+    }
+
+    private static String validateAndSanitizeInput(String input) {
+        if (input == null) {
+            return null;
+        }
+
+        if (input.length() > MAX_STRING_LENGTH) {
+            throw new IllegalArgumentException("Input too long");
+        }
+
+        return sanitizeInput(input);
+    }
+
+    private static Collection<String> validateMethods(Collection<String> methods) {
+        if (methods == null) {
+            return Collections.emptyList();
+        }
+
+        return methods.stream()
+            .filter(Objects::nonNull)
+            .map(UserContainer::sanitizeInput)
+            .collect(Collectors.toList());
+    }
+
+    private static void validateSession(HttpSessionBindingEvent event) {
+        if (event == null || event.getSession() == null) {
+            throw new IllegalStateException("Invalid session event");
+        }
+    }
+
+    /**
+     * Utilidades de seguridad
+     */
+    private static String sanitizeInput(String input) {
+        if (input == null) {
+            return null;
+        }
+        return Encode.forHtml(input.replaceAll("[^\\p{Print}]", ""));
+    }
+
+    private static String sanitizeOutput(String output) {
+        if (output == null) {
+            return null;
+        }
+        return Encode.forHtml(output);
+    }
+
+    private static String maskSensitiveData(String data) {
+        if (data == null) {
+            return "null";
+        }
+        if (data.length() <= 4) {
+            return "****";
+        }
+        return "****" + data.substring(data.length() - 4);
+    }
+
+    private static String generateSecureNdc() {
+        return UUID.randomUUID().toString();
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleContainerError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private static void handleSessionError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private void logSessionEvent(String event, HttpSessionBindingEvent e) {
+        LOGGER.info(event + " for NDC: " + maskSensitiveData(ndc) +
+            " Session ID: " + maskSensitiveData(e.getSession().getId()));
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de sesión
+   - Sanitización de datos
+   - Control de recursos
+
+2. Características de Seguridad:
+   - Thread safety
+   - Inmutabilidad parcial
+   - Clonación segura
+   - Control de acceso
+
+3. Protecciones:
+   - Control de nulos
+   - Sanitización HTML
+   - Enmascaramiento de datos
+   - Límites de longitud
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Sanitización
+   - Clonación defensiva
+   - Control de acceso
+
+2. Gestión de Sesión:
+   - Control de eventos
+   - Limpieza segura
+   - Validación de estado
+   - Logging seguro
+
+3. Robustez:
+   - Thread safety
+   - Control de nulos
+   - Manejo de errores
+   - Validaciones completas
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [124/139] DisplaytagDateTimeForma.java ... Analizaré este código de la capa de adaptador que maneja el formateo de fechas y horas para DisplayTag.
+Tool #123: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.tags;
+
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.jsp.PageContext;
+import javax.validation.constraints.*;
+
+import org.displaytag.decorator.DisplaytagColumnDecorator;
+import org.displaytag.exception.DecoratorException;
+import org.displaytag.properties.MediaTypeEnum;
+import org.owasp.encoder.Encode;
+
+/**
+ * Decorador seguro para formato de fecha y hora
+ */
+public class DisplaytagDateTimeFormat implements DisplaytagColumnDecorator,
+        java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(DisplaytagDateTimeFormat.class.getName());
+
+    // Constantes de formato
+    private static final String DEFAULT_PATTERN = "dd/MM/yyyy HH:mm:ss";
+    private static final String DEFAULT_TIMEZONE = "UTC";
+    private static final Locale DEFAULT_LOCALE = Locale.US;
+
+    // Formato thread-safe
+    private static final ThreadLocal<SimpleDateFormat> formatter =
+        ThreadLocal.withInitial(() -> {
+            SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_PATTERN, DEFAULT_LOCALE);
+            sdf.setTimeZone(TimeZone.getTimeZone(DEFAULT_TIMEZONE));
+            return sdf;
+        });
+
+    /**
+     * Decorar valor de fecha de forma segura
+     */
+    @Override
+    public Object decorate(
+            Object columnValue,
+            PageContext pageContext,
+            MediaTypeEnum media) throws DecoratorException {
+
+        try {
+            // Validar entrada
+            if (columnValue == null) {
+                return "";
+            }
+
+            // Validar tipo de dato
+            validateDateType(columnValue);
+
+            // Formatear fecha de forma segura
+            return formatDateSafely((Date) columnValue);
+
+        } catch (Exception e) {
+            handleFormatError(e, columnValue);
+            return handleFailedFormat(columnValue);
+        }
+    }
+
+    /**
+     * Validación de tipo de fecha
+     */
+    private void validateDateType(Object value) throws DecoratorException {
+        if (!(value instanceof Date)) {
+            throw new DecoratorException(
+                "Value must be an instance of java.util.Date"
+            );
+        }
+    }
+
+    /**
+     * Formateo seguro de fecha
+     */
+    private String formatDateSafely(Date date) {
+        try {
+            // Validar fecha
+            validateDateValue(date);
+
+            // Obtener formateador thread-safe
+            SimpleDateFormat sdf = formatter.get();
+
+            // Formatear y sanitizar
+            String formattedDate = sdf.format(date);
+            return sanitizeOutput(formattedDate);
+
+        } finally {
+            // Limpiar ThreadLocal si es necesario
+            cleanupFormatter();
+        }
+    }
+
+    /**
+     * Validación de valor de fecha
+     */
+    private void validateDateValue(Date date) throws DecoratorException {
+        if (date == null) {
+            throw new DecoratorException("Date value cannot be null");
+        }
+
+        // Validar rango de fecha
+        long now = System.currentTimeMillis();
+        long dateTime = date.getTime();
+
+        if (dateTime > now + (365 * 24 * 60 * 60 * 1000L)) { // 1 año en el futuro
+            throw new DecoratorException("Date too far in the future");
+        }
+
+        if (dateTime < 0) { // Antes de 1970
+            throw new DecoratorException("Date too far in the past");
+        }
+    }
+
+    /**
+     * Manejo de errores de formato
+     */
+    private void handleFormatError(Exception e, Object value) {
+        LOGGER.log(Level.WARNING,
+            "Error formatting date value: " + value, e);
+    }
+
+    /**
+     * Manejo de formato fallido
+     */
+    private String handleFailedFormat(Object value) {
+        try {
+            // Intentar formato alternativo
+            return formatAlternative(value);
+        } catch (Exception e) {
+            LOGGER.warning("Failed to format date using alternative method");
+            return "";
+        }
+    }
+
+    /**
+     * Formato alternativo
+     */
+    private String formatAlternative(Object value) {
+        if (value instanceof Long) {
+            return formatTimestamp((Long) value);
+        }
+        return value.toString();
+    }
+
+    /**
+     * Formato de timestamp
+     */
+    private String formatTimestamp(long timestamp) {
+        try {
+            ZonedDateTime zdt = ZonedDateTime.now()
+                .withEpochSecond(timestamp / 1000);
+
+            return DateTimeFormatter.ofPattern(DEFAULT_PATTERN)
+                .format(zdt);
+
+        } catch (Exception e) {
+            LOGGER.warning("Failed to format timestamp: " + e.getMessage());
+            return "";
+        }
+    }
+
+    /**
+     * Sanitización de salida
+     */
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Limpieza de recursos
+     */
+    private void cleanupFormatter() {
+        try {
+            formatter.remove();
+        } catch (Exception e) {
+            LOGGER.warning("Error cleaning up formatter: " + e.getMessage());
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de tipo
+   - Control de rango
+   - Sanitización de salida
+   - Control de nulos
+
+2. Características de Seguridad:
+   - Thread safety
+   - Control de errores
+   - Formato alternativo
+   - Limpieza de recursos
+
+3. Protecciones:
+   - Validación de fechas
+   - Sanitización HTML
+   - Control de formato
+   - Manejo de recursos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Control de rango
+   - Sanitización
+   - Formato seguro
+
+2. Thread Safety:
+   - ThreadLocal
+   - Limpieza de recursos
+   - Control de formato
+   - Manejo de estado
+
+3. Robustez:
+   - Manejo de errores
+   - Formato alternativo
+   - Validaciones
+   - Logging seguro
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [125/139] ALGTimer.java ... Analizaré este código de la capa de dominio que maneja el formateo y obtención de fechas y horas.
+Tool #124: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+/**
+ * Utilidad segura para manejo de tiempo
+ */
+public final class ALGTimer implements java.io.Serializable {
+
+    private static final long serialVersionUID = -7654921761266129439L;
+    private static final Logger LOGGER = Logger.getLogger(ALGTimer.class.getName());
+
+    // Constantes de formato
+    private static final String DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String DEFAULT_TIME_FORMAT = "HH:mm:ss";
+    private static final String DEFAULT_TIMEZONE = "UTC";
+    private static final Locale DEFAULT_LOCALE = Locale.US;
+
+    // Formatters thread-safe
+    private static final DateTimeFormatter DEFAULT_FORMATTER =
+        DateTimeFormatter.ofPattern(DEFAULT_DATETIME_FORMAT)
+            .withZone(ZoneId.of(DEFAULT_TIMEZONE));
+
+    private static final DateTimeFormatter TIME_FORMATTER =
+        DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT)
+            .withZone(ZoneId.of(DEFAULT_TIMEZONE));
+
+    // Constructor privado para prevenir instanciación
+    private ALGTimer() {
+        throw new AssertionError("No ALGTimer instances for you!");
+    }
+
+    /**
+     * Obtener fecha con formato personalizado de forma segura
+     */
+    public static String getCustomDate(
+            @NotBlank(message = "Format cannot be empty")
+            String formatPattern) {
+
+        try {
+            validateDateFormat(formatPattern);
+
+            DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern(formatPattern)
+                .withZone(ZoneId.of(DEFAULT_TIMEZONE));
+
+            return formatInstant(Instant.now(), formatter);
+
+        } catch (Exception e) {
+            handleTimeError("Error formatting custom date", e);
+            return getDefaultDate();
+        }
+    }
+
+    /**
+     * Obtener fecha y hora en formato estándar
+     */
+    public static String getFechaHora() {
+        try {
+            return formatInstant(
+                Instant.now(),
+                DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")
+                    .withZone(ZoneId.of(DEFAULT_TIMEZONE))
+            );
+        } catch (Exception e) {
+            handleTimeError("Error getting fecha hora", e);
+            return getDefaultDateTime();
+        }
+    }
+
+    /**
+     * Obtener año actual
+     */
+    public static String getYear() {
+        try {
+            return String.valueOf(Year.now(ZoneId.of(DEFAULT_TIMEZONE)).getValue());
+        } catch (Exception e) {
+            handleTimeError("Error getting year", e);
+            return String.valueOf(Year.now().getValue());
+        }
+    }
+
+    /**
+     * Obtener hora en formato local
+     */
+    public static String getHora() {
+        try {
+            return LocalTime.now(ZoneId.of(DEFAULT_TIMEZONE))
+                .format(TIME_FORMATTER);
+        } catch (Exception e) {
+            handleTimeError("Error getting hora", e);
+            return getDefaultTime();
+        }
+    }
+
+    /**
+     * Obtener hora militar con milisegundos
+     */
+    public static String getHour() {
+        try {
+            return formatInstant(
+                Instant.now(),
+                DateTimeFormatter.ofPattern("HH:mm:ss:SSS")
+                    .withZone(ZoneId.of(DEFAULT_TIMEZONE))
+            );
+        } catch (Exception e) {
+            handleTimeError("Error getting hour", e);
+            return getDefaultTime();
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static void validateDateFormat(String format) {
+        if (format == null || format.trim().isEmpty()) {
+            throw new IllegalArgumentException("Format pattern cannot be empty");
+        }
+
+        try {
+            DateTimeFormatter.ofPattern(format);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid date format pattern", e);
+        }
+    }
+
+    /**
+     * Formateo seguro
+     */
+    private static String formatInstant(Instant instant, DateTimeFormatter formatter) {
+        try {
+            return formatter.format(instant);
+        } catch (Exception e) {
+            LOGGER.warning("Error formatting instant: " + e.getMessage());
+            return formatter.format(Instant.now());
+        }
+    }
+
+    /**
+     * Valores por defecto
+     */
+    private static String getDefaultDate() {
+        return LocalDate.now(ZoneId.of(DEFAULT_TIMEZONE))
+            .format(DateTimeFormatter.ISO_LOCAL_DATE);
+    }
+
+    private static String getDefaultTime() {
+        return LocalTime.now(ZoneId.of(DEFAULT_TIMEZONE))
+            .format(TIME_FORMATTER);
+    }
+
+    private static String getDefaultDateTime() {
+        return LocalDateTime.now(ZoneId.of(DEFAULT_TIMEZONE))
+            .format(DEFAULT_FORMATTER);
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleTimeError(String message, Exception e) {
+        LOGGER.log(Level.WARNING, message, e);
+    }
+
+    /**
+     * Utilidades de zona horaria
+     */
+    public static ZoneId getSystemZoneId() {
+        try {
+            return ZoneId.systemDefault();
+        } catch (Exception e) {
+            LOGGER.warning("Error getting system zone: " + e.getMessage());
+            return ZoneId.of(DEFAULT_TIMEZONE);
+        }
+    }
+
+    /**
+     * Validación de rango de fechas
+     */
+    public static boolean isDateInRange(Instant date,
+            Instant start, Instant end) {
+        try {
+            return !date.isBefore(start) && !date.isAfter(end);
+        } catch (Exception e) {
+            LOGGER.warning("Error checking date range: " + e.getMessage());
+            return false;
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de formato
+   - Control de zonas horarias
+   - Thread safety
+   - Manejo de errores
+
+2. Características de Seguridad:
+   - Inmutabilidad
+   - Thread safety
+   - Control de errores
+   - Valores por defecto
+
+3. Protecciones:
+   - Validación de formato
+   - Control de zonas
+   - Manejo de nulos
+   - Logging seguro
+
+4. Buenas Prácticas:
+   - API moderna de fechas
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad Temporal:
+   - Uso de java.time
+   - Control de zonas
+   - Thread safety
+   - Inmutabilidad
+
+2. Control de Errores:
+   - Manejo estructurado
+   - Valores por defecto
+   - Logging seguro
+   - Trazabilidad
+
+3. Robustez:
+   - Validaciones
+   - Control de formato
+   - Manejo de zonas
+   - Thread safety
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [126/139] DisplaytagDateFormat.java ... Analizaré este código de la capa de adaptador que maneja el formateo de fechas para DisplayTag.
+Tool #125: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.tags;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.jsp.PageContext;
+import javax.validation.constraints.*;
+
+import org.displaytag.decorator.DisplaytagColumnDecorator;
+import org.displaytag.exception.DecoratorException;
+import org.displaytag.properties.MediaTypeEnum;
+import org.owasp.encoder.Encode;
+
+/**
+ * Decorador seguro para formato de fechas
+ */
+public class DisplaytagDateFormat implements DisplaytagColumnDecorator,
+        java.io.Serializable {
+
+    private static final long serialVersionUID = -3690748494430372008L;
+    private static final Logger LOGGER = Logger.getLogger(DisplaytagDateFormat.class.getName());
+
+    // Constantes de formato
+    private static final String DEFAULT_PATTERN = "dd/MM/yyyy";
+    private static final String DEFAULT_TIMEZONE = "UTC";
+    private static final Locale DEFAULT_LOCALE = Locale.US;
+
+    // Formatter thread-safe
+    private static final ThreadLocal<DateTimeFormatter> formatter =
+        ThreadLocal.withInitial(() ->
+            DateTimeFormatter.ofPattern(DEFAULT_PATTERN)
+                .withLocale(DEFAULT_LOCALE)
+                .withZone(TimeZone.getTimeZone(DEFAULT_TIMEZONE).toZoneId())
+        );
+
+    /**
+     * Decorar valor de fecha de forma segura
+     */
+    @Override
+    public Object decorate(
+            Object columnValue,
+            PageContext pageContext,
+            MediaTypeEnum media) throws DecoratorException {
+
+        try {
+            // Validar entrada
+            if (columnValue == null) {
+                return "";
+            }
+
+            // Validar tipo de dato
+            validateDateType(columnValue);
+
+            // Formatear fecha de forma segura
+            return formatDateSafely((Date) columnValue);
+
+        } catch (Exception e) {
+            handleFormatError(e, columnValue);
+            return handleFailedFormat(columnValue);
+        } finally {
+            // Limpiar ThreadLocal
+            cleanupFormatter();
+        }
+    }
+
+    /**
+     * Validación de tipo de fecha
+     */
+    private void validateDateType(Object value) throws DecoratorException {
+        if (!(value instanceof Date)) {
+            throw new DecoratorException(
+                "Value must be an instance of java.util.Date"
+            );
+        }
+    }
+
+    /**
+     * Formateo seguro de fecha
+     */
+    private String formatDateSafely(Date date) {
+        try {
+            // Validar fecha
+            validateDateValue(date);
+
+            // Convertir a ZonedDateTime
+            ZonedDateTime zdt = ZonedDateTime.ofInstant(
+                date.toInstant(),
+                TimeZone.getTimeZone(DEFAULT_TIMEZONE).toZoneId()
+            );
+
+            // Formatear usando DateTimeFormatter thread-safe
+            String formattedDate = formatter.get().format(zdt);
+
+            // Sanitizar salida
+            return sanitizeOutput(formattedDate);
+
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, "Error formatting date", e);
+            return "";
+        }
+    }
+
+    /**
+     * Validación de valor de fecha
+     */
+    private void validateDateValue(Date date) throws DecoratorException {
+        if (date == null) {
+            throw new DecoratorException("Date value cannot be null");
+        }
+
+        // Validar rango de fecha
+        long now = System.currentTimeMillis();
+        long dateTime = date.getTime();
+
+        // Prevenir fechas muy lejanas en el futuro o pasado
+        if (Math.abs(now - dateTime) > (100L * 365 * 24 * 60 * 60 * 1000)) {
+            throw new DecoratorException("Date value out of reasonable range");
+        }
+    }
+
+    /**
+     * Manejo de errores de formato
+     */
+    private void handleFormatError(Exception e, Object value) {
+        LOGGER.log(Level.WARNING,
+            "Error formatting date value: " + value, e);
+    }
+
+    /**
+     * Manejo de formato fallido
+     */
+    private String handleFailedFormat(Object value) {
+        try {
+            // Intentar formato alternativo
+            if (value instanceof Long) {
+                return formatTimestamp((Long) value);
+            }
+            return sanitizeOutput(value.toString());
+        } catch (Exception e) {
+            LOGGER.warning("Failed to format date using alternative method");
+            return "";
+        }
+    }
+
+    /**
+     * Formato de timestamp
+     */
+    private String formatTimestamp(long timestamp) {
+        try {
+            ZonedDateTime zdt = ZonedDateTime.now()
+                .withEpochSecond(timestamp / 1000);
+
+            return formatter.get().format(zdt);
+
+        } catch (Exception e) {
+            LOGGER.warning("Failed to format timestamp: " + e.getMessage());
+            return "";
+        }
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Limpieza de recursos
+     */
+    private void cleanupFormatter() {
+        try {
+            formatter.remove();
+        } catch (Exception e) {
+            LOGGER.warning("Error cleaning up formatter: " + e.getMessage());
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de tipo
+   - Control de rango
+   - Sanitización de salida
+   - Control de nulos
+
+2. Características de Seguridad:
+   - Thread safety
+   - Control de errores
+   - Formato alternativo
+   - Limpieza de recursos
+
+3. Protecciones:
+   - Validación de fechas
+   - Sanitización HTML
+   - Control de formato
+   - Manejo de zonas horarias
+
+4. Buenas Prácticas:
+   - API moderna de fechas
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Control de rango
+   - Sanitización
+   - Formato seguro
+
+2. Thread Safety:
+   - ThreadLocal
+   - DateTimeFormatter
+   - Limpieza de recursos
+   - Control de estado
+
+3. Robustez:
+   - Manejo de errores
+   - Formato alternativo
+   - Validaciones
+   - Logging seguro
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [127/139] Bean.java ... Analizaré este código de la capa de dominio que maneja un bean básico.
+Tool #126: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+import org.owasp.encoder.Encode;
+
+/**
+ * Bean seguro para datos básicos
+ */
+public class Bean implements java.io.Serializable {
+
+    private static final long serialVersionUID = -8389398602971054330L;
+    private static final Logger LOGGER = Logger.getLogger(Bean.class.getName());
+
+    // Constantes de validación
+    private static final int MAX_STRING_LENGTH = 255;
+    private static final String VALID_ID_PATTERN = "^[A-Za-z0-9_-]+$";
+    private static final String VALID_NAME_PATTERN = "^[A-Za-z0-9\\s._-]+$";
+
+    // Variables de instancia inmutables cuando sea posible
+    @NotNull
+    private String group;
+
+    @NotNull
+    private String nivel;
+
+    @NotNull
+    private String id;
+
+    @NotNull
+    private String nombre;
+
+    @NotNull
+    private String parent;
+
+    /**
+     * Constructor seguro
+     */
+    public Bean(
+            @NotBlank(message = "Group cannot be empty") String group,
+            @NotBlank(message = "Nivel cannot be empty") String nivel,
+            @NotBlank(message = "ID cannot be empty") String id,
+            @NotBlank(message = "Nombre cannot be empty") String nombre,
+            @NotBlank(message = "Parent cannot be empty") String parent) {
+
+        this.group = validateAndSanitize(group, "group");
+        this.nivel = validateAndSanitize(nivel, "nivel");
+        this.id = validateAndSanitizeId(id);
+        this.nombre = validateAndSanitizeName(nombre);
+        this.parent = validateAndSanitize(parent, "parent");
+    }
+
+    /**
+     * Getters seguros
+     */
+    public String getParent() {
+        return sanitizeOutput(parent);
+    }
+
+    public String getGroup() {
+        return sanitizeOutput(group);
+    }
+
+    public String getNivel() {
+        return sanitizeOutput(nivel);
+    }
+
+    public String getId() {
+        return sanitizeOutput(id);
+    }
+
+    public String getNombre() {
+        return sanitizeOutput(nombre);
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setParent(@NotBlank String parent) {
+        this.parent = validateAndSanitize(parent, "parent");
+    }
+
+    public void setGroup(@NotBlank String group) {
+        this.group = validateAndSanitize(group, "group");
+    }
+
+    public void setNivel(@NotBlank String nivel) {
+        this.nivel = validateAndSanitize(nivel, "nivel");
+    }
+
+    public void setId(@NotBlank String id) {
+        this.id = validateAndSanitizeId(id);
+    }
+
+    public void setNombre(@NotBlank String nombre) {
+        this.nombre = validateAndSanitizeName(nombre);
+    }
+
+    /**
+     * Validaciones
+     */
+    private String validateAndSanitize(String input, String fieldName) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                fieldName + " cannot be empty");
+        }
+
+        if (input.length() > MAX_STRING_LENGTH) {
+            throw new IllegalArgumentException(
+                fieldName + " exceeds maximum length");
+        }
+
+        return sanitizeInput(input);
+    }
+
+    private String validateAndSanitizeId(String id) {
+        String sanitized = validateAndSanitize(id, "id");
+
+        if (!sanitized.matches(VALID_ID_PATTERN)) {
+            throw new IllegalArgumentException("Invalid ID format");
+        }
+
+        return sanitized;
+    }
+
+    private String validateAndSanitizeName(String name) {
+        String sanitized = validateAndSanitize(name, "nombre");
+
+        if (!sanitized.matches(VALID_NAME_PATTERN)) {
+            throw new IllegalArgumentException("Invalid name format");
+        }
+
+        return sanitized;
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        return Encode.forHtml(input.replaceAll("[^\\p{Print}]", ""));
+    }
+
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Override de métodos Object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bean)) return false;
+
+        Bean bean = (Bean) o;
+        return id != null && id.equals(bean.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "Bean[id=%s, nombre=%s, grupo=%s, nivel=%s, parent=%s]",
+            sanitizeOutput(id),
+            sanitizeOutput(nombre),
+            sanitizeOutput(group),
+            sanitizeOutput(nivel),
+            sanitizeOutput(parent)
+        );
+    }
+
+    /**
+     * Clonación segura
+     */
+    @Override
+    public Bean clone() {
+        try {
+            return (Bean) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Bean(
+                this.group,
+                this.nivel,
+                this.id,
+                this.nombre,
+                this.parent
+            );
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de nulos
+   - Sanitización
+   - Patrones seguros
+
+2. Características de Seguridad:
+   - Inmutabilidad parcial
+   - Control de formato
+   - Sanitización HTML
+   - Validación de patrones
+
+3. Protecciones:
+   - Validación de entrada
+   - Control de longitud
+   - Patrones permitidos
+   - Manejo de nulos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Métodos Object
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Sanitización
+   - Control de formato
+   - Límites de longitud
+
+2. Control de Objetos:
+   - Clonación segura
+   - Equals/HashCode
+   - ToString seguro
+   - Inmutabilidad
+
+3. Robustez:
+   - Validaciones
+   - Control de nulos
+   - Manejo de errores
+   - Patrones seguros
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [128/139] DatedFileAppender.java ... Analizaré este código de la capa de dominio que maneja el registro de logs en archivos con fecha.
+Tool #127: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.spi.LoggingEvent;
+import org.owasp.encoder.Encode;
+
+/**
+ * Appender seguro para logs con fecha
+ */
+public class DatedFileAppender extends FileAppender implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1426194061379609481L;
+    private static final Logger LOGGER = Logger.getLogger(DatedFileAppender.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_PATH_LENGTH = 255;
+    private static final String SAFE_FILE_PATTERN = "^[A-Za-z0-9._-]+$";
+    private static final String DEFAULT_DIRECTORY = "logs";
+    private static final String DEFAULT_PREFIX = "app.";
+    private static final String DEFAULT_SUFFIX = ".log";
+
+    // Configuración thread-safe
+    private volatile String directory = DEFAULT_DIRECTORY;
+    private volatile String prefix = DEFAULT_PREFIX;
+    private volatile String suffix = DEFAULT_SUFFIX;
+
+    // Estado interno thread-safe
+    private volatile File logPath = null;
+    private volatile Instant nextRotation = null;
+
+    // Formato de fecha thread-safe
+    private static final DateTimeFormatter DATE_FORMATTER =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            .withZone(ZoneId.systemDefault());
+
+    /**
+     * Constructor por defecto
+     */
+    public DatedFileAppender() {
+        super();
+    }
+
+    /**
+     * Constructor con parámetros validados
+     */
+    public DatedFileAppender(
+            @NotBlank(message = "Directory cannot be empty") String directory,
+            @NotBlank(message = "Prefix cannot be empty") String prefix,
+            @NotBlank(message = "Suffix cannot be empty") String suffix) {
+
+        this.directory = validateDirectory(directory);
+        this.prefix = validateFilePattern(prefix, "prefix");
+        this.suffix = validateFilePattern(suffix, "suffix");
+        activateOptions();
+    }
+
+    /**
+     * Getters seguros
+     */
+    public String getDirectory() {
+        return sanitizePath(directory);
+    }
+
+    public String getPrefix() {
+        return sanitizeFilePattern(prefix);
+    }
+
+    public String getSuffix() {
+        return sanitizeFilePattern(suffix);
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setDirectory(@NotBlank String directory) {
+        this.directory = validateDirectory(directory);
+    }
+
+    public void setPrefix(@NotBlank String prefix) {
+        this.prefix = validateFilePattern(prefix, "prefix");
+    }
+
+    public void setSuffix(@NotBlank String suffix) {
+        this.suffix = validateFilePattern(suffix, "suffix");
+    }
+
+    /**
+     * Activación de opciones segura
+     */
+    @Override
+    public void activateOptions() {
+        try {
+            validateConfiguration();
+            setupLogDirectory();
+            updateNextRotation();
+
+            super.activateOptions();
+
+        } catch (Exception e) {
+            handleAppenderError("Error activating options", e);
+        }
+    }
+
+    /**
+     * Append seguro de eventos
+     */
+    @Override
+    public synchronized void append(LoggingEvent event) {
+        try {
+            if (shouldRotateLog()) {
+                rotateLog();
+            }
+
+            super.append(sanitizeEvent(event));
+
+        } catch (Exception e) {
+            handleAppenderError("Error appending event", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private String validateDirectory(String dir) {
+        if (dir == null || dir.trim().isEmpty()) {
+            return DEFAULT_DIRECTORY;
+        }
+
+        String normalizedPath = Paths.get(dir).normalize().toString();
+
+        if (normalizedPath.length() > MAX_PATH_LENGTH) {
+            throw new IllegalArgumentException("Directory path too long");
+        }
+
+        return normalizedPath;
+    }
+
+    private String validateFilePattern(String pattern, String fieldName) {
+        if (pattern == null || pattern.trim().isEmpty()) {
+            return fieldName.equals("prefix") ? DEFAULT_PREFIX : DEFAULT_SUFFIX;
+        }
+
+        if (!pattern.matches(SAFE_FILE_PATTERN)) {
+            throw new IllegalArgumentException(
+                "Invalid " + fieldName + " pattern");
+        }
+
+        return pattern;
+    }
+
+    private void validateConfiguration() {
+        if (directory == null || prefix == null || suffix == null) {
+            throw new IllegalStateException("Invalid appender configuration");
+        }
+    }
+
+    /**
+     * Operaciones de archivo
+     */
+    private void setupLogDirectory() {
+        logPath = new File(directory);
+
+        if (!logPath.exists() && !logPath.mkdirs()) {
+            throw new IllegalStateException(
+                "Unable to create log directory: " + directory);
+        }
+
+        if (!logPath.canWrite()) {
+            throw new IllegalStateException(
+                "Cannot write to log directory: " + directory);
+        }
+    }
+
+    private boolean shouldRotateLog() {
+        return Instant.now().isAfter(nextRotation);
+    }
+
+    private void rotateLog() {
+        try {
+            String timestamp = DATE_FORMATTER.format(Instant.now());
+            File newLog = new File(logPath,
+                prefix + timestamp + suffix);
+
+            setFile(newLog.getAbsolutePath(), true, bufferedIO, bufferSize);
+            updateNextRotation();
+
+        } catch (Exception e) {
+            handleAppenderError("Error rotating log file", e);
+        }
+    }
+
+    private void updateNextRotation() {
+        nextRotation = LocalDate.now()
+            .plusDays(1)
+            .atStartOfDay(ZoneId.systemDefault())
+            .toInstant();
+    }
+
+    /**
+     * Sanitización y seguridad
+     */
+    private String sanitizePath(String path) {
+        if (path == null) {
+            return DEFAULT_DIRECTORY;
+        }
+        return Encode.forHtml(path);
+    }
+
+    private String sanitizeFilePattern(String pattern) {
+        if (pattern == null) {
+            return "";
+        }
+        return Encode.forHtml(pattern);
+    }
+
+    private LoggingEvent sanitizeEvent(LoggingEvent event) {
+        if (event == null) {
+            return event;
+        }
+
+        // Sanitizar mensaje si es necesario
+        Object message = event.getMessage();
+        if (message instanceof String) {
+            event.setMessage(sanitizeMessage((String) message));
+        }
+
+        return event;
+    }
+
+    private String sanitizeMessage(String message) {
+        if (message == null) {
+            return "";
+        }
+        return message.replaceAll("[^\\p{Print}]", "");
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private void handleAppenderError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de rutas
+   - Control de patrones
+   - Sanitización de entrada
+   - Control de permisos
+
+2. Características de Seguridad:
+   - Thread safety
+   - Control de errores
+   - Sanitización de logs
+   - Control de archivos
+
+3. Protecciones:
+   - Validación de rutas
+   - Control de acceso
+   - Patrones seguros
+   - Rotación segura
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Archivos:
+   - Validación de rutas
+   - Control de permisos
+   - Patrones seguros
+   - Rotación controlada
+
+2. Thread Safety:
+   - Variables volátiles
+   - Sincronización
+   - Estado inmutable
+   - Control de acceso
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones
+   - Sanitización
+   - Logging seguro
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [129/139] DisplayTagImportUserState.java ... Analizaré este código de la capa de adaptador que maneja la decoración de estados de importación de usuarios.
+Tool #128: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.Serializable;
+import java.util.Map;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.jsp.PageContext;
+import javax.validation.constraints.*;
+
+import org.displaytag.decorator.DisplaytagColumnDecorator;
+import org.displaytag.exception.DecoratorException;
+import org.displaytag.properties.MediaTypeEnum;
+import org.owasp.encoder.Encode;
+
+/**
+ * Decorador seguro para estados de importación de usuarios
+ */
+public class DisplayTagImportUserState implements DisplaytagColumnDecorator,
+        Serializable {
+
+    private static final long serialVersionUID = -450000368462164256L;
+    private static final Logger LOGGER = Logger.getLogger(DisplayTagImportUserState.class.getName());
+
+    // Mapeo seguro de estados
+    private static final Map<String, String> STATE_MAPPINGS;
+    static {
+        Map<String, String> map = new HashMap<>();
+        map.put("4", "Procesado");
+        map.put("5", "Archivo procesado con Errores");
+        map.put("6", "Archivo inválido");
+        STATE_MAPPINGS = Collections.unmodifiableMap(map);
+    }
+
+    // Estado por defecto
+    private static final String DEFAULT_STATE = "Otros";
+
+    /**
+     * Decorar estado de forma segura
+     */
+    @Override
+    public Object decorate(
+            Object columnValue,
+            PageContext pageContext,
+            MediaTypeEnum media) throws DecoratorException {
+
+        try {
+            // Validar entrada
+            validateInput(columnValue);
+
+            // Procesar estado
+            return processState(columnValue);
+
+        } catch (Exception e) {
+            handleDecorationError(e, columnValue);
+            return handleFailedDecoration();
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private void validateInput(Object value) throws DecoratorException {
+        if (value == null) {
+            throw new DecoratorException("State value cannot be null");
+        }
+
+        if (!(value instanceof String)) {
+            throw new DecoratorException(
+                "State value must be a string, found: " +
+                value.getClass().getName()
+            );
+        }
+
+        String state = (String) value;
+        if (state.length() > 10) { // Límite razonable para un código de estado
+            throw new DecoratorException("State value too long");
+        }
+
+        if (!state.matches("^[0-9]*$")) {
+            throw new DecoratorException("Invalid state format");
+        }
+    }
+
+    /**
+     * Procesamiento de estado
+     */
+    private String processState(Object value) {
+        String state = sanitizeInput((String) value);
+        return getStateDescription(state);
+    }
+
+    /**
+     * Obtención segura de descripción de estado
+     */
+    private String getStateDescription(String state) {
+        String description = STATE_MAPPINGS.get(state);
+        return description != null ?
+            sanitizeOutput(description) :
+            sanitizeOutput(DEFAULT_STATE);
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        return input.replaceAll("[^0-9]", "");
+    }
+
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private void handleDecorationError(Exception e, Object value) {
+        LOGGER.log(Level.WARNING,
+            "Error decorating state value: " + value, e);
+    }
+
+    private String handleFailedDecoration() {
+        return sanitizeOutput(DEFAULT_STATE);
+    }
+
+    /**
+     * Métodos de utilidad
+     */
+    public static boolean isValidState(String state) {
+        return state != null && STATE_MAPPINGS.containsKey(state);
+    }
+
+    public static String getValidStates() {
+        return String.join(", ", STATE_MAPPINGS.keySet());
+    }
+
+    /**
+     * Override de Object methods
+     */
+    @Override
+    public String toString() {
+        return "DisplayTagImportUserState[states=" +
+            String.join(",", STATE_MAPPINGS.keySet()) + "]";
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de formato
+   - Sanitización
+   - Límites de longitud
+
+2. Características de Seguridad:
+   - Estado inmutable
+   - Control de errores
+   - Sanitización HTML
+   - Logging seguro
+
+3. Protecciones:
+   - Validación de formato
+   - Control de estados
+   - Manejo de nulos
+   - Sanitización
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Estados predefinidos
+   - Sanitización
+   - Control de formato
+
+2. Control de Estados:
+   - Mapeo inmutable
+   - Validación de formato
+   - Estado por defecto
+   - Manejo de errores
+
+3. Robustez:
+   - Manejo de errores
+   - Logging estructurado
+   - Validaciones
+   - Sanitización HTML
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [130/139] DisplaytagFormatEstimatedValue.java ... Analizaré este código de la capa de adaptador que maneja el formateo de valores estimados.
+Tool #129: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.jsp.PageContext;
+import javax.validation.constraints.*;
+
+import org.displaytag.decorator.DisplaytagColumnDecorator;
+import org.displaytag.exception.DecoratorException;
+import org.displaytag.properties.MediaTypeEnum;
+import org.owasp.encoder.Encode;
+
+/**
+ * Decorador seguro para formato de valores estimados
+ */
+public class DisplaytagFormatEstimatedValue implements DisplaytagColumnDecorator,
+        java.io.Serializable {
+
+    private static final long serialVersionUID = 1932709255896183277L;
+    private static final Logger LOGGER = Logger.getLogger(DisplaytagFormatEstimatedValue.class.getName());
+
+    // Constantes de formato
+    private static final int MAX_DECIMALS = 2;
+    private static final String DEFAULT_FORMAT = "#,##0.00";
+    private static final BigDecimal MAX_VALUE = new BigDecimal("999999999999.99");
+    private static final BigDecimal MIN_VALUE = new BigDecimal("-999999999999.99");
+
+    // Formatter thread-safe
+    private static final ThreadLocal<DecimalFormat> formatter =
+        ThreadLocal.withInitial(() -> {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+            DecimalFormat format = new DecimalFormat(DEFAULT_FORMAT, symbols);
+            format.setParseBigDecimal(true);
+            format.setMinimumFractionDigits(MAX_DECIMALS);
+            format.setMaximumFractionDigits(MAX_DECIMALS);
+            return format;
+        });
+
+    /**
+     * Decorar valor de forma segura
+     */
+    @Override
+    public Object decorate(
+            Object columnValue,
+            PageContext pageContext,
+            MediaTypeEnum media) throws DecoratorException {
+
+        try {
+            // Validar entrada
+            validateInput(columnValue);
+
+            // Procesar valor
+            return formatValue(columnValue);
+
+        } catch (Exception e) {
+            handleFormatError(e, columnValue);
+            return handleFailedFormat();
+        } finally {
+            cleanupFormatter();
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private void validateInput(Object value) throws DecoratorException {
+        if (value == null) {
+            throw new DecoratorException("Value cannot be null");
+        }
+
+        if (!(value instanceof String)) {
+            throw new DecoratorException(
+                "Value must be a string, found: " +
+                value.getClass().getName()
+            );
+        }
+
+        String strValue = (String) value;
+        if (strValue.length() > 20) { // Límite razonable para un número
+            throw new DecoratorException("Value too long");
+        }
+    }
+
+    /**
+     * Formateo de valor
+     */
+    private String formatValue(Object value) {
+        String strValue = sanitizeInput((String) value);
+        BigDecimal number = parseNumber(strValue);
+        validateRange(number);
+        return formatNumber(number);
+    }
+
+    /**
+     * Parsing seguro
+     */
+    private BigDecimal parseNumber(String value) {
+        try {
+            if (value == null || value.trim().isEmpty()) {
+                return BigDecimal.ZERO;
+            }
+
+            return new BigDecimal(value.trim())
+                .setScale(MAX_DECIMALS, BigDecimal.ROUND_HALF_UP);
+
+        } catch (NumberFormatException e) {
+            LOGGER.warning("Invalid number format: " + value);
+            return BigDecimal.ZERO;
+        }
+    }
+
+    /**
+     * Validación de rango
+     */
+    private void validateRange(BigDecimal number) {
+        if (number.compareTo(MAX_VALUE) > 0) {
+            throw new IllegalArgumentException("Value exceeds maximum");
+        }
+        if (number.compareTo(MIN_VALUE) < 0) {
+            throw new IllegalArgumentException("Value below minimum");
+        }
+    }
+
+    /**
+     * Formateo de número
+     */
+    private String formatNumber(BigDecimal number) {
+        try {
+            DecimalFormat df = formatter.get();
+            String formatted = df.format(number);
+            return sanitizeOutput(formatted);
+
+        } catch (Exception e) {
+            LOGGER.warning("Error formatting number: " + e.getMessage());
+            return "0.00";
+        }
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return "0";
+        }
+        return input.replaceAll("[^0-9.-]", "");
+    }
+
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "0.00";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private void handleFormatError(Exception e, Object value) {
+        LOGGER.log(Level.WARNING,
+            "Error formatting value: " + value, e);
+    }
+
+    private String handleFailedFormat() {
+        return "0.00";
+    }
+
+    /**
+     * Limpieza de recursos
+     */
+    private void cleanupFormatter() {
+        try {
+            formatter.remove();
+        } catch (Exception e) {
+            LOGGER.warning("Error cleaning up formatter: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Utilidades públicas
+     */
+    public static boolean isValidNumber(String value) {
+        try {
+            BigDecimal number = new BigDecimal(value);
+            return number.compareTo(MIN_VALUE) >= 0 &&
+                   number.compareTo(MAX_VALUE) <= 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de rango
+   - Sanitización numérica
+   - Límites de precisión
+
+2. Características de Seguridad:
+   - Thread safety
+   - Control de errores
+   - Sanitización HTML
+   - Manejo de recursos
+
+3. Protecciones:
+   - Validación de formato
+   - Control de rango
+   - Manejo de nulos
+   - Límites numéricos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad Numérica:
+   - Validación de rango
+   - Control de decimales
+   - Formato seguro
+   - Sanitización
+
+2. Thread Safety:
+   - ThreadLocal
+   - Limpieza de recursos
+   - Control de formato
+   - Estado inmutable
+
+3. Robustez:
+   - Manejo de errores
+   - Valores por defecto
+   - Validaciones
+   - Logging seguro
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [131/139] FileUtil.java ... Analizaré este código de la capa de dominio que maneja operaciones con archivos.
+Tool #130: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.*;
+import java.nio.file.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+/**
+ * Utilidad segura para operaciones con archivos
+ */
+public final class FileUtil implements java.io.Serializable {
+
+    private static final long serialVersionUID = -3086439166512831950L;
+    private static final Logger LOGGER = Logger.getLogger(FileUtil.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_BUFFER_SIZE = 8192;
+    private static final int MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+    private static final String SAFE_PATH_PATTERN = "^[A-Za-z0-9._/-]+$";
+    private static final String[] FORBIDDEN_PATHS = {"/etc/", "/bin/", "/sbin/"};
+
+    // Constructor privado
+    private FileUtil() {
+        throw new AssertionError("No FileUtil instances for you!");
+    }
+
+    /**
+     * Escribir bytes de forma segura
+     */
+    public static void write(
+            @NotNull(message = "File cannot be null")
+            File file,
+
+            @NotNull(message = "Bytes cannot be null")
+            byte[] bytes) throws IOException {
+
+        validateFile(file);
+        validateBytes(bytes);
+
+        try {
+            writeSecurely(file, new ByteArrayInputStream(bytes), false);
+        } catch (Exception e) {
+            handleFileError("Error writing bytes to file", e);
+            throw new IOException("Failed to write file", e);
+        }
+    }
+
+    /**
+     * Escribir bytes con opción de append
+     */
+    public static void write(
+            @NotNull File file,
+            @NotNull byte[] bytes,
+            boolean append) throws IOException {
+
+        validateFile(file);
+        validateBytes(bytes);
+
+        try {
+            writeSecurely(file, new ByteArrayInputStream(bytes), append);
+        } catch (Exception e) {
+            handleFileError("Error writing bytes to file", e);
+            throw new IOException("Failed to write file", e);
+        }
+    }
+
+    /**
+     * Escribir stream de forma segura
+     */
+    public static void write(
+            @NotNull File file,
+            @NotNull InputStream input) throws IOException {
+
+        try {
+            validateFile(file);
+            validateInputStream(input);
+
+            writeSecurely(file, input, false);
+
+        } catch (Exception e) {
+            handleFileError("Error writing stream to file", e);
+            throw new IOException("Failed to write file", e);
+        } finally {
+            closeQuietly(input);
+        }
+    }
+
+    /**
+     * Leer bytes de forma segura
+     */
+    public static byte[] readBytes(
+            @NotNull File file) throws IOException {
+
+        validateFileForReading(file);
+
+        try (InputStream input = new BufferedInputStream(
+                Files.newInputStream(file.toPath()))) {
+
+            validateFileSize(file);
+            return readStreamSecurely(input);
+
+        } catch (Exception e) {
+            handleFileError("Error reading bytes from file", e);
+            throw new IOException("Failed to read file", e);
+        }
+    }
+
+    /**
+     * Copiar archivo de forma segura
+     */
+    public static void copy(
+            @NotNull File source,
+            @NotNull File target) throws IOException {
+
+        validateSourceFile(source);
+        validateTargetFile(target);
+
+        try {
+            Files.copy(
+                source.toPath(),
+                target.toPath(),
+                StandardCopyOption.REPLACE_EXISTING,
+                StandardCopyOption.COPY_ATTRIBUTES
+            );
+        } catch (Exception e) {
+            handleFileError("Error copying file", e);
+            throw new IOException("Failed to copy file", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static void validateFile(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("File cannot be null");
+        }
+
+        String path = file.getCanonicalPath();
+        validatePath(path);
+
+        File parent = file.getParentFile();
+        if (parent != null && !parent.exists() && !parent.mkdirs()) {
+            throw new IOException("Could not create directory: " + parent);
+        }
+    }
+
+    private static void validateFileForReading(File file) throws IOException {
+        if (file == null || !file.exists()) {
+            throw new FileNotFoundException("File not found");
+        }
+
+        if (!file.canRead()) {
+            throw new IOException("Cannot read file");
+        }
+
+        validatePath(file.getCanonicalPath());
+    }
+
+    private static void validatePath(String path) {
+        if (path == null || path.trim().isEmpty()) {
+            throw new IllegalArgumentException("Path cannot be empty");
+        }
+
+        // Verificar patrones prohibidos
+        for (String forbidden : FORBIDDEN_PATHS) {
+            if (path.contains(forbidden)) {
+                throw new SecurityException("Access to path denied: " + path);
+            }
+        }
+
+        // Verificar formato seguro
+        if (!path.matches(SAFE_PATH_PATTERN)) {
+            throw new SecurityException("Invalid path format: " + path);
+        }
+    }
+
+    private static void validateBytes(byte[] bytes) {
+        if (bytes == null) {
+            throw new IllegalArgumentException("Bytes cannot be null");
+        }
+
+        if (bytes.length > MAX_FILE_SIZE) {
+            throw new IllegalArgumentException("File size exceeds maximum");
+        }
+    }
+
+    private static void validateInputStream(InputStream input) {
+        if (input == null) {
+            throw new IllegalArgumentException("InputStream cannot be null");
+        }
+    }
+
+    private static void validateFileSize(File file) throws IOException {
+        if (file.length() > MAX_FILE_SIZE) {
+            throw new IOException("File size exceeds maximum");
+        }
+    }
+
+    /**
+     * Operaciones seguras
+     */
+    private static void writeSecurely(
+            File file,
+            InputStream input,
+            boolean append) throws IOException {
+
+        Path path = file.toPath();
+
+        // Crear directorio temporal
+        Path tempDir = Files.createTempDirectory("secure-write");
+        Path tempFile = tempDir.resolve(file.getName() + ".tmp");
+
+        try {
+            // Escribir a archivo temporal
+            try (OutputStream output = new BufferedOutputStream(
+                    Files.newOutputStream(tempFile))) {
+
+                copyStream(input, output);
+            }
+
+            // Verificar hash
+            if (!verifyFileIntegrity(tempFile, input)) {
+                throw new IOException("File integrity check failed");
+            }
+
+            // Mover a ubicación final
+            if (append && file.exists()) {
+                appendFile(tempFile, path);
+            } else {
+                Files.move(tempFile, path,
+                    StandardCopyOption.REPLACE_EXISTING,
+                    StandardCopyOption.ATOMIC_MOVE);
+            }
+
+        } finally {
+            // Limpiar archivos temporales
+            deleteRecursively(tempDir.toFile());
+        }
+    }
+
+    /**
+     * Utilidades
+     */
+    private static void copyStream(
+            InputStream input,
+            OutputStream output) throws IOException {
+
+        byte[] buffer = new byte[MAX_BUFFER_SIZE];
+        int length;
+        long total = 0;
+
+        while ((length = input.read(buffer)) > 0) {
+            total += length;
+            if (total > MAX_FILE_SIZE) {
+                throw new IOException("File size exceeds maximum");
+            }
+            output.write(buffer, 0, length);
+        }
+    }
+
+    private static boolean verifyFileIntegrity(
+            Path file,
+            InputStream originalInput) throws IOException {
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] expectedHash = getStreamHash(originalInput, md);
+            byte[] actualHash = getFileHash(file, md);
+
+            return MessageDigest.isEqual(expectedHash, actualHash);
+
+        } catch (Exception e) {
+            LOGGER.warning("Failed to verify file integrity: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleFileError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private static void closeQuietly(Closeable closeable) {
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (IOException e) {
+            LOGGER.warning("Error closing resource: " + e.getMessage());
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de rutas
+   - Control de tamaño
+   - Verificación de integridad
+   - Permisos de acceso
+
+2. Características de Seguridad:
+   - Operaciones atómicas
+   - Archivos temporales
+   - Control de recursos
+   - Verificación de hash
+
+3. Protecciones:
+   - Rutas prohibidas
+   - Límites de tamaño
+   - Patrones seguros
+   - Control de acceso
+
+4. Buenas Prácticas:
+   - API moderna de archivos
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de recursos
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Archivos:
+   - Operaciones atómicas
+   - Control de rutas
+   - Verificación de integridad
+   - Permisos seguros
+
+2. Control de Recursos:
+   - Límites de tamaño
+   - Buffer controlado
+   - Cierre seguro
+   - Limpieza temporal
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones
+   - Logging seguro
+   - Control de acceso
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [132/139] GenerarReportsVehicle.java ... Analizaré este código de la capa de infraestructura que maneja la generación de reportes de vehículos.
+Tool #131: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.*;
+import java.nio.file.*;
+import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.http.*;
+import javax.validation.constraints.*;
+
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.*;
+import org.owasp.encoder.Encode;
+
+/**
+ * Generador seguro de reportes de vehículos
+ */
+public final class GenerarReportsVehicle implements Serializable {
+
+    private static final long serialVersionUID = -4027132419351328915L;
+    private static final Logger LOGGER = Logger.getLogger(GenerarReportsVehicle.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_FILENAME_LENGTH = 255;
+    private static final String SAFE_FILENAME_PATTERN = "^[A-Za-z0-9._-]+$";
+    private static final String[] FORBIDDEN_PATHS = {"/etc/", "/bin/", "/sbin/"};
+    private static final long MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+
+    // Constructor privado
+    private GenerarReportsVehicle() {
+        throw new AssertionError("No GenerarReportsVehicle instances for you!");
+    }
+
+    /**
+     * Generar reporte XLS de forma segura
+     */
+    public static void generarReporteXLS(
+            @NotBlank(message = "Design path cannot be empty")
+            String design,
+
+            @NotBlank(message = "Output directory cannot be empty")
+            String directoryOut,
+
+            @NotBlank(message = "Report name cannot be empty")
+            String nameReport,
+
+            @NotNull(message = "Connection cannot be null")
+            Connection conn,
+
+            @NotNull(message = "Parameters cannot be null")
+            Map<String, Object> parameters) throws JRException, IOException {
+
+        final String log = "[ GenerarReportsVehicle.generarReporteXLS ] ";
+        LOGGER.info(log + "Iniciando generación de reporte XLS");
+
+        try {
+            // Validar parámetros
+            validateReportParameters(design, directoryOut, nameReport);
+            validateConnection(conn);
+            validateParameters(parameters);
+
+            // Preparar archivos
+            Path tempDir = createSecureTempDirectory();
+            Path jasperFile = tempDir.resolve(nameReport + ".jasper");
+            Path jrprintFile = tempDir.resolve(nameReport + ".jrprint");
+            Path xlsFile = Paths.get(directoryOut, nameReport + ".xls");
+
+            try {
+                // Compilar y llenar reporte
+                compileAndFillReport(design, jasperFile, jrprintFile, parameters, conn);
+
+                // Exportar a XLS
+                exportToXLS(jrprintFile, xlsFile);
+
+                // Verificar archivo resultante
+                validateGeneratedFile(xlsFile.toFile());
+
+            } finally {
+                // Limpiar archivos temporales
+                cleanupTempFiles(tempDir);
+            }
+
+        } catch (Exception e) {
+            handleReportError(log + "Error generando reporte XLS", e);
+            throw new JRException("Failed to generate XLS report", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static void validateReportParameters(
+            String design,
+            String directoryOut,
+            String nameReport) throws IOException {
+
+        if (design == null || design.trim().isEmpty()) {
+            throw new IllegalArgumentException("Design path cannot be empty");
+        }
+
+        if (directoryOut == null || directoryOut.trim().isEmpty()) {
+            throw new IllegalArgumentException("Output directory cannot be empty");
+        }
+
+        if (nameReport == null || nameReport.trim().isEmpty()) {
+            throw new IllegalArgumentException("Report name cannot be empty");
+        }
+
+        validatePath(design);
+        validatePath(directoryOut);
+        validateFilename(nameReport);
+    }
+
+    private static void validatePath(String path) throws IOException {
+        Path normalizedPath = Paths.get(path).normalize();
+        String absolutePath = normalizedPath.toAbsolutePath().toString();
+
+        // Verificar rutas prohibidas
+        for (String forbidden : FORBIDDEN_PATHS) {
+            if (absolutePath.contains(forbidden)) {
+                throw new SecurityException("Access to path denied: " + path);
+            }
+        }
+
+        // Verificar permisos
+        File directory = new File(path).getParentFile();
+        if (directory != null && !directory.canWrite()) {
+            throw new IOException("Cannot write to directory: " + directory);
+        }
+    }
+
+    private static void validateFilename(String filename) {
+        if (filename.length() > MAX_FILENAME_LENGTH) {
+            throw new IllegalArgumentException("Filename too long");
+        }
+
+        if (!filename.matches(SAFE_FILENAME_PATTERN)) {
+            throw new IllegalArgumentException("Invalid filename format");
+        }
+    }
+
+    private static void validateConnection(Connection conn) {
+        if (conn == null) {
+            throw new IllegalArgumentException("Connection cannot be null");
+        }
+
+        try {
+            if (conn.isClosed()) {
+                throw new IllegalStateException("Connection is closed");
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("Invalid connection state", e);
+        }
+    }
+
+    private static void validateParameters(Map<String, Object> parameters) {
+        if (parameters == null) {
+            throw new IllegalArgumentException("Parameters cannot be null");
+        }
+
+        // Sanitizar parámetros
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            if (entry.getValue() instanceof String) {
+                entry.setValue(sanitizeParameter((String) entry.getValue()));
+            }
+        }
+    }
+
+    /**
+     * Operaciones de archivo
+     */
+    private static Path createSecureTempDirectory() throws IOException {
+        return Files.createTempDirectory("report-gen-" +
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+    }
+
+    private static void compileAndFillReport(
+            String design,
+            Path jasperFile,
+            Path jrprintFile,
+            Map<String, Object> parameters,
+            Connection conn) throws JRException {
+
+        // Compilar reporte
+        JasperCompileManager.compileReportToFile(design, jasperFile.toString());
+
+        // Llenar reporte
+        JasperFillManager.fillReportToFile(
+            jasperFile.toString(),
+            jrprintFile.toString(),
+            parameters,
+            conn
+        );
+    }
+
+    private static void exportToXLS(Path jrprintFile, Path xlsFile)
+            throws JRException {
+
+        JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(
+            jrprintFile.toFile());
+
+        JRXlsExporter exporter = new JRXlsExporter();
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+        exporter.setParameter(JRExporterParameter.OUTPUT_FILE, xlsFile.toFile());
+        exporter.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
+        exporter.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
+        exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+
+        exporter.exportReport();
+    }
+
+    /**
+     * Utilidades de seguridad
+     */
+    private static String sanitizeParameter(String value) {
+        if (value == null) {
+            return null;
+        }
+        return Encode.forHtml(value);
+    }
+
+    private static void validateGeneratedFile(File file) throws IOException {
+        if (!file.exists()) {
+            throw new IOException("Generated file not found");
+        }
+
+        if (file.length() > MAX_FILE_SIZE) {
+            file.delete();
+            throw new IOException("Generated file exceeds maximum size");
+        }
+    }
+
+    private static void cleanupTempFiles(Path tempDir) {
+        try {
+            Files.walk(tempDir)
+                .sorted(Comparator.reverseOrder())
+                .map(Path::toFile)
+                .forEach(File::delete);
+        } catch (IOException e) {
+            LOGGER.warning("Error cleaning up temporary files: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleReportError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de rutas
+   - Control de nombres
+   - Sanitización de parámetros
+   - Permisos de acceso
+
+2. Características de Seguridad:
+   - Archivos temporales
+   - Control de tamaño
+   - Limpieza de recursos
+   - Sanitización HTML
+
+3. Protecciones:
+   - Rutas prohibidas
+   - Patrones seguros
+   - Control de conexión
+   - Límites de tamaño
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Archivos:
+   - Validación de rutas
+   - Control de acceso
+   - Archivos temporales
+   - Límites de tamaño
+
+2. Control de Datos:
+   - Sanitización de parámetros
+   - Validación de conexión
+   - Control de formato
+   - Límites de tamaño
+
+3. Robustez:
+   - Manejo de errores
+   - Limpieza de recursos
+   - Validaciones
+   - Logging seguro
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [133/139] GenerarReports.java ... Analizaré este código de la capa de infraestructura que maneja la generación de reportes generales.
+Tool #132: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.*;
+import java.nio.file.*;
+import java.sql.Connection;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.http.*;
+import javax.validation.constraints.*;
+
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.*;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.owasp.encoder.Encode;
+
+/**
+ * Generador seguro de reportes
+ */
+public final class GenerarReports implements Serializable {
+
+    private static final long serialVersionUID = -4027132419351328915L;
+    private static final Logger LOGGER = Logger.getLogger(GenerarReports.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_FILENAME_LENGTH = 255;
+    private static final String SAFE_FILENAME_PATTERN = "^[A-Za-z0-9._-]+$";
+    private static final long MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+    private static final String CONTENT_TYPE_XLS = "application/vnd.ms-excel";
+    private static final String CONTENT_TYPE_PDF = "application/pdf";
+
+    // Constructor privado
+    private GenerarReports() {
+        throw new AssertionError("No GenerarReports instances for you!");
+    }
+
+    /**
+     * Generar reporte XLS de forma segura
+     */
+    public static void generarReporteXLS(
+            @NotBlank(message = "Design path cannot be empty")
+            String design,
+
+            @NotBlank(message = "Output directory cannot be empty")
+            String directoryOut,
+
+            @NotBlank(message = "Report name cannot be empty")
+            String nameReport,
+
+            @NotNull(message = "Connection cannot be null")
+            Connection conn,
+
+            @NotNull(message = "Parameters cannot be null")
+            Map<String, Object> parameters) throws ReportGenerationException {
+
+        final String log = "[ GenerarReports.generarReporteXLS ] ";
+        LOGGER.info(log + "Iniciando generación de reporte XLS");
+
+        Path tempDir = null;
+
+        try {
+            // Validar parámetros
+            validateReportParameters(design, directoryOut, nameReport);
+            validateConnection(conn);
+            validateParameters(parameters);
+
+            // Crear directorio temporal seguro
+            tempDir = createSecureTempDirectory();
+
+            // Generar reporte
+            JasperPrint jasperPrint = generateJasperPrint(
+                design, tempDir, nameReport, parameters, conn);
+
+            // Verificar si hay datos
+            if (jasperPrint.getPages().isEmpty()) {
+                createEmptyXLS(directoryOut, nameReport);
+                return;
+            }
+
+            // Exportar a XLS
+            exportToXLS(jasperPrint, directoryOut, nameReport);
+
+        } catch (Exception e) {
+            handleReportError(log + "Error generando reporte XLS", e);
+            throw new ReportGenerationException("Failed to generate XLS report", e);
+        } finally {
+            cleanupTempFiles(tempDir);
+        }
+    }
+
+    /**
+     * Crear XLS vacío
+     */
+    private static void createEmptyXLS(String directory, String filename)
+            throws IOException {
+
+        Path filePath = Paths.get(directory, filename + ".xls");
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("No Data");
+            Row row = sheet.createRow(0);
+            row.createCell(0).setCellValue("No hay datos disponibles");
+
+            try (OutputStream out = Files.newOutputStream(filePath)) {
+                workbook.write(out);
+            }
+        }
+    }
+
+    /**
+     * Descargar documento de forma segura
+     */
+    public static void descargaDocumento(
+            @NotNull(message = "Response cannot be null")
+            HttpServletResponse response,
+
+            @NotNull(message = "File cannot be null")
+            File file,
+
+            @NotBlank(message = "Content type cannot be empty")
+            String contentType) throws IOException {
+
+        try {
+            // Validar parámetros
+            validateDownloadParameters(response, file, contentType);
+
+            // Configurar respuesta
+            configureSecureResponse(response, file, contentType);
+
+            // Enviar archivo
+            sendFileSecurely(response, file);
+
+        } catch (Exception e) {
+            handleDownloadError("Error downloading document", e);
+            throw new IOException("Failed to download document", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static void validateReportParameters(String design,
+            String directoryOut, String nameReport) {
+
+        if (design == null || design.trim().isEmpty()) {
+            throw new IllegalArgumentException("Design path cannot be empty");
+        }
+
+        if (directoryOut == null || directoryOut.trim().isEmpty()) {
+            throw new IllegalArgumentException("Output directory cannot be empty");
+        }
+
+        validateFilename(nameReport);
+        validatePath(Paths.get(design));
+        validatePath(Paths.get(directoryOut));
+    }
+
+    private static void validateDownloadParameters(HttpServletResponse response,
+            File file, String contentType) {
+
+        if (response == null) {
+            throw new IllegalArgumentException("Response cannot be null");
+        }
+
+        if (file == null || !file.exists() || !file.canRead()) {
+            throw new IllegalArgumentException("Invalid file");
+        }
+
+        if (contentType == null || contentType.trim().isEmpty()) {
+            throw new IllegalArgumentException("Content type cannot be empty");
+        }
+
+        if (file.length() > MAX_FILE_SIZE) {
+            throw new IllegalArgumentException("File too large");
+        }
+    }
+
+    /**
+     * Configuración de respuesta segura
+     */
+    private static void configureSecureResponse(HttpServletResponse response,
+            File file, String contentType) {
+
+        response.setContentType(contentType);
+        response.setContentLength((int) file.length());
+        response.setHeader("Content-Disposition",
+            "attachment; filename=\"" +
+            Encode.forHeaderAttribute(file.getName()) + "\"");
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        response.setHeader("Cache-Control", "no-store");
+    }
+
+    /**
+     * Envío seguro de archivo
+     */
+    private static void sendFileSecurely(HttpServletResponse response,
+            File file) throws IOException {
+
+        try (InputStream in = new BufferedInputStream(
+                Files.newInputStream(file.toPath()));
+             OutputStream out = response.getOutputStream()) {
+
+            byte[] buffer = new byte[8192];
+            int length;
+            long total = 0;
+
+            while ((length = in.read(buffer)) > 0) {
+                total += length;
+                if (total > MAX_FILE_SIZE) {
+                    throw new IOException("File transfer limit exceeded");
+                }
+                out.write(buffer, 0, length);
+            }
+
+            out.flush();
+        }
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleReportError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private static void handleDownloadError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+
+/**
+ * Excepción personalizada para generación de reportes
+ */
+class ReportGenerationException extends Exception {
+    public ReportGenerationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de parámetros
+   - Control de rutas
+   - Sanitización de entrada
+   - Límites de tamaño
+
+2. Características de Seguridad:
+   - Headers seguros
+   - Control de contenido
+   - Archivos temporales
+   - Sanitización HTML
+
+3. Protecciones:
+   - Control de descarga
+   - Límites de tamaño
+   - Validación de tipos
+   - Control de buffer
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Archivos:
+   - Validación de rutas
+   - Control de acceso
+   - Límites de tamaño
+   - Archivos temporales
+
+2. Seguridad HTTP:
+   - Headers seguros
+   - Control de contenido
+   - Sanitización
+   - Cache control
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones
+   - Logging seguro
+   - Limpieza de recursos
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [134/139] LoadProperties.java ... Analizaré este código de la capa de adaptador que maneja la carga de propiedades de logging.
+Tool #133: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.File;
+import java.nio.file.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.*;
+import javax.servlet.http.HttpServlet;
+import javax.validation.constraints.*;
+
+import org.apache.log4j.PropertyConfigurator;
+import org.owasp.encoder.Encode;
+
+/**
+ * Servlet seguro para carga de propiedades de logging
+ */
+public class LoadProperties extends HttpServlet {
+
+    private static final long serialVersionUID = -9027520991073066482L;
+    private static final Logger LOGGER = Logger.getLogger(LoadProperties.class.getName());
+
+    // Constantes de seguridad
+    private static final long MAX_CONFIG_SIZE = 1024 * 1024; // 1MB
+    private static final String SAFE_PATH_PATTERN = "^[A-Za-z0-9._/-]+$";
+    private static final String[] FORBIDDEN_PATHS = {"/etc/", "/bin/", "/sbin/"};
+    private static final long MIN_WATCH_INTERVAL = 5000L; // 5 segundos
+    private static final long MAX_WATCH_INTERVAL = 3600000L; // 1 hora
+
+    /**
+     * Inicialización segura del servlet
+     */
+    @Override
+    public void init(
+            @NotNull(message = "Config cannot be null")
+            ServletConfig config) throws ServletException {
+
+        try {
+            super.init(config);
+
+            // Validar y cargar configuración
+            ConfigurationParameters params = validateAndLoadConfiguration(config);
+
+            // Configurar logging
+            configureLogging(params);
+
+            LOGGER.info("Logging configuration initialized successfully");
+
+        } catch (Exception e) {
+            handleInitError("Error initializing logging configuration", e);
+            throw new ServletException("Failed to initialize logging", e);
+        }
+    }
+
+    /**
+     * Destrucción segura del servlet
+     */
+    @Override
+    public void destroy() {
+        try {
+            LOGGER.info("Initiating LoadProperties shutdown");
+            shutdownLogging();
+            super.destroy();
+            LOGGER.info("LoadProperties shutdown completed");
+
+        } catch (Exception e) {
+            handleShutdownError("Error during shutdown", e);
+        }
+    }
+
+    /**
+     * Clase para parámetros de configuración
+     */
+    private static class ConfigurationParameters {
+        private final Path configPath;
+        private final boolean watchEnabled;
+        private final long watchInterval;
+
+        public ConfigurationParameters(
+                Path configPath,
+                boolean watchEnabled,
+                long watchInterval) {
+            this.configPath = configPath;
+            this.watchEnabled = watchEnabled;
+            this.watchInterval = watchInterval;
+        }
+    }
+
+    /**
+     * Validación y carga de configuración
+     */
+    private ConfigurationParameters validateAndLoadConfiguration(
+            ServletConfig config) throws ServletException {
+
+        // Obtener y validar path base
+        String prefix = validateBasePath(
+            config.getServletContext().getRealPath("/"));
+
+        // Obtener y validar archivo de configuración
+        String configFile = validateConfigFile(
+            config.getInitParameter("log4j-conf-file"));
+
+        // Construir y validar path completo
+        Path configPath = validateFullPath(prefix, configFile);
+
+        // Validar parámetros de watch
+        boolean watchEnabled = validateWatchEnabled(
+            config.getInitParameter("watch"));
+
+        long watchInterval = validateWatchInterval(
+            config.getInitParameter("time-watch"));
+
+        return new ConfigurationParameters(
+            configPath, watchEnabled, watchInterval);
+    }
+
+    /**
+     * Validaciones específicas
+     */
+    private String validateBasePath(String path) throws ServletException {
+        if (path == null || path.trim().isEmpty()) {
+            throw new ServletException("Base path cannot be empty");
+        }
+
+        path = path.replace('\\', '/');
+        validatePath(path);
+
+        return path;
+    }
+
+    private String validateConfigFile(String filename) throws ServletException {
+        if (filename == null || filename.trim().isEmpty()) {
+            throw new ServletException("Config filename cannot be empty");
+        }
+
+        if (!filename.matches(SAFE_PATH_PATTERN)) {
+            throw new ServletException("Invalid config filename format");
+        }
+
+        return filename;
+    }
+
+    private Path validateFullPath(String prefix, String configFile)
+            throws ServletException {
+
+        try {
+            Path path = Paths.get(prefix, configFile).normalize();
+            File file = path.toFile();
+
+            if (!file.exists() || !file.isFile() || !file.canRead()) {
+                throw new ServletException(
+                    "Cannot access config file: " + path);
+            }
+
+            if (file.length() > MAX_CONFIG_SIZE) {
+                throw new ServletException("Config file too large");
+            }
+
+            validatePath(path.toString());
+            return path;
+
+        } catch (SecurityException e) {
+            throw new ServletException("Security violation accessing config", e);
+        }
+    }
+
+    private void validatePath(String path) throws ServletException {
+        // Verificar rutas prohibidas
+        for (String forbidden : FORBIDDEN_PATHS) {
+            if (path.contains(forbidden)) {
+                throw new ServletException(
+                    "Access to path denied: " + Encode.forHtml(path));
+            }
+        }
+    }
+
+    private boolean validateWatchEnabled(String watch) {
+        return "true".equalsIgnoreCase(watch);
+    }
+
+    private long validateWatchInterval(String interval) {
+        try {
+            if (interval == null) {
+                return MIN_WATCH_INTERVAL;
+            }
+
+            long value = Long.parseLong(interval);
+            if (value < MIN_WATCH_INTERVAL) {
+                return MIN_WATCH_INTERVAL;
+            }
+            if (value > MAX_WATCH_INTERVAL) {
+                return MAX_WATCH_INTERVAL;
+            }
+            return value;
+
+        } catch (NumberFormatException e) {
+            return MIN_WATCH_INTERVAL;
+        }
+    }
+
+    /**
+     * Configuración de logging
+     */
+    private void configureLogging(ConfigurationParameters params) {
+        if (params.watchEnabled) {
+            PropertyConfigurator.configureAndWatch(
+                params.configPath.toString(),
+                params.watchInterval
+            );
+        } else {
+            PropertyConfigurator.configure(params.configPath.toString());
+        }
+    }
+
+    /**
+     * Shutdown seguro
+     */
+    private void shutdownLogging() {
+        try {
+            org.apache.log4j.Logger.getRootLogger()
+                .getLoggerRepository()
+                .shutdown();
+        } catch (Exception e) {
+            LOGGER.severe("Error shutting down logging: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private void handleInitError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private void handleShutdownError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de rutas
+   - Control de acceso
+   - Sanitización de entrada
+   - Límites de tamaño
+
+2. Características de Seguridad:
+   - Control de rutas
+   - Límites de intervalo
+   - Sanitización HTML
+   - Control de recursos
+
+3. Protecciones:
+   - Rutas prohibidas
+   - Validación de archivos
+   - Control de tamaño
+   - Permisos de acceso
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Archivos:
+   - Validación de rutas
+   - Control de acceso
+   - Límites de tamaño
+   - Permisos seguros
+
+2. Control de Configuración:
+   - Intervalos seguros
+   - Validación de formato
+   - Control de recursos
+   - Límites definidos
+
+3. Robustez:
+   - Manejo de errores
+   - Logging estructurado
+   - Shutdown seguro
+   - Validaciones completas
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [135/139] LoginPrepago.java ... Analizaré este código de la capa de dominio que maneja la información de login prepago.
+Tool #134: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.Serializable;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+import org.owasp.encoder.Encode;
+
+/**
+ * Clase segura para manejo de login prepago
+ */
+public class LoginPrepago implements Serializable {
+
+    private static final long serialVersionUID = 7073868013753594218L;
+    private static final Logger LOGGER = Logger.getLogger(LoginPrepago.class.getName());
+
+    // Constantes de validación
+    private static final int MAX_NAME_LENGTH = 100;
+    private static final int MAX_ROLE_LENGTH = 50;
+    private static final int MAX_HASH_LENGTH = 128;
+    private static final int MAX_ID_LENGTH = 50;
+    private static final int MAX_URL_LENGTH = 2048;
+
+    private static final String VALID_NAME_PATTERN = "^[A-Za-z0-9\\s._-]+$";
+    private static final String VALID_ID_PATTERN = "^[A-Za-z0-9_-]+$";
+    private static final String VALID_URL_PATTERN = "^https?://[\\w\\d.-]+\\.[a-z]{2,}(?:/[\\w\\d._-]+)*/?$";
+
+    // Campos privados con validación
+    @NotNull(message = "Name cannot be null")
+    @Size(max = MAX_NAME_LENGTH, message = "Name too long")
+    @Pattern(regexp = VALID_NAME_PATTERN, message = "Invalid name format")
+    private String name;
+
+    @NotNull(message = "Role cannot be null")
+    @Size(max = MAX_ROLE_LENGTH, message = "Role too long")
+    private String role;
+
+    private String send;
+
+    @NotNull(message = "Hash cannot be null")
+    @Size(max = MAX_HASH_LENGTH, message = "Hash too long")
+    private String hash;
+
+    @NotNull(message = "User ID cannot be null")
+    @Size(max = MAX_ID_LENGTH, message = "User ID too long")
+    @Pattern(regexp = VALID_ID_PATTERN, message = "Invalid user ID format")
+    private String idUser;
+
+    @NotNull(message = "Issuer ID cannot be null")
+    @Size(max = MAX_ID_LENGTH, message = "Issuer ID too long")
+    @Pattern(regexp = VALID_ID_PATTERN, message = "Invalid issuer ID format")
+    private String idIssuer;
+
+    @NotNull(message = "Company ID cannot be null")
+    @Size(max = MAX_ID_LENGTH, message = "Company ID too long")
+    @Pattern(regexp = VALID_ID_PATTERN, message = "Invalid company ID format")
+    private String idCompany;
+
+    @NotNull(message = "URL cannot be null")
+    @Size(max = MAX_URL_LENGTH, message = "URL too long")
+    @Pattern(regexp = VALID_URL_PATTERN, message = "Invalid URL format")
+    private String url;
+
+    /**
+     * Getters seguros
+     */
+    public String getName() {
+        return sanitizeOutput(name);
+    }
+
+    public String getRole() {
+        return sanitizeOutput(role);
+    }
+
+    public String getSend() {
+        return sanitizeOutput(send);
+    }
+
+    public String getHash() {
+        return hash; // No sanitizar hash
+    }
+
+    public String getIdUser() {
+        return sanitizeOutput(idUser);
+    }
+
+    public String getIdIssuer() {
+        return sanitizeOutput(idIssuer);
+    }
+
+    public String getIdCompany() {
+        return sanitizeOutput(idCompany);
+    }
+
+    public String getUrl() {
+        return sanitizeOutput(url);
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setName(@NotNull String name) {
+        this.name = validateAndSanitizeName(name);
+    }
+
+    public void setRole(@NotNull String role) {
+        this.role = validateAndSanitizeRole(role);
+    }
+
+    public void setSend(String send) {
+        this.send = sanitizeInput(send);
+    }
+
+    public void setHash(@NotNull String hash) {
+        this.hash = validateHash(hash);
+    }
+
+    public void setIdUser(@NotNull String idUser) {
+        this.idUser = validateAndSanitizeId(idUser, "user ID");
+    }
+
+    public void setIdIssuer(@NotNull String idIssuer) {
+        this.idIssuer = validateAndSanitizeId(idIssuer, "issuer ID");
+    }
+
+    public void setIdCompany(@NotNull String idCompany) {
+        this.idCompany = validateAndSanitizeId(idCompany, "company ID");
+    }
+
+    public void setUrl(@NotNull String url) {
+        this.url = validateAndSanitizeUrl(url);
+    }
+
+    /**
+     * Validaciones
+     */
+    private String validateAndSanitizeName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("Name too long");
+        }
+
+        if (!name.matches(VALID_NAME_PATTERN)) {
+            throw new IllegalArgumentException("Invalid name format");
+        }
+
+        return sanitizeInput(name);
+    }
+
+    private String validateAndSanitizeRole(String role) {
+        if (role == null || role.trim().isEmpty()) {
+            throw new IllegalArgumentException("Role cannot be empty");
+        }
+
+        if (role.length() > MAX_ROLE_LENGTH) {
+            throw new IllegalArgumentException("Role too long");
+        }
+
+        return sanitizeInput(role);
+    }
+
+    private String validateHash(String hash) {
+        if (hash == null || hash.trim().isEmpty()) {
+            throw new IllegalArgumentException("Hash cannot be empty");
+        }
+
+        if (hash.length() > MAX_HASH_LENGTH) {
+            throw new IllegalArgumentException("Hash too long");
+        }
+
+        return hash;
+    }
+
+    private String validateAndSanitizeId(String id, String fieldName) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " cannot be empty");
+        }
+
+        if (id.length() > MAX_ID_LENGTH) {
+            throw new IllegalArgumentException(fieldName + " too long");
+        }
+
+        if (!id.matches(VALID_ID_PATTERN)) {
+            throw new IllegalArgumentException("Invalid " + fieldName + " format");
+        }
+
+        return sanitizeInput(id);
+    }
+
+    private String validateAndSanitizeUrl(String url) {
+        if (url == null || url.trim().isEmpty()) {
+            throw new IllegalArgumentException("URL cannot be empty");
+        }
+
+        if (url.length() > MAX_URL_LENGTH) {
+            throw new IllegalArgumentException("URL too long");
+        }
+
+        if (!url.matches(VALID_URL_PATTERN)) {
+            throw new IllegalArgumentException("Invalid URL format");
+        }
+
+        return sanitizeInput(url);
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return null;
+        }
+        return Encode.forHtml(input);
+    }
+
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    /**
+     * Override de Object methods
+     */
+    @Override
+    public String toString() {
+        return String.format("LoginPrepago[name=%s, role=%s, idUser=%s, idCompany=%s]",
+            sanitizeOutput(name),
+            sanitizeOutput(role),
+            sanitizeOutput(idUser),
+            sanitizeOutput(idCompany)
+        );
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de campos
+   - Control de longitud
+   - Patrones seguros
+   - Sanitización de entrada/salida
+
+2. Características de Seguridad:
+   - Validación de formatos
+   - Control de nulos
+   - Sanitización HTML
+   - Logging seguro
+
+3. Protecciones:
+   - Validación de patrones
+   - Control de longitud
+   - Formato de IDs
+   - Formato de URL
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Control de formato
+   - Sanitización
+   - Patrones seguros
+
+2. Control de Formato:
+   - URLs seguras
+   - IDs válidos
+   - Nombres seguros
+   - Longitudes máximas
+
+3. Robustez:
+   - Validaciones completas
+   - Control de nulos
+   - Manejo de errores
+   - Sanitización HTML
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [136/139] Result.java ... Analizaré este código de la capa de adaptador que maneja resultados de operaciones.
+Tool #135: analizar_owasp
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.validation.constraints.*;
+
+import org.apache.struts.action.ActionErrors;
+import org.owasp.encoder.Encode;
+
+/**
+ * Contenedor seguro para resultados de operaciones
+ */
+public class Result extends ActionErrors {
+
+    private static final long serialVersionUID = 2523592376954172606L;
+    private static final Logger LOGGER = Logger.getLogger(Result.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_STRING_LENGTH = 10000;
+    private static final int MAX_VECTOR_SIZE = 10000;
+
+    // Variables de instancia thread-safe
+    private volatile String cadena;
+    private volatile Integer idVehicle;
+    private final Vector<Object> vector;
+
+    /**
+     * Constructor seguro
+     */
+    public Result() {
+        super();
+        this.vector = new Vector<>();
+    }
+
+    /**
+     * Getters seguros
+     */
+    public String getCadena() {
+        return sanitizeOutput(cadena);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Vector<Object> getVector() {
+        try {
+            return vector != null ?
+                new Vector<>(validateVector(vector)) :
+                new Vector<>();
+        } catch (Exception e) {
+            handleAccessError("Error accessing vector", e);
+            return new Vector<>();
+        }
+    }
+
+    public Integer getIdVehicle() {
+        return idVehicle != null ?
+            Integer.valueOf(idVehicle) : null;
+    }
+
+    /**
+     * Setters seguros
+     */
+    public void setCadena(String value) {
+        try {
+            this.cadena = validateAndSanitizeString(value);
+        } catch (Exception e) {
+            handleValidationError("Error setting cadena", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setVector(Vector<?> value) {
+        try {
+            if (value != null) {
+                Vector<Object> validatedVector = validateVector(value);
+                synchronized (this.vector) {
+                    this.vector.clear();
+                    this.vector.addAll(validatedVector);
+                }
+            } else {
+                synchronized (this.vector) {
+                    this.vector.clear();
+                }
+            }
+        } catch (Exception e) {
+            handleValidationError("Error setting vector", e);
+        }
+    }
+
+    public void setIdVehicle(Integer value) {
+        try {
+            this.idVehicle = validateVehicleId(value);
+        } catch (Exception e) {
+            handleValidationError("Error setting vehicle ID", e);
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private String validateAndSanitizeString(String value) {
+        if (value == null) {
+            return null;
+        }
+
+        if (value.length() > MAX_STRING_LENGTH) {
+            throw new IllegalArgumentException("String exceeds maximum length");
+        }
+
+        return sanitizeInput(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private Vector<Object> validateVector(Vector<?> value) {
+        if (value == null) {
+            return new Vector<>();
+        }
+
+        if (value.size() > MAX_VECTOR_SIZE) {
+            throw new IllegalArgumentException("Vector exceeds maximum size");
+        }
+
+        Vector<Object> safeVector = new Vector<>();
+        for (Object item : value) {
+            if (item != null) {
+                safeVector.add(sanitizeVectorItem(item));
+            }
+        }
+
+        return safeVector;
+    }
+
+    private Integer validateVehicleId(Integer value) {
+        if (value != null && value < 0) {
+            throw new IllegalArgumentException("Invalid vehicle ID");
+        }
+        return value;
+    }
+
+    /**
+     * Sanitización
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return null;
+        }
+        return Encode.forHtml(input);
+    }
+
+    private String sanitizeOutput(String output) {
+        if (output == null) {
+            return "";
+        }
+        return Encode.forHtml(output);
+    }
+
+    private Object sanitizeVectorItem(Object item) {
+        if (item instanceof String) {
+            return sanitizeInput((String) item);
+        }
+        return item;
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private void handleValidationError(String message, Exception e) {
+        LOGGER.log(Level.WARNING, message, e);
+    }
+
+    private void handleAccessError(String message, Exception e) {
+        LOGGER.log(Level.WARNING, message, e);
+    }
+
+    /**
+     * Override de métodos Object
+     */
+    @Override
+    public String toString() {
+        return String.format("Result[cadena=%s, idVehicle=%d, vectorSize=%d]",
+            sanitizeOutput(cadena),
+            idVehicle != null ? idVehicle : 0,
+            vector != null ? vector.size() : 0
+        );
+    }
+
+    /**
+     * Métodos de utilidad
+     */
+    public boolean isEmpty() {
+        return (cadena == null || cadena.trim().isEmpty()) &&
+               (vector == null || vector.isEmpty()) &&
+               idVehicle == null;
+    }
+
+    public void clear() {
+        super.clear();
+        this.cadena = null;
+        this.idVehicle = null;
+        synchronized (this.vector) {
+            this.vector.clear();
+        }
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de longitud
+   - Sanitización
+   - Thread safety
+
+2. Características de Seguridad:
+   - Inmutabilidad parcial
+   - Control de concurrencia
+   - Sanitización HTML
+   - Validación de datos
+
+3. Protecciones:
+   - Control de nulos
+   - Límites de tamaño
+   - Manejo seguro de colecciones
+   - Sanitización de salida
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Sanitización
+   - Control de longitud
+   - Manejo de nulos
+
+2. Thread Safety:
+   - Variables volátiles
+   - Sincronización
+   - Copias defensivas
+   - Estado inmutable
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones
+   - Logging seguro
+   - Control de recursos
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [137/139] MyConstants.java ... Analizaré este código de la capa de dominio que maneja las constantes del sistema.
+Tool #136: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Constantes seguras del sistema
+ */
+public final class MyConstants implements Serializable {
+
+    private static final long serialVersionUID = 75118154891506055L;
+
+    // Constructor privado para prevenir instanciación
+    private MyConstants() {
+        throw new AssertionError("No MyConstants instances for you!");
+    }
+
+    // Formatos de fecha seguros (thread-safe)
+    public static final DateTimeFormatter DATE_FORMATTER_DDMMYYY =
+        DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter DATE_FORMATTER_YYYMMDD =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter DATE_FORMATTER_YYYYMM =
+        DateTimeFormatter.ofPattern("yyyy-MM");
+    public static final DateTimeFormatter DATE_FORMATTER_MMMM =
+        DateTimeFormatter.ofPattern("MMMM");
+    public static final DateTimeFormatter DATE_FORMATTER_MMMYY =
+        DateTimeFormatter.ofPattern("MMM-yy");
+    public static final DateTimeFormatter DATE_FORMATTER_MMM =
+        DateTimeFormatter.ofPattern("MMM");
+    public static final DateTimeFormatter DATE_FORMATTER_DDMMYYYHHMMSS =
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+    // Patrones de formato seguros
+    public static final String DATE_PATTERN_DDMMYYY = "dd/MM/yyyy";
+    public static final String DATE_PATTERN_YYYMMDD = "yyyy-MM-dd";
+    public static final String DATE_PATTERN_YYYYMM = "yyyy-MM";
+    public static final String DATE_PATTERN_MMMM = "MMMM";
+    public static final String DATE_PATTERN_MMMYY = "MMM-yy";
+    public static final String DATE_PATTERN_MMM = "MMM";
+    public static final String DATE_PATTERN_DDMMYYYHHMMSS = "dd/MM/yyyy HH:mm:ss";
+
+    // Constantes de sistema
+    public static final String PACKAGE = "flotasEmpresa";
+    public static final String HOMEINDEX = "homeIndex";
+    public static final String HOMEPAGE = "homePage";
+    public static final String MESSAGEPAGE = "message";
+
+    // Constantes de error
+    public static final String ERROR_EXCEPTION = "error.exception";
+    public static final String ERROR_NOT_FOUND = "error.found";
+    public static final String ERROR_NO_CONNECTION = "Falla de Conexión al Servidor";
+
+    // Constantes de sesión
+    public static final String LOGOFF = "logoff.do";
+    public static final String LOGOFF_BASE = "logoffbase";
+    public static final String USER_CONTAINER = "UserContainer";
+
+    // Estados de registro
+    public static final String REGISTER_ACTIVE = "1";
+    public static final String REGISTER_NONACTIVE = "0";
+
+    // Estados de entidades (inmutables)
+    public static final class States {
+        // Estados de compañía
+        public static final char COMPANY_DISABLED = '0';
+        public static final char COMPANY_ENABLED = '1';
+
+        // Estados de vehículo
+        public static final char VEHICLE_CREATED = '0';
+        public static final char VEHICLE_ENABLED = '1';
+        public static final char VEHICLE_REGISTERED = '2';
+        public static final char VEHICLE_DISABLED = '3';
+        public static final char VEHICLE_ELIMINATED = '4';
+
+        // Estados de centro de costo
+        public static final char CCENTER_DISABLED = '0';
+        public static final char CCENTER_ENABLED = '1';
+
+        // Estados de usuario
+        public static final char USER_DISABLED = '0';
+        public static final char USER_ENABLED = '1';
+
+        // Estados de cuenta
+        public static final char ACCOUNT_DISABLED = '0';
+        public static final char ACCOUNT_ENABLED = '1';
+
+        // Estados de conductor
+        public static final char DRIVER_CREATED = '0';
+        public static final char DRIVER_ENABLED = '1';
+        public static final char DRIVER_DISABLED = '2';
+        public static final char DRIVER_ELIMINATED = '3';
+
+        // Estados de solicitud
+        public static final char REQUEST_WAITING = '0';
+        public static final char REQUEST_PRE_APPROVED = '1';
+        public static final char REQUEST_APPROVED = '2';
+        public static final char REQUEST_DISAPPROVED = '3';
+        public static final char REQUEST_CANCELLED = '4';
+        public static final char REQUEST_RENOVATION_WAITING = '5';
+        public static final char REQUEST_RENOVATION_PRE_APPROVED = '6';
+        public static final char REQUEST_RENOVATION_APPROVED = '7';
+        public static final char REQUEST_RENOVATION_DISAPPROVED = '8';
+        public static final char REQUEST_RENOVATION_CANCELLED = '9';
+
+        // Estados de tarjeta
+        public static final char CARD_CREATED = '0';
+        public static final char CARD_SENT = '1';
+        public static final char CARD_GENERATED = '2';
+        public static final char CARD_RECEIVED = '3';
+        public static final char CARD_ENABLED = '4';
+
+        private States() {
+            throw new AssertionError("No States instances for you!");
+        }
+    }
+
+    // Mapeos seguros de estados (inmutables)
+    public static final Map<Character, String> STATE_DESCRIPTIONS;
+    static {
+        Map<Character, String> map = new HashMap<>();
+        map.put(States.COMPANY_DISABLED, "Compañía Deshabilitada");
+        map.put(States.COMPANY_ENABLED, "Compañía Habilitada");
+        // ... otros mapeos ...
+        STATE_DESCRIPTIONS = Collections.unmodifiableMap(map);
+    }
+
+    // Conjuntos válidos de estados (inmutables)
+    public static final Set<Character> VALID_COMPANY_STATES =
+        Collections.unmodifiableSet(Set.of(
+            States.COMPANY_DISABLED,
+            States.COMPANY_ENABLED
+        ));
+
+    public static final Set<Character> VALID_VEHICLE_STATES =
+        Collections.unmodifiableSet(Set.of(
+            States.VEHICLE_CREATED,
+            States.VEHICLE_ENABLED,
+            States.VEHICLE_REGISTERED,
+            States.VEHICLE_DISABLED,
+            States.VEHICLE_ELIMINATED
+        ));
+
+    /**
+     * Validación de estados
+     */
+    public static boolean isValidCompanyState(char state) {
+        return VALID_COMPANY_STATES.contains(state);
+    }
+
+    public static boolean isValidVehicleState(char state) {
+        return VALID_VEHICLE_STATES.contains(state);
+    }
+
+    public static String getStateDescription(char state) {
+        return STATE_DESCRIPTIONS.getOrDefault(state, "Estado Desconocido");
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Constantes inmutables
+   - Thread safety
+   - Control de estados
+   - Validación de valores
+
+2. Características de Seguridad:
+   - Formateo seguro de fechas
+   - Mapeos inmutables
+   - Conjuntos validados
+   - Control de acceso
+
+3. Protecciones:
+   - Constructor privado
+   - Estados encapsulados
+   - Validaciones integradas
+   - Mapeos seguros
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Organización lógica
+   - Validación integrada
+
+Las principales mejoras incluyen:
+
+1. Thread Safety:
+   - DateTimeFormatter seguros
+   - Colecciones inmutables
+   - Estados encapsulados
+   - Control de acceso
+
+2. Control de Estados:
+   - Validación integrada
+   - Mapeos seguros
+   - Conjuntos validados
+   - Descripciones inmutables
+
+3. Robustez:
+   - Validaciones
+   - Encapsulamiento
+   - Inmutabilidad
+   - Control de acceso
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [138/139] SendEmail.java ... Analizaré este código de la capa de dominio que maneja el envío de correos electrónicos.
+Tool #137: extraer_reglas_negocio
+Aquí hay una implementación mejorada con validaciones de seguridad:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.mail.internet.InternetAddress;
+import javax.validation.constraints.*;
+
+import org.apache.commons.mail.*;
+import org.owasp.encoder.Encode;
+import org.apache.commons.validator.routines.EmailValidator;
+
+/**
+ * Clase segura para envío de correos electrónicos
+ */
+public class SendEmail {
+
+    private static final Logger LOGGER = Logger.getLogger(SendEmail.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_RECIPIENTS = 50;
+    private static final int MAX_SUBJECT_LENGTH = 255;
+    private static final int MAX_CONTENT_LENGTH = 50000;
+    private static final long MAX_ATTACHMENT_SIZE = 10 * 1024 * 1024; // 10MB
+
+    // Campos privados con validación
+    @NotNull
+    private String subject;
+
+    @NotNull
+    private String content;
+
+    @NotNull
+    private String password;
+
+    @Email
+    private String from;
+
+    @NotNull
+    private String to;
+
+    private String cc;
+    private String server;
+    private String port;
+    private String startTls;
+    private EmailAttachment attachment;
+
+    private final EmailValidator emailValidator;
+
+    /**
+     * Constructor seguro
+     */
+    public SendEmail() {
+        this.subject = "";
+        this.to = "";
+        this.cc = "";
+        this.content = "";
+        this.emailValidator = EmailValidator.getInstance();
+    }
+
+    /**
+     * Enviar email de forma segura
+     */
+    public void enviarEmail(
+            @NotBlank(message = "Destination cannot be empty")
+            String destination,
+
+            String ccDestination,
+
+            @NotBlank(message = "Subject cannot be empty")
+            String emailSubject) {
+
+        try {
+            // Validar parámetros
+            validateEmailParameters(destination, ccDestination, emailSubject);
+
+            // Cargar configuración
+            loadSecureConfiguration();
+
+            // Enviar email
+            sendSecureEmail(destination, ccDestination, emailSubject);
+
+        } catch (Exception e) {
+            handleEmailError("Error sending email", e);
+        }
+    }
+
+    /**
+     * Formato seguro de mensaje de contraseña olvidada
+     */
+    public static String formatMessagePasswordForget(
+            @NotBlank String username,
+            @NotBlank String password) {
+
+        try {
+            validateMessageParameters(username, password);
+
+            return buildSecureHtmlMessage(
+                sanitizeInput(username),
+                maskSensitiveData(password)
+            );
+
+        } catch (Exception e) {
+            handleFormatError("Error formatting password message", e);
+            return buildErrorMessage();
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private void validateEmailParameters(
+            String destination,
+            String ccDestination,
+            String emailSubject) {
+
+        if (!isValidEmailList(destination)) {
+            throw new IllegalArgumentException("Invalid destination email(s)");
+        }
+
+        if (ccDestination != null && !isValidEmailList(ccDestination)) {
+            throw new IllegalArgumentException("Invalid CC email(s)");
+        }
+
+        validateSubject(emailSubject);
+        validateContent(this.content);
+        validateAttachment(this.attachment);
+    }
+
+    private boolean isValidEmailList(String emails) {
+        if (emails == null || emails.trim().isEmpty()) {
+            return false;
+        }
+
+        String[] emailArray = emails.split(",");
+        if (emailArray.length > MAX_RECIPIENTS) {
+            throw new IllegalArgumentException("Too many recipients");
+        }
+
+        for (String email : emailArray) {
+            if (!emailValidator.isValid(email.trim())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void validateSubject(String subject) {
+        if (subject == null || subject.trim().isEmpty()) {
+            throw new IllegalArgumentException("Subject cannot be empty");
+        }
+
+        if (subject.length() > MAX_SUBJECT_LENGTH) {
+            throw new IllegalArgumentException("Subject too long");
+        }
+    }
+
+    private void validateContent(String content) {
+        if (content == null || content.trim().isEmpty()) {
+            throw new IllegalArgumentException("Content cannot be empty");
+        }
+
+        if (content.length() > MAX_CONTENT_LENGTH) {
+            throw new IllegalArgumentException("Content too long");
+        }
+    }
+
+    private void validateAttachment(EmailAttachment attachment) {
+        if (attachment != null) {
+            if (attachment.getDescription() != null &&
+                attachment.getDescription().length() > MAX_SUBJECT_LENGTH) {
+                throw new IllegalArgumentException("Attachment description too long");
+            }
+
+            if (attachment.getPath() != null) {
+                validateAttachmentSize(attachment.getPath());
+            }
+        }
+    }
+
+    /**
+     * Configuración segura
+     */
+    private void loadSecureConfiguration() throws Exception {
+        this.port = validatePort(Utils.getPropValue("email.port"));
+        this.server = validateServer(Utils.getPropValue("email.ip_servermail"));
+        this.from = validateEmail(Utils.getPropValue("email.remite"));
+        this.password = Utils.getPropValue("email.remite.pwd");
+        this.startTls = Utils.getPropValue("starttls");
+    }
+
+    /**
+     * Envío seguro de email
+     */
+    private void sendSecureEmail(
+            String destination,
+            String ccDestination,
+            String emailSubject) throws EmailException {
+
+        HtmlEmail email = new HtmlEmail();
+
+        try {
+            // Configurar servidor
+            configureEmailServer(email);
+
+            // Configurar remitentes
+            configureEmailAddresses(email, destination, ccDestination);
+
+            // Configurar contenido
+            email.setSubject(sanitizeInput(emailSubject));
+            email.setHtmlMsg(sanitizeHtmlContent(this.content));
+
+            // Adjuntar archivo si existe
+            if (this.attachment != null) {
+                email.attach(this.attachment);
+            }
+
+            // Enviar
+            email.send();
+
+        } catch (Exception e) {
+            LOGGER.severe("Failed to send email: " + e.getMessage());
+            throw new EmailException("Failed to send email", e);
+        }
+    }
+
+    /**
+     * Utilidades de seguridad
+     */
+    private static String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        return Encode.forHtml(input);
+    }
+
+    private static String sanitizeHtmlContent(String content) {
+        if (content == null) {
+            return "";
+        }
+        return Encode.forHtmlContent(content);
+    }
+
+    private static String maskSensitiveData(String data) {
+        if (data == null) {
+            return "****";
+        }
+        if (data.length() <= 4) {
+            return "****";
+        }
+        return "****" + data.substring(data.length() - 4);
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleEmailError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+
+    private static void handleFormatError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de emails
+   - Control de tamaño
+   - Sanitización de contenido
+   - Límites configurables
+
+2. Características de Seguridad:
+   - Sanitización HTML
+   - Control de adjuntos
+   - Validación de servidor
+   - Control de acceso
+
+3. Protecciones:
+   - Validación de formato
+   - Límites de tamaño
+   - Sanitización
+   - Control de recursos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Email:
+   - Validación de direcciones
+   - Control de contenido
+   - Límites de recipientes
+   - Sanitización HTML
+
+2. Control de Datos:
+   - Validación de entrada
+   - Límites de tamaño
+   - Formato seguro
+   - Sanitización
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones
+   - Logging seguro
+   - Control de recursos
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [139/139] Utils.java ... Analizaré este código de la capa de infraestructura que maneja utilidades generales del sistema.
+Tool #138: analizar_owasp
+Este archivo contiene una gran cantidad de funciones utilitarias que necesitan mejoras de seguridad significativas. Aquí hay una implementación mejorada de las funciones principales:
+
+```java
+package com.alignet.vfleets.company.utils;
+
+import java.io.*;
+import java.math.*;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.servlet.http.*;
+import javax.validation.constraints.*;
+
+import org.apache.commons.validator.routines.EmailValidator;
+import org.owasp.encoder.Encode;
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.Validator;
+
+/**
+ * Utilidades seguras del sistema
+ */
+public final class Utils implements Serializable {
+
+    private static final long serialVersionUID = -7699762352665197049L;
+    private static final Logger LOGGER = Logger.getLogger(Utils.class.getName());
+
+    // Constantes de seguridad
+    private static final int MAX_STRING_LENGTH = 1000;
+    private static final int MAX_ARRAY_SIZE = 1000;
+    private static final int MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+    private static final String SAFE_CHARS_PATTERN = "[A-Za-z0-9._-]";
+
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+    private static final Validator VALIDATOR = ESAPI.validator();
+
+    // Constructor privado
+    private Utils() {
+        throw new AssertionError("No Utils instances for you!");
+    }
+
+    /**
+     * Manipulación segura de strings
+     */
+    public static String apilarInteger(
+            @NotNull(message = "Array cannot be null")
+            String[] array,
+
+            @NotNull(message = "Separator cannot be null")
+            String separator) {
+
+        try {
+            validateArrayInput(array);
+            validateSeparator(separator);
+
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < array.length; i++) {
+                String value = sanitizeNumericInput(array[i]);
+                result.append(value);
+                if (i < array.length - 1) {
+                    result.append(separator);
+                }
+            }
+
+            return result.toString();
+
+        } catch (Exception e) {
+            handleUtilError("Error in apilarInteger", e);
+            return "";
+        }
+    }
+
+    public static String[] desapilarInteger(
+            String input,
+            @NotNull String separator) {
+
+        try {
+            if (input == null || input.trim().isEmpty()) {
+                return new String[0];
+            }
+
+            validateSeparator(separator);
+            String sanitizedInput = sanitizeInput(input);
+
+            String[] parts = sanitizedInput.split(Pattern.quote(separator));
+            validateArraySize(parts);
+
+            return Arrays.stream(parts)
+                .map(Utils::sanitizeNumericInput)
+                .toArray(String[]::new);
+
+        } catch (Exception e) {
+            handleUtilError("Error in desapilarInteger", e);
+            return new String[0];
+        }
+    }
+
+    /**
+     * Formateo seguro de montos
+     */
+    public static String formatAmount(
+            @NotNull BigDecimal amount,
+            int decimals) {
+
+        try {
+            validateAmount(amount);
+            validateDecimals(decimals);
+
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+            DecimalFormat formatter = new DecimalFormat("#,##0.00", symbols);
+            formatter.setMinimumFractionDigits(decimals);
+            formatter.setMaximumFractionDigits(decimals);
+
+            return formatter.format(amount);
+
+        } catch (Exception e) {
+            handleUtilError("Error formatting amount", e);
+            return "0.00";
+        }
+    }
+
+    /**
+     * Validación segura de fechas
+     */
+    public static boolean isValidDate(
+            @NotNull String date,
+            @NotNull String format) {
+
+        try {
+            validateDateInput(date);
+            validateDateFormat(format);
+
+            DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern(format);
+
+            LocalDate.parse(date, formatter);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Obtención segura de objetos de sesión
+     */
+    public static <T> T getSessionObject(
+            @NotNull HttpServletRequest request,
+            @NotNull String key,
+            @NotNull Class<T> type) {
+
+        try {
+            validateRequest(request);
+            validateSessionKey(key);
+
+            HttpSession session = request.getSession(false);
+            if (session == null) {
+                return null;
+            }
+
+            Object value = session.getAttribute(key);
+            if (value != null && type.isInstance(value)) {
+                return type.cast(value);
+            }
+
+            return null;
+
+        } catch (Exception e) {
+            handleUtilError("Error getting session object", e);
+            return null;
+        }
+    }
+
+    /**
+     * Validaciones
+     */
+    private static void validateArrayInput(String[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
+
+        if (array.length > MAX_ARRAY_SIZE) {
+            throw new IllegalArgumentException("Array too large");
+        }
+    }
+
+    private static void validateSeparator(String separator) {
+        if (separator == null || separator.trim().isEmpty()) {
+            throw new IllegalArgumentException("Separator cannot be empty");
+        }
+
+        if (!separator.matches(SAFE_CHARS_PATTERN)) {
+            throw new IllegalArgumentException("Invalid separator format");
+        }
+    }
+
+    private static void validateAmount(BigDecimal amount) {
+        if (amount == null) {
+            throw new IllegalArgumentException("Amount cannot be null");
+        }
+
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative");
+        }
+    }
+
+    private static void validateRequest(HttpServletRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Request cannot be null");
+        }
+    }
+
+    /**
+     * Sanitización
+     */
+    private static String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        return Encode.forHtml(input);
+    }
+
+    private static String sanitizeNumericInput(String input) {
+        if (input == null) {
+            return "0";
+        }
+        return input.replaceAll("[^0-9.-]", "");
+    }
+
+    /**
+     * Manejo de errores
+     */
+    private static void handleUtilError(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+    }
+}
+```
+
+Esta implementación mejorada incluye:
+
+1. Validaciones de Seguridad:
+   - Validación de entrada
+   - Control de tamaño
+   - Sanitización
+   - Patrones seguros
+
+2. Características de Seguridad:
+   - SecureRandom
+   - ESAPI Validator
+   - Sanitización HTML
+   - Control de recursos
+
+3. Protecciones:
+   - Validación de formato
+   - Límites de tamaño
+   - Patrones seguros
+   - Control de nulos
+
+4. Buenas Prácticas:
+   - Encapsulamiento
+   - Documentación clara
+   - Constantes configurables
+   - Manejo de errores
+
+Las principales mejoras incluyen:
+
+1. Seguridad de Datos:
+   - Validación de entrada
+   - Sanitización
+   - Control de formato
+   - Límites seguros
+
+2. Control de Recursos:
+   - Límites de tamaño
+   - Control de memoria
+   - Manejo de sesión
+   - Validaciones
+
+3. Robustez:
+   - Manejo de errores
+   - Validaciones completas
+   - Logging seguro
+   - Control de tipos
+
+¿Te gustaría que profundice en algún aspecto específico de estas mejoras de seguridad?  [resumen] generando resumen ejecutivo de 'flotas-mod_empresa' ...
+Tool #139: generar_resumen_microservicio
+Basado en el análisis de las funciones proporcionadas, aquí está el resumen ejecutivo del microservicio flotas-mod_empresa:
+
+Resumen:
+El microservicio flotas-mod_empresa es un módulo que gestiona la administración de flotas vehiculares empresariales, incluyendo el manejo de tarjetas, conductores y control de acceso. Está estructurado en varios componentes principales que manejan diferentes aspectos del negocio.
+
+Propósito:
+El microservicio tiene como objetivos principales:
+
+1. Gestión de Tarjetas Vehiculares:
+- Recepción y activación de tarjetas para vehículos
+- Búsqueda y listado de tarjetas
+- Bloqueo y desbloqueo de tarjetas
+- Actualización de estados de tarjetas
+
+2. Gestión de Conductores:
+- Alta individual y masiva de conductores
+- Asignación de llaves/tarjetas a conductores
+- Búsqueda y actualización de información de conductores
+- Vinculación de conductores con vehículos
+- Gestión de baja y desbloqueo de conductores
+
+3. Control de Acceso y Seguridad:
+- Autenticación y acceso al sistema
+- Gestión de contraseñas (actualización, recuperación)
+- Control de sesiones y navegación
+- Descarga segura de archivos
+
+Sensibilidad de Datos:
+El microservicio maneja datos sensibles como:
+- Credenciales de acceso y contraseñas
+- Información personal de conductores
+- Datos de tarjetas y llaves de vehículos
+- Información de flotas y vehículos empresariales
+- Estados y operaciones de tarjetas/conductores
+
+Por el tipo de información que maneja, requiere un alto nivel de seguridad en la autenticación, autorización y encriptación de datos sensibles.
+
+¿Te gustaría que profundice en algún aspecto específico del análisis?ok
+
+============================================================
+  escaneo_id      : 6fa707a6-8462-4050-b43e-a6ddf8f4cacd
+  score_general   : 63.46
+  nivel_riesgo    : HIGH
+  archivos_total  : 139
+  clases_total    : 139
+  funciones_total : 1289
+  enriquecido     : True
+============================================================

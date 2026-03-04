@@ -131,6 +131,12 @@ def insert_unidades(session: Session, unidades: List[UnidadLogica]) -> List[Unid
     return [_unidad_to_domain(r) for r in rows]
 
 
+def update_resumen_unidad(session: Session, unidad_id: str, resumen: str) -> None:
+    row = session.get(UnidadLogicaORM, str(uuid.UUID(unidad_id)))
+    if row:
+        row.resumen = resumen
+        session.flush()
+
 # ── Escaneo ────────────────────────────────────────────────────────────────────
 
 def _escaneo_to_orm(e: Escaneo) -> dict:
