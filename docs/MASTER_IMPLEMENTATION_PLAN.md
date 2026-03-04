@@ -26,16 +26,16 @@ El Code-Agent no es solo un parser. Es un **agente de ingeniería inversa** que:
 
 | Capa | Tecnología | Uso |
 |---|---|---|
-| Orquestación agente | **AWS Strands Agents** | Fase 2 (LLM enrichment) y Fase 4 (lote multi-repo) |
-| LLM principal | Claude 3.5 Sonnet vía **AWS Bedrock** | Resúmenes, reglas de negocio, OWASP |
+| LLM enrichment | Claude 3.5 Sonnet vía **AWS Bedrock** (llamada directa `boto3`) | Resúmenes, reglas de negocio, OWASP — Fase 2 |
+| Orquestación batch | **AWS Strands Agents** | Solo Fase 4 (lote multi-repo) |
 | LLM fallback | OpenAI GPT-4 | Si Bedrock no disponible |
 | Persistencia | PostgreSQL — schemas `code` + `quality` | Todas las fases |
 | ORM | SQLAlchemy | Todas las fases |
 | Modelos de dominio | Pydantic v2 | Todas las fases |
 | Fuente de código | Bitbucket (solo lectura) | Fase 4 |
 
-**Por qué Strands y no loop manual:**
-El pipeline de enriquecimiento LLM es naturalmente un loop agente: el modelo decide qué herramientas llamar, en qué orden, y maneja reintentos. Strands provee esto de forma declarativa con `@tool`, eliminando el loop manual de `if llm_client: ...` en el pipeline.
+**Por qué llamada directa en Fase 2 y Strands solo en Fase 4:**
+El enriquecimiento por archivo es determinístico — siempre se pide el mismo esquema de salida. Una llamada directa a Bedrock con prompt estructurado es más rápida, predecible y debuggeable que un agente autónomo que genera texto libre entre tool calls. Strands se reserva para Fase 4 donde el modelo necesita decidir el orden de escaneo de múltiples repos y manejar fallos por repo.
 
 ---
 
@@ -251,80 +251,59 @@ code.unidades_logicas: 200 registros
 
 ---
 
-## FASE 2 — Enriquecimiento con LLM (AWS Strands + Claude/Bedrock)
+## FASE 2 — Enriquecimiento con LLM (llamada directa Bedrock + Claude)
 
 **Objetivo:** Cada unidad lógica de capa DOMINIO tiene `resumen` en lenguaje natural. Cada microservicio tiene `quality.escaneos.negocio` con reglas de negocio extraídas.
 
-**Prerequisito:** Fase 1 completada. Acceso a AWS Bedrock (Claude 3.5 Sonnet). `strands-agents` instalado.
+**Prerequisito:** Fase 1 completada. Acceso a AWS Bedrock (Claude 3.5 Sonnet).
 
-**Dependencia nueva:**
-```toml
-# pyproject.toml
-strands-agents = ">=0.1"
-strands-agents-tools = ">=0.1"  # herramientas built-in opcionales
-```
+**Decisión de diseño:** Se usa llamada directa a Bedrock vía `boto3` (sin Strands Agent) para el enriquecimiento por archivo. El motivo: el análisis es determinístico — siempre se pide el mismo esquema de salida. Un agente autónomo genera texto libre entre tool calls, no respeta restricciones de formato y es más lento (múltiples roundtrips). La llamada directa da control total sobre el prompt y garantiza JSON estructurado.
 
-### 2.1 Arquitectura del agente Strands
-
-En lugar del loop manual `if llm_client: ...` en el pipeline, se define un agente con herramientas declarativas:
+### 2.1 Arquitectura del enricher
 
 ```python
-# src/core/enricher/enrichment_agent.py
-from strands import Agent, tool
-from strands.models import BedrockModel
+# src/core/enricher/llm_enricher.py
+import boto3, json
 
-@tool
-def enriquecer_unidades(archivo_id: str, source_code: str) -> dict:
-    """Genera resúmenes en español para cada función de capa DOMINIO.
-    Retorna JSON: [{nombre, resumen}]"""
+def build_llm_client() -> object | None:
+    """Retorna cliente boto3 bedrock-runtime o None si no hay credenciales."""
     ...
 
-@tool
-def extraer_reglas_negocio(source_code: str) -> list:
-    """Extrae reglas de negocio: validaciones, cálculos, flujos.
-    Retorna JSON: [{descripcion, funcion_origen, tipo}]"""
+def enrich_archivo(client, archivo_nombre: str, capa: str, unidades: list, source_code: str) -> dict:
+    """Una llamada a Bedrock. Retorna JSON estructurado con resúmenes + reglas + owasp."""
     ...
-
-@tool
-def analizar_owasp(source_code: str) -> list:
-    """Detecta patrones OWASP Top 10 en código de capa INFRAESTRUCTURA.
-    Retorna JSON: [{categoria, descripcion, linea}]"""
-    ...
-
-@tool
-def generar_resumen_microservicio(inventario_funciones: str) -> dict:
-    """Genera resumen ejecutivo del microservicio.
-    Retorna JSON: {summary, purpose, data_sensitivity}"""
-    ...
-
-enrichment_agent = Agent(
-    model=BedrockModel(
-        model_id="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
-        region_name="us-east-1",
-    ),
-    tools=[enriquecer_unidades, extraer_reglas_negocio, analizar_owasp, generar_resumen_microservicio],
-    system_prompt="Eres un analista técnico de software de pagos digitales. "
-                  "Respondes siempre en español. Produces JSON válido sin markdown.",
-)
 ```
 
-El agente decide el orden de llamadas según el contexto del archivo. El pipeline lo invoca una vez por archivo:
+El pipeline llama `enrich_archivo()` una vez por archivo. Sin loop autónomo, sin decisiones del modelo sobre qué hacer.
 
-```python
-# En pipeline.py — reemplaza el bloque `if llm_client:`
-if enrichment_agent:
-    result = enrichment_agent(f"Enriquece el archivo {archivo.nombre} con activo {activo_id}")
-    repository.apply_enrichment(session, archivo.id, result)
+### 2.2 Estructura del prompt y output esperado
+
+Input al LLM (construido desde el output de Fase 1):
+```json
+{
+  "archivo": "LogicCard.java",
+  "capa": "DOMINIO",
+  "unidades": [
+    {"nombre": "activarTarjeta", "tipo": "FUNCION", "complejidad": 8, "accede_bd": true}
+  ],
+  "codigo": "...primeros 4000 chars..."
+}
 ```
 
-### 2.2 Prompts por herramienta
+Output esperado (JSON estricto, una sola llamada):
+```json
+{
+  "unidades": [{"nombre": "activarTarjeta", "resumen": "...", "reglas_negocio": [...], "owasp": [...]}],
+  "resumen_archivo": "..."
+}
+```
 
-| Herramienta | Trigger | Output → tabla |
-|---|---|---|
-| `enriquecer_unidades` | Archivo con unidades capa DOMINIO | `code.unidades_logicas.resumen` |
-| `extraer_reglas_negocio` | Archivo con capa DOMINIO | `quality.escaneos.negocio.reglas[]` |
-| `analizar_owasp` | Archivo con capa INFRAESTRUCTURA | `quality.escaneos.seguridad.owasp[]` |
-| `generar_resumen_microservicio` | Al final de todos los archivos | `quality.escaneos.negocio.{summary,purpose,data_sensitivity}` |
+| Campo | Destino en BD |
+|---|---|
+| `unidades[].resumen` | `code.unidades_logicas.resumen` |
+| `unidades[].reglas_negocio` | `quality.escaneos.negocio.reglas[]` |
+| `unidades[].owasp` | `quality.escaneos.seguridad.owasp[]` |
+| `resumen_archivo` | acumulado para resumen ejecutivo final |
 
 ### 2.3 Patrones OWASP detectados
 
@@ -346,11 +325,10 @@ except Exception:
 ### Tests Fase 2
 
 ```
-tests/unit/test_enrichment_agent.py
-  - test_tool_enriquecer_unidades_retorna_json_valido
-  - test_tool_no_procesa_capa_infraestructura
-  - test_tool_extraer_reglas_tiene_trazabilidad_funcion_origen
-  - test_tool_owasp_detecta_query_sin_sanitizar
+tests/unit/test_llm_enricher.py
+  - test_enrich_archivo_retorna_json_valido
+  - test_build_prompt_incluye_codigo_y_unidades
+  - test_parse_response_extrae_resumen_y_reglas
   - test_fallback_graceful_si_bedrock_no_disponible
 
 tests/unit/test_business_rule_extractor.py
@@ -359,8 +337,8 @@ tests/unit/test_business_rule_extractor.py
   - test_json_invalido_retorna_lista_vacia
 
 tests/integration/test_pipeline_fase2.py
-  - test_pipeline_con_agent_mock_enriquece_resumen
-  - test_pipeline_sin_agent_completa_sin_error
+  - test_pipeline_con_llm_mock_enriquece_resumen
+  - test_pipeline_sin_llm_completa_sin_error
   - test_escaneo_negocio_tiene_reglas_extraidas
 ```
 
@@ -530,7 +508,7 @@ tests/e2e/test_scan_microservicio.py
 | Fase | Qué hace | Archivos modificados | Tests |
 |---|---|---|---|
 | 1 | Migración schema code+quality, jerarquía física/lógica | `models.py`, `domain.py`, `repository.py`, `logical_unit_extractor.py`, `pipeline.py`, `session.py`, `business_rule_extractor.py` | 3 archivos de test |
-| 2 | **Strands Agent** + LLM: resúmenes + reglas de negocio + OWASP | `src/core/enricher/enrichment_agent.py` (nuevo), `business_rule_extractor.py`, `pipeline.py` | 3 archivos de test |
+| 2 | **LLM directo** (boto3 Bedrock): resúmenes + reglas de negocio + OWASP | `src/core/enricher/llm_enricher.py` (nuevo), `pipeline.py` | 3 archivos de test |
 | 3 | Endpoints A-ONE + relaciones en grafo | `src/integrations/aone_graph.py` (nuevo), `pipeline.py` | 2 archivos de test |
 | 4 | Bitbucket + **Strands batch agent** + 5 microservicios críticos | `src/integrations/bitbucket.py` (nuevo), `scan_all.py` (nuevo) | 3 archivos de test |
 

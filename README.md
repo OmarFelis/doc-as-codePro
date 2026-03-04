@@ -17,11 +17,11 @@ poetry run pytest
 
 ## 📚 Documentación Completa
 
-Ver documentación completa en: [docs/CONTEXTO_PROYECTO.md](docs/CONTEXTO_PROYECTO.md)
+Ver documentación completa en: [docs/CONTEXTO_PROYECTO.md](data/docs/CONTEXTO_PROYECTO.md)
 
-- [QUICKSTART.md](docs/QUICKSTART.md) - Inicio en 5 minutos
-- [README_v3.md](docs/README_v3.md) - Documentación técnica completa
-- [ARQUITECTURA_VISUAL.md](docs/ARQUITECTURA_VISUAL.md) - Diagramas y arquitectura
+- [QUICKSTART.md](data/docs/QUICKSTART.md) - Inicio en 5 minutos
+- [README_v3.md](data/docs/README_v3.md) - Documentación técnica completa
+- [ARQUITECTURA_VISUAL.md](data/docs/ARQUITECTURA_VISUAL.md) - Diagramas y arquitectura
 
 ## 🎯 Estado del Proyecto
 

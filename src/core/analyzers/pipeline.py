@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from src.core.analyzers.project_analyzer import ProjectAnalyzerService
 from src.core.analyzers import logical_unit_extractor
+from src.core.enricher.llm_enricher import enrich_archivo, enrich_microservicio
 from src.db import repository
 from src.models.domain import UnidadLogica, Escaneo, RiskLevel
 from src.utils.logging import get_logger
@@ -42,8 +43,9 @@ async def run(
     activo_id: str,
     microservice_name: str,
     session: Session,
-    enrichment_agent=None,
+    llm_client=None,
     max_files: Optional[int] = None,
+    verbose: bool = False,
 ) -> dict:
     """
     Pipeline completo:
@@ -55,7 +57,7 @@ async def run(
     project = ProjectAnalyzerService().analyze_project(project_path, microservice_name)
 
     files = project.files
-    if enrichment_agent and max_files and len(files) > max_files:
+    if llm_client and max_files and len(files) > max_files:
         files = sorted(files, key=lambda f: f.complexity_score if hasattr(f, 'complexity_score') else 0, reverse=True)[:max_files]
         logger.info("max_files_applied", total=len(project.files), enriching=max_files)
         print(f"  ⚠️  max-files={max_files}: enriqueciendo los {max_files} archivos más complejos de {len(project.files)}")
@@ -67,7 +69,7 @@ async def run(
     all_owasp = []
     inventario_funciones = []
 
-    enrich_set = {f.file_path for f in files} if (enrichment_agent and max_files) else None
+    enrich_set = {f.file_path for f in files} if (llm_client and max_files) else None
 
     for idx, file_analysis in enumerate(project.files, 1):
         archivo, logicas = logical_unit_extractor.extract(file_analysis, activo_id)
@@ -81,60 +83,52 @@ async def run(
         all_logicas.extend(saved_logicas)
 
         in_enrich = enrich_set is None or file_analysis.file_path in enrich_set
-        if enrichment_agent and saved_logicas and in_enrich:
+        if llm_client and saved_logicas and in_enrich:
             try:
                 source = Path(file_analysis.file_path).read_text(encoding="utf-8", errors="ignore")
-                capa = archivo.capa or ""
-                nombres = [u.nombre for u in saved_logicas]
-                inventario_funciones.extend(nombres)
+                unidades_input = [{"nombre": u.nombre, "tipo": u.tipo} for u in saved_logicas]
+                result = enrich_archivo(llm_client, archivo.nombre, archivo.capa or "", unidades_input, source)
 
-                prompt = (
-                    f"Archivo: {archivo.nombre}\n"
-                    f"Capa: {capa}\n"
-                    f"Unidades: {nombres}\n"
-                    f"Código:\n{source[:3000]}"
-                )
-                result = enrichment_agent(prompt)
-                result_text = str(result)
+                resumen_map = {u["nombre"]: u["resumen"] for u in result.get("unidades", []) if "nombre" in u and "resumen" in u}
+                for u in saved_logicas:
+                    if u.nombre in resumen_map:
+                        repository.update_resumen_unidad(session, u.id, resumen_map[u.nombre])
 
-                # Actualizar resúmenes en unidades persistidas
-                from src.core.enricher.enrichment_agent import parse_enrichment_result
-                parsed = parse_enrichment_result(result_text)
-                if isinstance(parsed, list):
-                    resumen_map = {r["nombre"]: r["resumen"] for r in parsed if "nombre" in r and "resumen" in r}
-                    for u in saved_logicas:
-                        if u.nombre in resumen_map:
-                            repository.update_resumen_unidad(session, u.id, resumen_map[u.nombre])
+                for u in result.get("unidades", []):
+                    if u.get("reglas_negocio"):
+                        all_reglas.append({"archivo": archivo.nombre, "funcion": u["nombre"], "reglas": u["reglas_negocio"]})
+                    if u.get("owasp"):
+                        all_owasp.append({"archivo": archivo.nombre, "funcion": u["nombre"], "owasp": u["owasp"]})
 
-                # Acumular reglas y OWASP del resultado
-                if "reglas" in result_text:
-                    all_reglas.append({"archivo": archivo.nombre, "resultado": result_text})
-                if "owasp" in result_text.lower() or "A0" in result_text:
-                    all_owasp.append({"archivo": archivo.nombre, "resultado": result_text})
+                resumen_archivo = result.get("resumen_archivo", "")
+                if resumen_archivo:
+                    inventario_funciones.append(resumen_archivo)
 
+                if verbose:
+                    import json
+                    print(f"\n    {json.dumps(result, ensure_ascii=False, indent=2)}")
+                print("ok")
             except Exception as e:
                 logger.warning("enrichment_skipped", file=file_analysis.file_path, error=str(e))
                 print("skipped")
         else:
-            print("skip" if enrichment_agent else "ok")
+            print("skip" if llm_client else "ok")
 
     session.commit()
 
     # Resumen ejecutivo del microservicio completo
     negocio = {}
-    if enrichment_agent and inventario_funciones:
+    if llm_client and inventario_funciones:
         print(f"  [resumen] generando resumen ejecutivo de '{microservice_name}' ... ", end="", flush=True)
         try:
-            resumen_result = enrichment_agent(
-                f"Genera el resumen ejecutivo del microservicio '{microservice_name}' "
-                f"con estas funciones: {inventario_funciones[:50]}"
-            )
-            from src.core.enricher.enrichment_agent import parse_enrichment_result
-            negocio = parse_enrichment_result(str(resumen_result))
+            negocio = enrich_microservicio(llm_client, microservice_name, inventario_funciones)
             if all_reglas:
                 negocio["reglas"] = all_reglas
             if all_owasp:
                 negocio["owasp"] = all_owasp
+            if verbose:
+                import json
+                print(f"\n  [resumen ejecutivo]\n  {json.dumps(negocio, ensure_ascii=False, indent=2)}")
             print("ok")
         except Exception as e:
             logger.warning("resumen_microservicio_skipped", error=str(e))
@@ -152,5 +146,5 @@ async def run(
         "archivos_total": saved_escaneo.archivos_total,
         "clases_total": saved_escaneo.clases_total,
         "funciones_total": saved_escaneo.funciones_total,
-        "enriquecido": enrichment_agent is not None,
+        "enriquecido": llm_client is not None,
     }

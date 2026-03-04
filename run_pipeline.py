@@ -95,6 +95,7 @@ async def main():
     args = sys.argv[1:]
     dry_run = "--dry-run" in args
     enrich  = "--enrich"  in args
+    verbose = "--show-enrichment" in args
     max_files = None
     for a in args:
         if a.startswith("--max-files="):
@@ -117,9 +118,11 @@ async def main():
     print(f"  Activo ID : {activo_id}{'  (generado)' if dry_run else ''}")
     print(f"  Nombre    : {name}")
     print(f"  Modo      : {'🧪 dry-run (SQLite)' if dry_run else '🗄️  PostgreSQL'}")
-    print(f"  Enrich    : {'✅ Strands + Bedrock' if enrich else '❌ solo parseo'}")
+    print(f"  Enrich    : {'✅ Bedrock (boto3)' if enrich else '❌ solo parseo'}")
     if enrich and max_files:
         print(f"  Max-files : {max_files} (solo los más complejos)")
+    if verbose:
+        print(f"  Verbose   : ✅ imprimiendo JSON de enriquecimiento")
     print(f"{'='*60}\n")
 
     if dry_run:
@@ -137,18 +140,19 @@ async def main():
     try:
         agent = None
         if enrich:
-            print("Cargando agente Strands + Bedrock...")
-            from src.core.enricher.enrichment_agent import build_enrichment_agent
-            agent = build_enrichment_agent()
-            print(f"  {'✅ Agente listo' if agent else '❌ Sin credenciales — continuando sin LLM'}\n")
+            print("Cargando cliente Bedrock...")
+            from src.core.enricher.llm_enricher import build_llm_client
+            agent = build_llm_client()
+            print(f"  {'✅ Cliente listo' if agent else '❌ Sin credenciales — continuando sin LLM'}\n")
 
         result = await run(
             project_path=project_path,
             activo_id=activo_id,
             microservice_name=name,
             session=session,
-            enrichment_agent=agent,
+            llm_client=agent,
             max_files=max_files,
+            verbose=verbose,
         )
         print(f"\n{'='*60}")
         print(f"  escaneo_id      : {result['escaneo_id']}")
