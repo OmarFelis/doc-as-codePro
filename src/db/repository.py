@@ -1,20 +1,25 @@
-"""Repositorios para code.archivos_fuente, code.unidades_logicas, quality.escaneos."""
+"""Repositorios para infra_detalle.archivos_fuente, unidades_logicas, escaneos."""
+import json
 import uuid
 from datetime import datetime, timezone
-from typing import List, Optional
+from typing import List
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from src.db.models import ArchivoFuenteORM, UnidadLogicaORM, EscaneoORM
 from src.models.domain import ArchivoFuente, UnidadLogica, Escaneo
+
+_now = lambda: datetime.now(timezone.utc)
+_uuid = lambda v: str(uuid.UUID(v)) if v else None
+_json = lambda v: json.dumps(v, ensure_ascii=False) if v else None
 
 
 # ── ArchivoFuente ──────────────────────────────────────────────────────────────
 
 def _archivo_to_orm(a: ArchivoFuente) -> dict:
     return {
-        "id": str(uuid.UUID(a.id)) if a.id else str(uuid.uuid4()),
-        "activo_id": str(uuid.UUID(a.activo_id)),
-        "aplicacion_id": a.aplicacion_id,
+        "id": _uuid(a.id) or str(uuid.uuid4()),
+        "activo_id": _uuid(a.activo_id),
+        "aplicacion_id": _uuid(a.aplicacion_id),
         "nombre": a.nombre,
         "ruta_archivo": a.ruta_archivo,
         "proposito": a.proposito,
@@ -28,10 +33,12 @@ def _archivo_to_orm(a: ArchivoFuente) -> dict:
         "complejidad_ciclomatica": a.complejidad_ciclomatica,
         "lineas_codigo": a.lineas_codigo,
         "resumen": a.resumen,
-        "metadata_": a.metadata,
+        "metadata_": _json(a.metadata) if a.metadata else None,
         "build_number": a.build_number,
         "commit_hash": a.commit_hash,
-        "escaneado_en": a.escaneado_en or datetime.now(timezone.utc),
+        "escaneado_en": a.escaneado_en or _now(),
+        "created_at": _now(),
+        "updated_at": _now(),
     }
 
 
@@ -39,7 +46,7 @@ def _archivo_to_domain(row: ArchivoFuenteORM) -> ArchivoFuente:
     return ArchivoFuente(
         id=str(row.id),
         activo_id=str(row.activo_id),
-        aplicacion_id=row.aplicacion_id,
+        aplicacion_id=str(row.aplicacion_id) if row.aplicacion_id else None,
         nombre=row.nombre,
         ruta_archivo=row.ruta_archivo,
         proposito=row.proposito,
@@ -47,13 +54,13 @@ def _archivo_to_domain(row: ArchivoFuenteORM) -> ArchivoFuente:
         lenguaje=row.lenguaje,
         total_funciones=row.total_funciones or 0,
         total_clases=row.total_clases or 0,
-        endpoints=row.endpoints or [],
-        operaciones_bd=row.operaciones_bd or [],
-        llamadas_externas=row.llamadas_externas or [],
+        endpoints=row.endpoints or 0,
+        operaciones_bd=row.operaciones_bd or 0,
+        llamadas_externas=row.llamadas_externas or 0,
         complejidad_ciclomatica=row.complejidad_ciclomatica or 0,
         lineas_codigo=row.lineas_codigo or 0,
         resumen=row.resumen,
-        metadata=row.metadata_ or {},
+        metadata=json.loads(row.metadata_) if row.metadata_ else {},
         build_number=row.build_number,
         commit_hash=row.commit_hash,
         escaneado_en=row.escaneado_en,
@@ -69,7 +76,7 @@ def insert_archivo(session: Session, archivo: ArchivoFuente) -> ArchivoFuente:
 
 def delete_archivos_by_activo(session: Session, activo_id: str) -> None:
     rows = session.execute(
-        select(ArchivoFuenteORM).where(ArchivoFuenteORM.activo_id == str(uuid.UUID(activo_id)))
+        select(ArchivoFuenteORM).where(ArchivoFuenteORM.activo_id == _uuid(activo_id))
     ).scalars().all()
     for row in rows:
         session.delete(row)
@@ -80,24 +87,24 @@ def delete_archivos_by_activo(session: Session, activo_id: str) -> None:
 
 def _unidad_to_orm(u: UnidadLogica) -> dict:
     return {
-        "id": str(uuid.UUID(u.id)) if u.id else str(uuid.uuid4()),
-        "archivo_id": str(uuid.UUID(u.archivo_id)) if u.archivo_id else None,
-        "parent_id": str(uuid.UUID(u.parent_id)) if u.parent_id else None,
-        "activo_id": str(uuid.UUID(u.activo_id)),
+        "id": _uuid(u.id) or str(uuid.uuid4()),
+        "archivo_id": _uuid(u.archivo_id),
+        "parent_id": _uuid(u.parent_id),
+        "activo_id": _uuid(u.activo_id),
+        "aplicacion_id": _uuid(u.aplicacion_id),
         "nombre": u.nombre,
         "tipo": u.tipo if isinstance(u.tipo, str) else u.tipo.value,
-        "capa": u.capa,
-        "proposito": u.proposito,
+        "linea_inicio": u.linea_inicio,
+        "linea_fin": u.linea_fin,
         "complejidad": u.complejidad,
         "lineas_codigo": u.lineas_codigo,
         "accede_bd": u.accede_bd,
         "llamadas_externas": u.llamadas_externas,
         "docstring": u.docstring,
         "resumen": u.resumen,
-        "metadata_": u.metadata,
-        "risk_level": u.risk_level if isinstance(u.risk_level, str) else u.risk_level.value,
-        "overall_score": u.overall_score,
-        "compliance": u.compliance,
+        "metadata_": _json(u.metadata) if u.metadata else None,
+        "created_at": _now(),
+        "updated_at": _now(),
     }
 
 
@@ -107,20 +114,18 @@ def _unidad_to_domain(row: UnidadLogicaORM) -> UnidadLogica:
         archivo_id=str(row.archivo_id) if row.archivo_id else None,
         parent_id=str(row.parent_id) if row.parent_id else None,
         activo_id=str(row.activo_id),
+        aplicacion_id=str(row.aplicacion_id) if row.aplicacion_id else None,
         nombre=row.nombre,
         tipo=row.tipo,
-        capa=row.capa,
-        proposito=row.proposito,
+        linea_inicio=row.linea_inicio,
+        linea_fin=row.linea_fin,
         complejidad=row.complejidad or 0,
         lineas_codigo=row.lineas_codigo or 0,
         accede_bd=row.accede_bd or False,
-        llamadas_externas=row.llamadas_externas or [],
+        llamadas_externas=row.llamadas_externas or 0,
         docstring=row.docstring or False,
         resumen=row.resumen,
-        metadata=row.metadata_ or {},
-        risk_level=row.risk_level,
-        overall_score=row.overall_score,
-        compliance=row.compliance or {},
+        metadata=json.loads(row.metadata_) if row.metadata_ else {},
     )
 
 
@@ -132,34 +137,39 @@ def insert_unidades(session: Session, unidades: List[UnidadLogica]) -> List[Unid
 
 
 def update_resumen_unidad(session: Session, unidad_id: str, resumen: str) -> None:
-    row = session.get(UnidadLogicaORM, str(uuid.UUID(unidad_id)))
+    row = session.get(UnidadLogicaORM, _uuid(unidad_id))
     if row:
         row.resumen = resumen
+        row.updated_at = _now()
         session.flush()
+
 
 # ── Escaneo ────────────────────────────────────────────────────────────────────
 
 def _escaneo_to_orm(e: Escaneo) -> dict:
+    nivel = e.nivel_riesgo if isinstance(e.nivel_riesgo, str) else (e.nivel_riesgo.value if e.nivel_riesgo else "LOW")
     return {
-        "id": str(uuid.UUID(e.id)) if e.id else str(uuid.uuid4()),
-        "activo_id": str(uuid.UUID(e.activo_id)),
-        "aplicacion_id": e.aplicacion_id,
+        "id": _uuid(e.id) or str(uuid.uuid4()),
+        "activo_id": _uuid(e.activo_id),
+        "aplicacion_id": _uuid(e.aplicacion_id),
         "build_number": e.build_number,
         "commit_hash": e.commit_hash,
-        "escaneado_en": e.escaneado_en or datetime.now(timezone.utc),
+        "escaneado_en": e.escaneado_en or _now(),
         "generado_por": e.generado_por,
         "score_general": e.score_general,
-        "nivel_riesgo": e.nivel_riesgo if isinstance(e.nivel_riesgo, str) else (e.nivel_riesgo.value if e.nivel_riesgo else None),
+        "nivel_riesgo": nivel,
         "archivos_total": e.archivos_total,
         "funciones_total": e.funciones_total,
         "clases_total": e.clases_total,
-        "dominios_negocio": e.dominios_negocio,
-        "metricas": e.metricas,
-        "arquitectura": e.arquitectura,
-        "seguridad": e.seguridad,
-        "rendimiento": e.rendimiento,
-        "negocio": e.negocio,
-        "cumplimiento": e.cumplimiento,
+        "dominios_negocio": _json(e.dominios_negocio) if e.dominios_negocio else None,
+        "metricas": _json(e.metricas) if e.metricas else None,
+        "arquitectura": _json(e.arquitectura) if e.arquitectura else None,
+        "seguridad": _json(e.seguridad) if e.seguridad else None,
+        "rendimiento": _json(e.rendimiento) if e.rendimiento else None,
+        "negocio": _json(e.negocio) if e.negocio else None,
+        "cumplimiento": _json(e.cumplimiento) if e.cumplimiento else None,
+        "created_at": _now(),
+        "updated_at": _now(),
     }
 
 
@@ -167,7 +177,7 @@ def _escaneo_to_domain(row: EscaneoORM) -> Escaneo:
     return Escaneo(
         id=str(row.id),
         activo_id=str(row.activo_id),
-        aplicacion_id=row.aplicacion_id,
+        aplicacion_id=str(row.aplicacion_id) if row.aplicacion_id else None,
         build_number=row.build_number,
         commit_hash=row.commit_hash,
         escaneado_en=row.escaneado_en,
@@ -177,13 +187,13 @@ def _escaneo_to_domain(row: EscaneoORM) -> Escaneo:
         archivos_total=row.archivos_total or 0,
         funciones_total=row.funciones_total or 0,
         clases_total=row.clases_total or 0,
-        dominios_negocio=row.dominios_negocio or [],
-        metricas=row.metricas or {},
-        arquitectura=row.arquitectura or {},
-        seguridad=row.seguridad or {},
-        rendimiento=row.rendimiento or {},
-        negocio=row.negocio or {},
-        cumplimiento=row.cumplimiento or {},
+        dominios_negocio=json.loads(row.dominios_negocio) if row.dominios_negocio else [],
+        metricas=json.loads(row.metricas) if row.metricas else {},
+        arquitectura=json.loads(row.arquitectura) if row.arquitectura else {},
+        seguridad=json.loads(row.seguridad) if row.seguridad else {},
+        rendimiento=json.loads(row.rendimiento) if row.rendimiento else {},
+        negocio=json.loads(row.negocio) if row.negocio else {},
+        cumplimiento=json.loads(row.cumplimiento) if row.cumplimiento else {},
     )
 
 
@@ -196,7 +206,7 @@ def insert_escaneo(session: Session, escaneo: Escaneo) -> Escaneo:
 
 def get_escaneos_by_activo(session: Session, activo_id: str) -> List[Escaneo]:
     rows = session.execute(
-        select(EscaneoORM).where(EscaneoORM.activo_id == str(uuid.UUID(activo_id)))
+        select(EscaneoORM).where(EscaneoORM.activo_id == _uuid(activo_id))
         .order_by(EscaneoORM.escaneado_en.desc())
     ).scalars().all()
     return [_escaneo_to_domain(r) for r in rows]

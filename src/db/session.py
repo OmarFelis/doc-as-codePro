@@ -19,11 +19,7 @@ def get_session(url: str | None = None) -> Session:
 
 
 def init_db(url: str | None = None) -> None:
-    """Crea schemas code y quality si no existen, luego crea todas las tablas."""
-    from src.db.models import Base
+    """Verifica conexión. Los schemas y tablas ya existen — creados por el DBA."""
     engine = get_engine(url)
     with engine.connect() as conn:
-        conn.execute(text("CREATE SCHEMA IF NOT EXISTS code"))
-        conn.execute(text("CREATE SCHEMA IF NOT EXISTS quality"))
-        conn.commit()
-    Base.metadata.create_all(engine)
+        conn.execute(text("SELECT 1"))

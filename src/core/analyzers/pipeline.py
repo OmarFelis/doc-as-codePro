@@ -13,26 +13,20 @@ from src.utils.logging import get_logger
 logger = get_logger(__name__)
 
 
-def _build_escaneo(activo_id: str, project, all_logicas: List[UnidadLogica], negocio: dict = None) -> Escaneo:
-    funciones = [u for u in all_logicas if u.tipo == "FUNCION"]
-    clases = [u for u in all_logicas if u.tipo == "CLASE"]
-    scores = [u.overall_score for u in all_logicas if u.overall_score is not None]
-    avg_score = round(sum(scores) / len(scores), 2) if scores else None
-    high_count = sum(1 for u in all_logicas if u.risk_level == "HIGH")
-    nivel = "HIGH" if high_count > 0 else ("MEDIUM" if any(u.risk_level == "MEDIUM" for u in all_logicas) else "LOW")
-
+def _build_escaneo(activo_id: str, aplicacion_id: str | None, project, all_scores: list, all_risk_counts: dict, negocio: dict = None) -> Escaneo:
+    avg_score = round(sum(all_scores) / len(all_scores), 2) if all_scores else None
+    nivel = "HIGH" if all_risk_counts.get("HIGH", 0) > 0 else ("MEDIUM" if all_risk_counts.get("MEDIUM", 0) > 0 else "LOW")
     return Escaneo(
         activo_id=activo_id,
+        aplicacion_id=aplicacion_id,
         commit_hash=project.commit_hash,
         score_general=avg_score,
         nivel_riesgo=RiskLevel(nivel),
         archivos_total=project.total_files,
-        funciones_total=len(funciones),
-        clases_total=len(clases),
         metricas={
             "total_lines": project.total_lines,
             "languages": project.languages,
-            "high_risk_count": high_count,
+            "funciones_por_riesgo": all_risk_counts,
         },
         negocio=negocio or {},
     )
@@ -43,8 +37,9 @@ async def run(
     activo_id: str,
     microservice_name: str,
     session: Session,
+    aplicacion_id: str | None = None,
     llm_client=None,
-    max_files: Optional[int] = None,
+    max_files: int | None = None,
     verbose: bool = False,
 ) -> dict:
     """
@@ -68,11 +63,13 @@ async def run(
     all_reglas = []
     all_owasp = []
     inventario_funciones = []
+    all_scores: List[float] = []
+    all_risk_counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
 
     enrich_set = {f.file_path for f in files} if (llm_client and max_files) else None
 
     for idx, file_analysis in enumerate(project.files, 1):
-        archivo, logicas = logical_unit_extractor.extract(file_analysis, activo_id)
+        archivo, logicas, scoring = logical_unit_extractor.extract(file_analysis, activo_id, aplicacion_id)
         print(f"  [{idx}/{total}] {archivo.nombre} ... ", end="", flush=True)
         saved_archivo = repository.insert_archivo(session, archivo)
 
@@ -81,6 +78,9 @@ async def run(
 
         saved_logicas = repository.insert_unidades(session, logicas)
         all_logicas.extend(saved_logicas)
+        all_scores.extend(scoring["scores"])
+        for k, v in scoring["risk_counts"].items():
+            all_risk_counts[k] = all_risk_counts.get(k, 0) + v
 
         in_enrich = enrich_set is None or file_analysis.file_path in enrich_set
         if llm_client and saved_logicas and in_enrich:
@@ -134,7 +134,11 @@ async def run(
             logger.warning("resumen_microservicio_skipped", error=str(e))
             print("skipped")
 
-    escaneo = _build_escaneo(activo_id, project, all_logicas, negocio)
+    funciones = [u for u in all_logicas if u.tipo == "FUNCION"]
+    clases = [u for u in all_logicas if u.tipo == "CLASE"]
+    escaneo = _build_escaneo(activo_id, aplicacion_id, project, all_scores, all_risk_counts, negocio)
+    escaneo.funciones_total = len(funciones)
+    escaneo.clases_total = len(clases)
     saved_escaneo = repository.insert_escaneo(session, escaneo)
     session.commit()
 

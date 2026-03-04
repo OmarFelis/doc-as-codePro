@@ -98,9 +98,9 @@ class ArchivoFuente(BaseModel):
     lenguaje: Optional[str] = None
     total_funciones: int = 0
     total_clases: int = 0
-    endpoints: List[Dict[str, Any]] = Field(default_factory=list)
-    operaciones_bd: List[str] = Field(default_factory=list)
-    llamadas_externas: List[str] = Field(default_factory=list)
+    endpoints: int = 0
+    operaciones_bd: int = 0
+    llamadas_externas: int = 0
     complejidad_ciclomatica: int = 0
     lineas_codigo: int = 0
     resumen: Optional[str] = None
@@ -117,20 +117,20 @@ class UnidadLogica(BaseModel):
     archivo_id: Optional[str] = None
     parent_id: Optional[str] = None
     activo_id: str
+    aplicacion_id: Optional[str] = None
     nombre: str
     tipo: TipoUnidad
+    linea_inicio: Optional[int] = None
+    linea_fin: Optional[int] = None
     capa: Optional[str] = None
     proposito: Optional[str] = None
     complejidad: int = 0
     lineas_codigo: int = 0
     accede_bd: bool = False
-    llamadas_externas: List[str] = Field(default_factory=list)
+    llamadas_externas: int = 0
     docstring: bool = False
     resumen: Optional[str] = None
     metadata: Dict[str, Any] = Field(default_factory=dict)
-    risk_level: RiskLevel = RiskLevel.MEDIUM
-    overall_score: Optional[float] = None
-    compliance: Dict[str, Any] = Field(default_factory=dict)
 
     model_config = ConfigDict(use_enum_values=True)
 

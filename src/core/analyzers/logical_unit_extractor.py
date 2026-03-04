@@ -1,4 +1,5 @@
 """Extrae ArchivoFuente y UnidadLogica con jerarquía clase→función desde FileAnalysis."""
+import uuid as _uuid
 from pathlib import Path
 from typing import List, Tuple
 from src.models.domain import (
@@ -48,14 +49,9 @@ def _classify_layer(imports: List[str]) -> ArchitectureLayer:
     return ArchitectureLayer.DOMINIO
 
 
-def _has_multi_layer_coupling(imports: List[str]) -> bool:
+def _detect_aws_services(imports: List[str]) -> int:
     normalized = _normalize_imports(imports)
-    return bool(normalized & _ADAPTADOR_PATTERNS) and bool(normalized & _INFRA_PATTERNS)
-
-
-def _detect_aws_services(imports: List[str]) -> List[str]:
-    normalized = _normalize_imports(imports)
-    return [_AWS_SERVICES_MAP[k] for k in normalized if k in _AWS_SERVICES_MAP]
+    return len([k for k in normalized if k in _AWS_SERVICES_MAP])
 
 
 def _calc_atomicity(loc: int, complexity: int) -> float:
@@ -89,64 +85,67 @@ def _calc_risk(complexity: int, score: float) -> RiskLevel:
     return RiskLevel.LOW
 
 
-def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente, List[UnidadLogica]]:
-    """Produce ArchivoFuente + List[UnidadLogica] con jerarquía CLASE→FUNCION."""
+def extract(
+    file_analysis: FileAnalysis,
+    activo_id: str,
+    aplicacion_id: str | None = None,
+) -> Tuple[ArchivoFuente, List[UnidadLogica], dict]:
+    """Produce ArchivoFuente + List[UnidadLogica] + scoring_summary para metricas del escaneo."""
     imports = file_analysis.imports
     layer = _classify_layer(imports)
-    aws_services = _detect_aws_services(imports)
+    aws_count = _detect_aws_services(imports)
     accede_bd = bool(file_analysis.database_calls)
-    multi_layer = bool(_normalize_imports(imports) & _ADAPTADOR_PATTERNS) and bool(_normalize_imports(imports) & _INFRA_PATTERNS)
 
     archivo = ArchivoFuente(
         activo_id=activo_id,
+        aplicacion_id=aplicacion_id,
         nombre=Path(file_analysis.file_path).name,
         ruta_archivo=file_analysis.file_path,
         capa=layer.value,
         lenguaje=file_analysis.language if isinstance(file_analysis.language, str) else file_analysis.language.value,
         total_funciones=len(file_analysis.functions),
         total_clases=len(file_analysis.classes),
-        endpoints=file_analysis.endpoints,
-        operaciones_bd=file_analysis.database_calls,
-        llamadas_externas=aws_services,
+        endpoints=len(file_analysis.endpoints),
+        operaciones_bd=len(file_analysis.database_calls),
+        llamadas_externas=aws_count,
         complejidad_ciclomatica=file_analysis.complexity,
         lineas_codigo=file_analysis.lines,
     )
 
     unidades: List[UnidadLogica] = []
-    # Mapa clase_nombre → id temporal (str) para asignar parent_id a funciones
     clase_ids: dict[str, str] = {}
-    import uuid as _uuid
+    scores: List[float] = []
 
-    # 1 — Crear unidades CLASE (score se recalcula tras crear funciones)
+    # 1 — Clases
     for clase_nombre in file_analysis.classes:
         uid = str(_uuid.uuid4())
         clase_ids[clase_nombre] = uid
-        clase_score = _calc_overall(
-                _calc_atomicity(file_analysis.lines // max(len(file_analysis.classes), 1), file_analysis.complexity),
-                _calc_transparency(file_analysis.database_calls, imports),
-                file_analysis.complexity,
-            )
+        loc = file_analysis.lines // max(len(file_analysis.classes), 1)
+        score = _calc_overall(
+            _calc_atomicity(loc, file_analysis.complexity),
+            _calc_transparency(file_analysis.database_calls, imports),
+            file_analysis.complexity,
+        )
+        scores.append(score)
         unidades.append(UnidadLogica(
             id=uid,
             activo_id=activo_id,
+            aplicacion_id=aplicacion_id,
             nombre=clase_nombre,
             tipo=TipoUnidad.CLASE,
             capa=layer.value,
             complejidad=file_analysis.complexity,
-            lineas_codigo=file_analysis.lines // max(len(file_analysis.classes), 1),
+            lineas_codigo=loc,
             accede_bd=accede_bd,
-            llamadas_externas=aws_services,
-            risk_level=_calc_risk(file_analysis.complexity, clase_score),
-            overall_score=clase_score,
-            compliance={"has_multi_layer_coupling": multi_layer},
+            llamadas_externas=aws_count,
+            metadata={"risk_level": _calc_risk(file_analysis.complexity, score).value, "overall_score": score},
         ))
 
-    # 2 — Crear unidades FUNCION con parent_id si pertenecen a una clase
+    # 2 — Funciones
     func_count = max(len(file_analysis.functions), 1)
     loc_per_func = max(file_analysis.lines // func_count, 1)
 
     for func_name in file_analysis.functions:
-        # Detectar si es método de clase: "ClassName.method_name"
         parent_id = None
         nombre = func_name
         if "." in func_name:
@@ -154,12 +153,15 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
             parent_id = clase_ids.get(clase_nombre)
 
         func_complexity = file_analysis.func_complexity.get(func_name, file_analysis.complexity)
-        atomicity = _calc_atomicity(loc_per_func, func_complexity)
-        transparency = _calc_transparency(file_analysis.database_calls, imports)
-
-        func_score = _calc_overall(atomicity, transparency, func_complexity)
+        score = _calc_overall(
+            _calc_atomicity(loc_per_func, func_complexity),
+            _calc_transparency(file_analysis.database_calls, imports),
+            func_complexity,
+        )
+        scores.append(score)
         unidades.append(UnidadLogica(
             activo_id=activo_id,
+            aplicacion_id=aplicacion_id,
             nombre=nombre,
             tipo=TipoUnidad.FUNCION,
             capa=layer.value,
@@ -167,27 +169,24 @@ def extract(file_analysis: FileAnalysis, activo_id: str) -> Tuple[ArchivoFuente,
             complejidad=func_complexity,
             lineas_codigo=loc_per_func,
             accede_bd=accede_bd,
-            llamadas_externas=aws_services,
-            risk_level=_calc_risk(func_complexity, func_score),
-            overall_score=func_score,
-            compliance={
-                "has_multi_layer_coupling": multi_layer,
+            llamadas_externas=aws_count,
+            metadata={
+                "risk_level": _calc_risk(func_complexity, score).value,
+                "overall_score": score,
                 "loc_ok": loc_per_func <= 30,
                 "complexity_ok": func_complexity <= 10,
             },
         ))
 
-    # 3 — Recalcular score/risk de CLASE como promedio de sus funciones hijas
-    clase_by_id = {u.id: u for u in unidades if u.tipo == TipoUnidad.CLASE}
-    for fn in unidades:
-        if fn.tipo != TipoUnidad.FUNCION or fn.parent_id not in clase_by_id:
-            continue
-        clase = clase_by_id[fn.parent_id]
-        hijos = [u for u in unidades if u.tipo == TipoUnidad.FUNCION and u.parent_id == clase.id]
-        scores = [h.overall_score for h in hijos if h.overall_score is not None]
-        if scores:
-            clase.overall_score = round(sum(scores) / len(scores), 2)
-            max_complexity = max(h.complejidad for h in hijos)
-            clase.risk_level = _calc_risk(max_complexity, clase.overall_score).value
+    # 3 — Scoring summary para metricas del escaneo
+    risk_counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
+    for u in unidades:
+        rl = u.metadata.get("risk_level", "MEDIUM")
+        risk_counts[rl] = risk_counts.get(rl, 0) + 1
 
-    return archivo, unidades
+    scoring_summary = {
+        "scores": scores,
+        "risk_counts": risk_counts,
+    }
+
+    return archivo, unidades, scoring_summary

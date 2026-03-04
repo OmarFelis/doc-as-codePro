@@ -97,9 +97,12 @@ async def main():
     enrich  = "--enrich"  in args
     verbose = "--show-enrichment" in args
     max_files = None
+    aplicacion_id = None
     for a in args:
         if a.startswith("--max-files="):
             max_files = int(a.split("=")[1])
+        if a.startswith("--aplicacion-id="):
+            aplicacion_id = a.split("=")[1]
     positional = [a for a in args if not a.startswith("--")]
 
     project_path = Path(positional[0])
@@ -119,6 +122,7 @@ async def main():
     print(f"  Nombre    : {name}")
     print(f"  Modo      : {'🧪 dry-run (SQLite)' if dry_run else '🗄️  PostgreSQL'}")
     print(f"  Enrich    : {'✅ Bedrock (boto3)' if enrich else '❌ solo parseo'}")
+    print(f"  Aplicacion: {aplicacion_id or 'N/A (dry-run)'}")
     if enrich and max_files:
         print(f"  Max-files : {max_files} (solo los más complejos)")
     if verbose:
@@ -150,6 +154,7 @@ async def main():
             activo_id=activo_id,
             microservice_name=name,
             session=session,
+            aplicacion_id=aplicacion_id,
             llm_client=agent,
             max_files=max_files,
             verbose=verbose,
